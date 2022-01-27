@@ -40,22 +40,22 @@ export default function CountDownTimer({ countDownDate }) {
 
   return (
     <div className="flex items-start justify-center space-x-2">
-      <div className="flex flex-col items-center text-lipad-blue">
+      <div className="flex flex-col items-center ">
         <p className="text-lg font-semibold">{timerDays}</p>
         <p className="text-[0.66rem]">DAYS</p>
       </div>
       <span>:</span>
-      <div className="flex flex-col items-center text-lipad-blue">
+      <div className="flex flex-col items-center ">
         <p className="text-lg font-semibold">{timerHours}</p>
         <p className="text-[0.66rem]">HRS</p>
       </div>
       <span>:</span>
-      <div className="flex flex-col items-center text-lipad-blue">
+      <div className="flex flex-col items-center ">
         <p className="text-lg font-semibold">{timerMinutes}</p>
         <p className="text-[0.66rem]">MINS</p>
       </div>
       <span>:</span>
-      <div className="flex flex-col items-center text-lipad-blue">
+      <div className="flex flex-col items-center ">
         <p className="text-lg font-semibold">{timerSeconds}</p>
         <p className="text-[0.66rem]">SECS</p>
       </div>
