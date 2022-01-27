@@ -3,10 +3,14 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputField from "../../components/input/inputField";
 import CheckBox from "../../components/input/checkBox";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function MobileMoneyForm({ title }) {
   const mobileRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -21,7 +25,9 @@ export default function MobileMoneyForm({ title }) {
       amount: Yup.string().required("Please enter an amount"),
       saveNumber: Yup.bool(),
     }),
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      router.push("/authorize-payment");
+    },
   });
 
   return (

@@ -3,8 +3,11 @@ import Link from "next/link";
 import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
+import { useRouter } from "next/router";
 
 export default function AuthorizePayment() {
+  const router = useRouter();
+
   return (
     <>
       <div className="px-4 py-16">
@@ -30,12 +33,15 @@ export default function AuthorizePayment() {
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
-          <Link href="/" passHref>
+          <div className="w-full" onClick={() => router.back()}>
             <OutlineButton label="Back" />
-          </Link>
-          <Link href="/" passHref>
+          </div>
+          <div
+            className="w-full"
+            onClick={() => router.push("/processing-payment")}
+          >
             <SolidButton label="Send Prompt" />
-          </Link>
+          </div>
         </div>
       </div>
       <div></div>
