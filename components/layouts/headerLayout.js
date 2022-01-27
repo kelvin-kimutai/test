@@ -7,7 +7,7 @@ export default function HeaderLayout({ children }) {
     <>
       <div className="text-white bg-lipad-green">
         <section className="pt-8 pb-24 space-y-4">
-          {/* <CountDownTimer countDownDate={countDownDate} /> */}
+          <CountDownTimer countDownDate={countDownDate} />
           <p className="px-16 text-base font-bold text-center ">
             Make a Payment to Jumia Kenya for Purchase of goods
           </p>
