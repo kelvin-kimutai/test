@@ -10,16 +10,22 @@ export default function InputField({ formik, variable, type, label }) {
             ? "border-lipad-red border-b-2"
             : ""
         } ${
-          !formik.errors[variable] && hasFocus
-            ? "border-lipad-green border-b-2"
+          hasFocus == true
+            ? formik.errors[variable] && formik.touched[variable]
+              ? "border-lipad-red border-b-2"
+              : "border-lipad-green border-b-2"
             : ""
         } flex flex-col py-2 px-4 rounded-t-md bg-lipad-grey bg-opacity-5 gap-1`}
       >
         <label
           htmlFor={variable}
           className={`${
-            hasFocus && !formik.errors[variable] ? "text-lipad-green" : ""
-          } text-lipad-grey`}
+            hasFocus == true
+              ? formik.errors[variable] && formik.touched[variable]
+                ? ""
+                : "text-lipad-green"
+              : ""
+          } `}
         >
           Enter {label}
         </label>
