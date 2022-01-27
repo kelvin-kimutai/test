@@ -6,8 +6,8 @@ import { merchants } from "../../data/merchants";
 export default function MainLayout({ children }) {
   return (
     <main className="grid place-content-center font-body">
-      <section className="w-[28rem] relative min-h-screen py-16">
-        <div className="absolute p-2 rounded-full top-16 -right-10 bg-lipad-grey">
+      <section className="w-full sm:w-[32rem] relative min-h-screen py-16 px-8">
+        <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-10 bg-lipad-grey">
           <AiOutlineClose className="text-white" />
         </div>
         <div className="flex flex-col h-full rounded-lg shadow-2xl">
