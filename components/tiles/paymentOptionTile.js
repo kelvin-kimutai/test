@@ -22,12 +22,7 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                     <div
                       key={option.name}
                       className={`${open ? "hidden" : "block"}`}
-                    >
-                      <div className="relative">
-                        {/* <Image src="/" alt="" layout="fill" /> */}
-                        {option.name}
-                      </div>
-                    </div>
+                    ></div>
                   ))}
 
                   <HiChevronUp
@@ -51,7 +46,14 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                       <div key={option.name}>
                         <Link href={`/payments/${option.id}`} passHref>
                           <div className="grid h-16 text-xs font-semibold transition duration-200 border-2 rounded-md hover:border-lipad-green place-items-center">
-                            {option.name}
+                            <div className="relative w-full h-full">
+                              <Image
+                                src={option.imageSrc}
+                                alt=""
+                                objectFit="contain"
+                                layout="fill"
+                              />
+                            </div>
                           </div>
                         </Link>
                       </div>

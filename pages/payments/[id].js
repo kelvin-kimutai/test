@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import CardSelector from "../../components/cardSelector";
+import CardForm from "../../components/forms/cardForm";
 import MobileMoneyForm from "../../components/forms/mobileMoneyForm";
 import HeaderLayout from "../../components/layouts/headerLayout";
 import MainLayout from "../../components/layouts/mainLayout";
@@ -49,11 +49,11 @@ export default function Page({ paymentOption }) {
         <MobileMoneyForm />
       </>
     );
-  else if (paymentOptionId == "masterCard" || paymentOptionId == "visa")
+  else if (paymentOptionId == "card")
     return (
       <>
-        {title("Select your card")}
-        <CardSelector />
+        {title("Enter your Card details")}
+        <CardForm />
       </>
     );
   else
