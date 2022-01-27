@@ -28,10 +28,10 @@ export default function Page() {
         </div>
         <div className="flex w-full mt-12 gap-x-2">
           <Link href="/" passHref>
-            <OutlineButton label="Cancel" src="" />
+            <OutlineButton label="Cancel" />
           </Link>
           <Link href="/" passHref>
-            <SolidButton label="Confirm Payment" src="" />
+            <SolidButton label="Confirm Payment" />
           </Link>
         </div>
       </div>

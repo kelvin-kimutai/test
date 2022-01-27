@@ -27,7 +27,7 @@ export default function Page() {
         </div>
         <div className="mt-8">
           <Link href="/" passHref>
-            <SolidButton src="/" label="Okay" />
+            <SolidButton label="Okay" />
           </Link>
         </div>
       </div>

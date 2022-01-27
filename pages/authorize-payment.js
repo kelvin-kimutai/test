@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import OutlineButton from "../components/buttons/outlineButton";
-import SolideButton from "../components/buttons/solidButton";
+import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 
 export default function AuthorizePayment() {
@@ -29,8 +30,12 @@ export default function AuthorizePayment() {
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
-          <OutlineButton label="Back" src="" />
-          <SolideButton label="Send Prompt" src="" />
+          <Link href="/" passHref>
+            <OutlineButton label="Back" />
+          </Link>
+          <Link href="/" passHref>
+            <SolidButton label="Send Prompt" />
+          </Link>
         </div>
       </div>
       <div></div>
