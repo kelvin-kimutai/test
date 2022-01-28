@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function CountDownTimer({ countDownDate }) {
+export default function CountDownTimer() {
+  const countDownTime = new Date("February 28, 2022 00:00:00");
+
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
   const [timerMinutes, setTimerMinutes] = useState("00");
@@ -11,7 +13,7 @@ export default function CountDownTimer({ countDownDate }) {
   const startTimer = () => {
     interval = setInterval(() => {
       const now = new Date().getTime();
-      const distance = countDownDate - now;
+      const distance = countDownTime - now;
       let days = Math.floor(distance / (1000 * 60 * 60 * 24));
       let hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
