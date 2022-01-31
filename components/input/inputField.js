@@ -15,7 +15,7 @@ export default function InputField({ formik, variable, type, label }) {
               ? "border-lipad-red border-b-2"
               : "border-lipad-green border-b-2"
             : ""
-        } flex flex-col py-2 px-4 rounded-t-md bg-lipad-grey bg-opacity-5 gap-1`}
+        } flex flex-col px-4 rounded-t-md bg-lipad-grey bg-opacity-5 gap-1`}
       >
         <label
           htmlFor={variable}
@@ -37,7 +37,7 @@ export default function InputField({ formik, variable, type, label }) {
           onChange={formik.handleChange}
           onBlur={() => setFocus(false)}
           value={formik.values[variable]}
-          className="bg-transparent focus:outline-none "
+          className="bg-transparent border-transparent focus:border-transparent focus:ring-0"
         />
       </div>
       {formik.touched[variable] && formik.errors[variable] ? (

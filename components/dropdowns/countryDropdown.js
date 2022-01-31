@@ -40,7 +40,7 @@ export default function CountryDropdown() {
                 <Listbox.Option
                   key={i}
                   className={({ active }) =>
-                    `${active ? "text-amber-900 bg-amber-100" : "text-gray-900"}
+                    `${active ? "text-blue-900 bg-blue-100" : "text-gray-900"}
                           cursor-default select-none relative py-2 pl-10 pr-4`
                   }
                   value={country}
@@ -57,13 +57,23 @@ export default function CountryDropdown() {
                       {selected ? (
                         <span
                           className={`${
-                            active ? "text-amber-600" : "text-amber-600"
+                            active ? "text-blue-600" : "text-blue-600"
                           }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                         >
                           <HiCheck className="w-5 h-5" />
                         </span>
-                      ) : null}
+                      ) : (
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                          <div className="relative w-4 h-3">
+                            <Image
+                              src={country.imageSrc}
+                              alt={`Flag of ${country.name}`}
+                              layout="fill"
+                            />
+                          </div>
+                        </span>
+                      )}
                     </>
                   )}
                 </Listbox.Option>

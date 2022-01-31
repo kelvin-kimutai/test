@@ -5,18 +5,32 @@ import { HiChevronUp } from "react-icons/hi";
 import MainLayout from "../components/layouts/mainLayout";
 import Image from "next/image";
 import Link from "next/link";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 export default function Page() {
-  const card = (iconSrc, title) => (
+  const card = (iconSrc, title, paymentIcons) => (
     <div className="flex flex-col w-full p-4 rounded-lg shadow-md cursor-pointer">
       <div className="flex items-center justify-between w-full">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
           <div className="relative w-5 h-5">
             <Image src={iconSrc} alt="" layout="fill" />
           </div>
-          <span className="font-semibold">{title}</span>
+          <span className="font-bold">{title}</span>
         </div>
-        <div className="flex items-center space-x-2 text-xs font-semibold">
+        <div className="flex items-center space-x-3">
+          {paymentIcons.map((paymentIcon, i) => (
+            <div key={i}>
+              <div className="relative w-10 h-6">
+                <Image
+                  src={paymentIcon}
+                  alt=""
+                  objectFit="contain"
+                  layout="fill"
+                />
+              </div>
+            </div>
+          ))}
           <HiChevronUp
             className={`w-5 h-5 text-lipad-grey transform rotate-90`}
           />
@@ -26,7 +40,7 @@ export default function Page() {
   );
   return (
     <>
-      <h2 className="text-2xl font-semibold text-center">
+      <h2 className="text-2xl font-bold text-center">
         How would you like to pay?
       </h2>
       <PaymentOptionTile
@@ -35,10 +49,16 @@ export default function Page() {
         iconSrc="/images/icons/mobile-money.svg"
       />
       <Link href="/payments/card" passHref>
-        {card("/images/icons/card.svg", "Card")}
+        {card("/images/icons/card.svg", "Card", [
+          "/images/logos/visa.svg",
+          "/images/logos/mastercard.svg",
+        ])}
       </Link>
       <Link href="/select-bank" passHref>
-        {card("/images/icons/bank.svg", "Bank")}
+        {card("/images/icons/bank.svg", "Bank", [
+          "/images/logos/ecobank.svg",
+          "/images/logos/dtb.svg",
+        ])}
       </Link>
     </>
   );
@@ -46,8 +66,10 @@ export default function Page() {
 
 Page.getLayout = function getLayout(page) {
   return (
-    <MainLayout>
-      <HeaderLayout>{page}</HeaderLayout>
-    </MainLayout>
+    <Provider store={store}>
+      <MainLayout>
+        <HeaderLayout>{page}</HeaderLayout>
+      </MainLayout>
+    </Provider>
   );
 };

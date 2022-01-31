@@ -2,13 +2,13 @@ const paymentOptions = [
   {
     id: "mpesa",
     name: "M-Pesa",
-    imageSrc: "/images/logos/mpesa.png",
+    imageSrc: "/images/logos/mpesa.svg",
     type: "mobile",
   },
   {
     id: "airtel",
     name: "Airtel",
-    imageSrc: "/images/logos/airtel.png",
+    imageSrc: "/images/logos/airtel.svg",
     type: "mobile",
     paymentInstructions: [
       "Go to your Airtel SIM tool kit",
@@ -22,7 +22,7 @@ const paymentOptions = [
   {
     id: "equitel",
     name: "Equitel",
-    imageSrc: "/images/logos/equitel.png",
+    imageSrc: "/images/logos/equitel.svg",
     type: "mobile",
   },
   {
@@ -34,7 +34,7 @@ const paymentOptions = [
   {
     id: "ecobank",
     name: "Ecobank",
-    imageSrc: "/images/logos/ecobank.png",
+    imageSrc: "/images/logos/ecobank.svg",
     type: "bank",
     paymentInstructions: [
       "Go to your Ecobank",
@@ -48,7 +48,7 @@ const paymentOptions = [
   {
     id: "dtb",
     name: "DTB",
-    imageSrc: "/images/logos/dtb.png",
+    imageSrc: "/images/logos/dtb.svg",
     type: "bank",
     paymentInstructions: [
       "Go to your DTB",

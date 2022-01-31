@@ -35,7 +35,7 @@ export default function Page({ paymentOption }) {
     <div className="relative">
       <Link href="/" passHref>
         <div>
-          <HiOutlineChevronLeft className="absolute inset-y-0 left-0 w-5 h-5 text-black cursor-pointer" />
+          <HiOutlineChevronLeft className="absolute inset-y-0 left-0 w-5 h-full text-black cursor-pointer" />
         </div>
       </Link>
       <h2 className="text-2xl font-bold text-center">{title}</h2>

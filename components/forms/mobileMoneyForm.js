@@ -3,19 +3,20 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import InputField from "../../components/input/inputField";
 import CheckBox from "../../components/input/checkBox";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
-export default function MobileMoneyForm({ title }) {
+export default function MobileMoneyForm() {
   const mobileRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const router = useRouter();
+  const amount = useSelector((state) => state.payment.amount);
 
   const formik = useFormik({
     initialValues: {
       mobileNumber: "",
-      amount: "",
+      amount: amount,
       saveNumber: false,
     },
     validationSchema: Yup.object({
@@ -42,7 +43,7 @@ export default function MobileMoneyForm({ title }) {
         <InputField
           formik={formik}
           variable="amount"
-          type="text"
+          type="number"
           label="amount"
         />
         <CheckBox

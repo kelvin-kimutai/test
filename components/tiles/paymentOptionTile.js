@@ -11,18 +11,27 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
           <>
             <Disclosure.Button className="flex flex-col w-full p-4 rounded-lg shadow-md">
               <div className="flex items-center justify-between w-full">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-3">
                   <div className="relative w-5 h-5">
                     <Image src={iconSrc} alt="" layout="fill" />
                   </div>
-                  <span className="font-semibold">{title}</span>
+                  <span className="font-bold">{title}</span>
                 </div>
-                <div className="flex items-center space-x-2 text-xs font-semibold">
+                <div className="flex items-center space-x-3">
                   {options.map((option) => (
                     <div
                       key={option.name}
                       className={`${open ? "hidden" : "block"}`}
-                    ></div>
+                    >
+                      <div className="relative w-10 h-6">
+                        <Image
+                          src={option.imageSrc}
+                          alt=""
+                          objectFit="contain"
+                          layout="fill"
+                        />
+                      </div>
+                    </div>
                   ))}
 
                   <HiChevronUp
@@ -41,24 +50,31 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                   leaveFrom="transform scale-100 opacity-100"
                   leaveTo="transform scale-95 opacity-0"
                 >
-                  <Disclosure.Panel className="grid grid-cols-4 mt-4 gap-x-4">
-                    {options.map((option) => (
-                      <div key={option.name}>
-                        <Link href={`/payments/${option.id}`} passHref>
-                          <div className="grid h-16 text-xs font-semibold transition duration-200 border-2 rounded-md hover:border-lipad-green place-items-center">
-                            <div className="relative w-full h-full">
-                              <Image
-                                src={option.imageSrc}
-                                alt=""
-                                objectFit="contain"
-                                layout="fill"
-                              />
+                  {open && (
+                    <Disclosure.Panel
+                      static
+                      className="grid grid-cols-4 mt-4 gap-x-4"
+                    >
+                      {options.map((option) => (
+                        <div key={option.name}>
+                          <Link href={`/payments/${option.id}`} passHref>
+                            <div className="grid h-16 text-xs font-semibold transition duration-200 border-2 rounded-md hover:border-lipad-green place-items-center">
+                              <div className="w-full h-full p-2">
+                                <div className="relative w-full h-full">
+                                  <Image
+                                    src={option.imageSrc}
+                                    alt=""
+                                    objectFit="contain"
+                                    layout="fill"
+                                  />
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                      </div>
-                    ))}
-                  </Disclosure.Panel>
+                          </Link>
+                        </div>
+                      ))}
+                    </Disclosure.Panel>
+                  )}
                 </Transition>
               </div>
             </Disclosure.Button>

@@ -26,7 +26,7 @@ export default function Page() {
           .map((option) => (
             <div key={option.name}>
               <Link href={`/payments/${option.id}`} passHref>
-                <div className="grid h-16 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
+                <div className="grid h-16 px-4 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
                   <div className="relative w-full h-full">
                     <Image
                       src={option.imageSrc}
