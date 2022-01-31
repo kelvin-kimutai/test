@@ -6,6 +6,8 @@ import HeaderLayout from "../../components/layouts/headerLayout";
 import MainLayout from "../../components/layouts/mainLayout";
 import PaymentInstructions from "../../components/paymentInstructions";
 import { paymentOptions } from "../../data/paymentOptions";
+import { Provider } from "react-redux";
+import store from "../../store/store";
 
 export async function getStaticPaths() {
   const paths = paymentOptions.map((option) => {
@@ -67,8 +69,10 @@ export default function Page({ paymentOption }) {
 
 Page.getLayout = function getLayout(page) {
   return (
-    <MainLayout>
-      <HeaderLayout>{page}</HeaderLayout>
-    </MainLayout>
+    <Provider store={store}>
+      <MainLayout>
+        <HeaderLayout>{page}</HeaderLayout>
+      </MainLayout>
+    </Provider>
   );
 };

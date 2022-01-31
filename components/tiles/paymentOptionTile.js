@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function PaymentOptionTile({ options, title, iconSrc }) {
   return (
     <div className="w-full rounded-2xl">
-      <Disclosure>
+      <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>
             <Disclosure.Button className="flex flex-col w-full p-4 rounded-lg shadow-md">

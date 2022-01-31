@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function InputField({ formik, variable, type, label }) {
   const [hasFocus, setFocus] = useState(false);
   return (
-    <>
+    <div className="">
       <div
         className={`${
           formik.errors[variable] && formik.touched[variable]
@@ -27,7 +27,7 @@ export default function InputField({ formik, variable, type, label }) {
               : ""
           } `}
         >
-          Enter {label}
+          {label}
         </label>
         <input
           id={variable}
@@ -43,6 +43,6 @@ export default function InputField({ formik, variable, type, label }) {
       {formik.touched[variable] && formik.errors[variable] ? (
         <div className="mt-1 text-lipad-red">{formik.errors[variable]}</div>
       ) : null}
-    </>
+    </div>
   );
 }

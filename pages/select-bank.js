@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { paymentOptions } from "../data/paymentOptions";
 import { HiOutlineChevronLeft } from "react-icons/hi";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 export default function Page() {
   const title = (title) => (
@@ -46,8 +48,10 @@ export default function Page() {
 
 Page.getLayout = function getLayout(page) {
   return (
-    <MainLayout>
-      <HeaderLayout>{page}</HeaderLayout>
-    </MainLayout>
+    <Provider store={store}>
+      <MainLayout>
+        <HeaderLayout>{page}</HeaderLayout>
+      </MainLayout>
+    </Provider>
   );
 };

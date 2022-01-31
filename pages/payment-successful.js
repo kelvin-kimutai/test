@@ -2,6 +2,7 @@ import Image from "next/image";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import Link from "next/link";
+import { Provider } from "react-redux";
 
 export default function Page() {
   return (
@@ -40,5 +41,9 @@ export default function Page() {
 }
 
 Page.getLayout = function getLayout(page) {
-  return <MainLayout>{page}</MainLayout>;
+  return (
+    <Provider store={store}>
+      <MainLayout>{page}</MainLayout>
+    </Provider>
+  );
 };

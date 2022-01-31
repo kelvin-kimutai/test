@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import { useRouter } from "next/router";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 export default function AuthorizePayment() {
   const router = useRouter();
@@ -50,5 +51,9 @@ export default function AuthorizePayment() {
 }
 
 AuthorizePayment.getLayout = function getLayout(page) {
-  return <MainLayout>{page}</MainLayout>;
+  return (
+    <Provider store={store}>
+      <MainLayout>{page}</MainLayout>
+    </Provider>
+  );
 };

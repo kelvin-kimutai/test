@@ -3,6 +3,8 @@ import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import Link from "next/link";
+import { Provider } from "react-redux";
+import store from "../store/store";
 
 export default function Page() {
   return (
@@ -41,5 +43,9 @@ export default function Page() {
 }
 
 Page.getLayout = function getLayout(page) {
-  return <MainLayout>{page}</MainLayout>;
+  return (
+    <Provider store={store}>
+      <MainLayout>{page}</MainLayout>
+    </Provider>
+  );
 };
