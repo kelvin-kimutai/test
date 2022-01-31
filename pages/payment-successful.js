@@ -3,6 +3,7 @@ import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import Link from "next/link";
 import { Provider } from "react-redux";
+import store from "../store/store";
 
 export default function Page() {
   return (
