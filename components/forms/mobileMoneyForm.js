@@ -38,13 +38,13 @@ export default function MobileMoneyForm() {
           formik={formik}
           variable="mobileNumber"
           type="tel"
-          label="mobile number"
+          label="Enter mobile number"
         />
         <InputField
           formik={formik}
           variable="amount"
           type="number"
-          label="amount"
+          label="Amount"
         />
         <CheckBox
           formik={formik}

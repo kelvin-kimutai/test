@@ -1,16 +1,16 @@
-import PaymentOptionTile from "../components/tiles/paymentOptionTile";
-import { paymentOptions } from "../data/paymentOptions";
-import HeaderLayout from "../components/layouts/headerLayout";
-import { HiChevronUp } from "react-icons/hi";
-import MainLayout from "../components/layouts/mainLayout";
 import Image from "next/image";
 import Link from "next/link";
+import { HiChevronUp } from "react-icons/hi";
 import { Provider } from "react-redux";
+import HeaderLayout from "../components/layouts/headerLayout";
+import MainLayout from "../components/layouts/mainLayout";
+import PaymentOptionTile from "../components/tiles/paymentOptionTile";
+import { paymentOptions } from "../data/paymentOptions";
 import store from "../store/store";
 
 export default function Page() {
   const card = (iconSrc, title, paymentIcons) => (
-    <div className="flex flex-col w-full p-4 rounded-lg shadow-md cursor-pointer">
+    <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center space-x-3">
           <div className="relative w-5 h-5">
@@ -40,7 +40,7 @@ export default function Page() {
   );
   return (
     <>
-      <h2 className="text-2xl font-bold text-center">
+      <h2 className="text-lg font-bold text-center sm:text-2xl">
         How would you like to pay?
       </h2>
       <PaymentOptionTile

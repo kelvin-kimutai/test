@@ -10,7 +10,7 @@ export default function CheckBox({ formik, variable, label }) {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values[variable]}
-        className="w-4 h-4 mr-2 form-checkbox text-lipad-green focus:ring-transparent border-lipad-green border-2"
+        className="w-4 h-4 mr-2 border-2 rounded form-checkbox text-lipad-green focus:ring-transparent border-lipad-green"
       />
       {label}
     </label>

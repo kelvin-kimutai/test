@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function PaymentOptionTile({ options, title, iconSrc }) {
   return (
-    <div className="w-full rounded-2xl">
+    <div className="w-full text-sm rounded-2xl bg-gray-50 sm:text-base">
       <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex flex-col w-full p-4 rounded-lg shadow-md">
+            <Disclosure.Button className="flex flex-col w-full p-2 rounded-lg shadow-md sm:p-4">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-3">
                   <div className="relative w-5 h-5">
@@ -58,8 +58,8 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                       {options.map((option) => (
                         <div key={option.name}>
                           <Link href={`/payments/${option.id}`} passHref>
-                            <div className="grid h-16 text-xs font-semibold transition duration-200 border-2 rounded-md hover:border-lipad-green place-items-center">
-                              <div className="w-full h-full p-2">
+                            <div className="grid text-xs font-semibold transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
+                              <div className="w-full h-full p-2 ">
                                 <div className="relative w-full h-full">
                                   <Image
                                     src={option.imageSrc}

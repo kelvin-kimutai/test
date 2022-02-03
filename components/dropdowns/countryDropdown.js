@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { HiCheck, HiSelector, HiOutlineChevronDown } from "react-icons/hi";
+import { HiCheck, HiOutlineChevronDown } from "react-icons/hi";
 import Image from "next/image";
 
 const countries = [
@@ -13,10 +13,10 @@ export default function CountryDropdown() {
   const [selected, setSelected] = useState(countries[0]);
 
   return (
-    <div className="w-36">
+    <div className="w-32 text-xs sm:text-sm">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <Listbox.Button className="flex items-center relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+          <Listbox.Button className="relative flex items-center w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500">
             <div className="relative w-4 h-3">
               <Image
                 src={selected.imageSrc}
@@ -24,7 +24,7 @@ export default function CountryDropdown() {
                 layout="fill"
               />
             </div>
-            <span className="ml-2 text-sm">{selected.name}</span>
+            <span className="ml-2">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiOutlineChevronDown className="w-5 h-5 text-black" />
             </span>
@@ -35,7 +35,7 @@ export default function CountryDropdown() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-xs bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
               {countries.map((country, i) => (
                 <Listbox.Option
                   key={i}
@@ -50,7 +50,7 @@ export default function CountryDropdown() {
                       <span
                         className={`${
                           selected ? "font-medium" : "font-normal"
-                        } block truncate text-sm`}
+                        } block truncate`}
                       >
                         {country.name}
                       </span>

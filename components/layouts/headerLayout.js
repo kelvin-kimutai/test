@@ -7,15 +7,15 @@ export default function HeaderLayout({ children }) {
 
   return (
     <>
-      <div className="text-white bg-lipad-green">
-        <section className="pt-8 pb-16 space-y-4 sm:pt-12 sm:pb-24">
+      <div className="text-sm text-white sm:text-base bg-lipad-green">
+        <section className="pt-6 space-y-4 pb-14 sm:pt-12 sm:pb-24">
           <CountDownTimer />
           <p className="px-16 font-semibold text-center ">
             Make a Payment to {payment.merchant.name} for Purchase of goods
           </p>
           <div className="w-8 h-0.5 mx-auto bg-white"></div>
           <div className="gap-y-2">
-            <p className="text-3xl font-bold text-center ">
+            <p className="text-2xl font-bold text-center">
               KES {numeral(payment.amount).format("0,0.00")}
             </p>
             <div className="flex justify-center ">
@@ -27,7 +27,7 @@ export default function HeaderLayout({ children }) {
           </div>
         </section>
       </div>
-      <div className="p-8 px-4 -mt-8 space-y-4 bg-white rounded-t-2xl">
+      <div className="p-4 px-4 -mt-8 space-y-4 bg-white sm:p-8 rounded-t-2xl">
         {children}
       </div>
     </>
