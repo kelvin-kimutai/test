@@ -8,37 +8,36 @@ import store from "../store/store";
 
 export default function Page() {
   return (
-    <>
-      <div className="px-4 py-16">
-        <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-bold text-lipad-green">Ooops!</h2>
-          <p className="text-lg">We could not find your payment.</p>
-          <div className="relative w-48 h-48 m-6">
-            <Image
-              src="/images/illustrations/person-questioning.svg"
-              alt=""
-              objectFit="contain"
-              layout="fill"
-            />
-          </div>
-          <p className="text-lg text-center">
-            If you entered the authorization code sent to your phone, click ‘
-            <strong>Confirm Payment</strong>’ for your payment to be processed
-            again. Click ‘<strong>Cancel</strong>’ to go back and view payment
-            instructions.
-          </p>
+    <div className="p-8 mt-8 sm:text-lg">
+      <div className="flex flex-col items-center text-center">
+        <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
+          Ooops!
+        </h2>
+        <p>We could not find your payment.</p>
+        <div className="relative w-48 h-48 m-6">
+          <Image
+            src="/images/illustrations/person-questioning.svg"
+            alt=""
+            objectFit="contain"
+            layout="fill"
+          />
         </div>
-        <div className="flex w-full mt-12 gap-x-2">
-          <Link href="/" passHref>
-            <OutlineButton label="Cancel" />
-          </Link>
-          <Link href="/" passHref>
-            <SolidButton label="Confirm Payment" />
-          </Link>
-        </div>
+        <p>
+          If you entered the authorization code sent to your phone, click ‘
+          <strong>Confirm Payment</strong>’ for your payment to be processed
+          again. Click ‘<strong>Cancel</strong>’ to go back and view payment
+          instructions.
+        </p>
       </div>
-      <div></div>
-    </>
+      <div className="flex w-full mt-12 text-sm sm:text-lg gap-x-2">
+        <Link href="/" passHref>
+          <OutlineButton label="Cancel" />
+        </Link>
+        <Link href="/" passHref>
+          <SolidButton label="Confirm Payment" />
+        </Link>
+      </div>
+    </div>
   );
 }
 

@@ -15,7 +15,7 @@ export default function Page() {
           <HiOutlineChevronLeft className="absolute inset-y-0 left-0 w-5 h-5 text-black cursor-pointer" />
         </div>
       </Link>
-      <h2 className="text-2xl font-bold text-center">{title}</h2>
+      <h2 className="text-lg font-bold text-center sm:text-2xl">{title}</h2>
     </div>
   );
 
@@ -28,7 +28,7 @@ export default function Page() {
           .map((option) => (
             <div key={option.name}>
               <Link href={`/payments/${option.id}`} passHref>
-                <div className="grid h-16 px-4 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
+                <div className="grid h-16 px-3 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
                   <div className="relative w-full h-full">
                     <Image
                       src={option.imageSrc}

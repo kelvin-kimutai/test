@@ -8,9 +8,9 @@ import store from "../store/store";
 export default function Page() {
   return (
     <>
-      <div className="px-4 py-16">
-        <div className="flex flex-col items-center">
-          <div className="relative w-56 h-56 m-6">
+      <div className="p-8 mt-8 sm:text-lg">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="relative w-56 h-56">
             <Image
               src="/images/illustrations/person-celebrating.png"
               alt=""
@@ -18,17 +18,15 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-3xl font-bold text-lipad-green">
+          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
             Payment Successful
           </h2>
-          <p className="mt-4 text-lg font-semibold text-center px-14">
+          <p>
             Your payment of KES 12,496.00 to{" "}
             <span className="font-black">Jumia</span> was successfully
             completed.
           </p>
-          <p className="mt-12 text-xl font-extrabold">
-            Transaction code: 123AE2
-          </p>
+          <p className="text-xl font-bold">Transaction code: 123AE2</p>
         </div>
         <div className="mt-8">
           <Link href="/" passHref>

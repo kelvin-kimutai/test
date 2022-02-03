@@ -7,7 +7,7 @@ export default function MainLayout({ children }) {
   const merchant = useSelector((state) => state.payment.merchant);
   return (
     <main className="grid place-content-center font-body">
-      <section className="w-full sm:w-[32rem] relative sm:min-h-screen p-4 sm:py-16 sm:px-8">
+      <section className="w-full sm:w-[32rem] relative min-h-screen p-4 sm:py-16 sm:px-8">
         <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-8 bg-lipad-grey">
           <CgClose className="text-3xl text-white" />
         </div>
@@ -28,7 +28,7 @@ export default function MainLayout({ children }) {
             </div>
           </section>
           <div className="grow">{children}</div>
-          <div className="w-full mt-4 mb-8">
+          <div className="w-full p-4">
             <div className="relative h-10">
               <Image
                 src={"/images/logos/lipad-logo-blue-powered-by.svg"}

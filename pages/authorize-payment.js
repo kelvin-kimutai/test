@@ -1,9 +1,9 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { Provider } from "react-redux";
 import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
-import { useRouter } from "next/router";
-import { Provider } from "react-redux";
 import store from "../store/store";
 
 export default function AuthorizePayment() {
@@ -11,12 +11,12 @@ export default function AuthorizePayment() {
 
   return (
     <>
-      <div className="px-4 py-16">
-        <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-bold text-lipad-green">
+      <div className="p-8 mt-8 sm:text-lg">
+        <div className="flex flex-col items-center gap-2">
+          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
             Authorise payment
           </h2>
-          <p className="text-lg text-center">
+          <p className="text-center">
             Please ensure you have your phone with you and sufficient balance in
             your account. We&apos;ll send a prompt to +254xxxxxx444. Enter your
             PIN to authorize payment.
