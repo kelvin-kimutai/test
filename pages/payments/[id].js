@@ -45,7 +45,7 @@ export default function Page({ paymentOption }) {
   );
 
   // Temporary
-  return;
+  return <div></div>;
 
   if (paymentOptionId == "mpesa" || paymentOptionId == "equitel")
     return (
