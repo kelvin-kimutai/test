@@ -9,8 +9,8 @@ import store from "../store/store";
 export default function Page() {
   return (
     <>
-      <div className="px-4 py-16">
-        <div className="flex flex-col items-center">
+      <div className="p-8 mt-8 sm:text-lg">
+        <div className="flex flex-col items-center gap-4 text-center">
           <div className="relative w-28 h-28">
             <Image
               src="/images/icons/smiley-face.png"
@@ -20,18 +20,20 @@ export default function Page() {
             />
           </div>
           <Rate />
-          <h2 className="mt-4 text-3xl font-bold text-lipad-green">Rate Us</h2>
-          <p className="px-4 mt-4 text-lg font-semibold text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
+            Rate Us
+          </h2>
+          <p className="px-4">
             Your opinion matters to us! How was your payment experience?
           </p>
-          <div className="w-full mt-12">
+          <div className="w-full">
             <textarea
               placeholder="Leave a comment."
-              className="w-full p-2 text-lg border rounded bg-lipad-ghost-white"
+              className="w-full p-2 border rounded bg-lipad-ghost-white"
             ></textarea>
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-8">
           <Link href="/" passHref>
             <SolidButton label="Submit" />
           </Link>

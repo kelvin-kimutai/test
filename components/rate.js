@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Rate() {
   const [rating, setRating] = useState(0);
   return (
-    <div className="grid w-full grid-cols-5 gap-2 px-12 mt-12">
+    <div className="grid w-full grid-cols-5 gap-2 px-12">
       {[1, 2, 3, 4, 5].map((value) => (
         <div key={value}>
           <div

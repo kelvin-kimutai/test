@@ -28,7 +28,7 @@ export default function MainLayout({ children }) {
             </div>
           </section>
           <div className="grow">{children}</div>
-          <div className="w-full p-4">
+          <div className="w-full pb-6">
             <div className="relative h-10">
               <Image
                 src={"/images/logos/lipad-logo-blue-powered-by.svg"}
