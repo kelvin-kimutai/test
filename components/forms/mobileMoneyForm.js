@@ -16,14 +16,14 @@ export default function MobileMoneyForm() {
   const formik = useFormik({
     initialValues: {
       mobileNumber: "",
-      amount: amount,
+      amount: "",
       saveNumber: false,
     },
     validationSchema: Yup.object({
       mobileNumber: Yup.string()
         .matches(mobileRegExp, "Mobile number is not valid")
-        .required("Please enter a mobile number"),
-      amount: Yup.string().required("Please enter an amount"),
+        .required("Required"),
+      amount: Yup.string().required("Required"),
       saveNumber: Yup.bool(),
     }),
     onSubmit: (values) => {
@@ -33,12 +33,12 @@ export default function MobileMoneyForm() {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6 mt-4">
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5 mt-4">
         <InputField
           formik={formik}
           variable="mobileNumber"
           type="tel"
-          label="Enter mobile number"
+          label="Mobile number"
         />
         <InputField
           formik={formik}
