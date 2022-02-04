@@ -18,47 +18,57 @@ export default function CardForm() {
       expiryDate: "",
     },
     validationSchema: Yup.object({
-      fullName: Yup.string().required("Please enter your full name"),
-      number: Yup.string().required("Please enter a card number"),
-      cvc: Yup.string().required("Please enter a CVC number"),
-      expiryDate: Yup.string().required("Please enter an expiry date"),
+      fullName: Yup.string().required("Required"),
+      number: Yup.string().required("Required"),
+      cvc: Yup.string().required("Required"),
+      expiryDate: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
       router.push("/authorize-payment");
     },
   });
 
-  return null;
-
   return (
-    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6 mt-4">
-      <InputField
-        formik={formik}
-        variable="fullName"
-        type="text"
-        label="Card Holder’s Fullname"
-      />
-      <InputField formik={formik} variable="number" type="text" label="" />
-      <div className="flex gap-6 w-full">
-        <div className="basis-24">
-          s
+    <form onSubmit={formik.handleSubmit} className="">
+      <div className="grid grid-cols-4 mt-6 gap-y-6 gap-x-4">
+        <div className="col-span-4">
+          <InputField
+            formik={formik}
+            variable="fullName"
+            type="text"
+            label="Full name"
+            autoComplete="cc-name"
+          />
+        </div>
+        <div className="col-span-4">
+          <InputField
+            formik={formik}
+            variable="number"
+            type="text"
+            label=""
+            autoComplete="cc-number"
+          />
+        </div>
+        <div className="col-span-2">
           <InputField
             formik={formik}
             variable="expiryDate"
-            type="date"
+            type="text"
             label="Expiry Date"
+            autoComplete="cc-exp"
           />
         </div>
-        <div className="w-24">
+        <div className="col-span-2">
           <InputField
             formik={formik}
             variable="cvc"
-            type="number"
+            type="text"
             label="CVC"
+            autoComplete="csc"
           />
         </div>
       </div>
-      <button type="submit" className="w-full">
+      <button type="submit" className="w-full mt-8">
         <SolidButton label="Pay KES 12,496.00" />
       </button>
     </form>
