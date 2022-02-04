@@ -16,7 +16,7 @@ export default function MobileMoneyForm() {
   const formik = useFormik({
     initialValues: {
       mobileNumber: "",
-      amount: "",
+      amount: amount,
       saveNumber: false,
     },
     validationSchema: Yup.object({
@@ -33,7 +33,7 @@ export default function MobileMoneyForm() {
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5 mt-4">
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6 mt-4">
         <InputField
           formik={formik}
           variable="mobileNumber"

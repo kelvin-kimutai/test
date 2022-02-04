@@ -36,7 +36,7 @@ export default function CardForm() {
             formik={formik}
             variable="fullName"
             type="text"
-            label="Full name"
+            label="Full Name"
             autoComplete="cc-name"
           />
         </div>
@@ -45,7 +45,7 @@ export default function CardForm() {
             formik={formik}
             variable="number"
             type="text"
-            label=""
+            label="Card Number"
             autoComplete="cc-number"
           />
         </div>

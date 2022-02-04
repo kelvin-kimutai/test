@@ -4,10 +4,11 @@ export default function InputField({
   type,
   label,
   autoComplete,
+  placeholder,
 }) {
   return (
     <div>
-      <div className="relative bg-lipad-grey bg-opacity-5">
+      <div className="relative pt-6 bg-lipad-grey bg-opacity-5">
         <input
           id={variable}
           name={variable}
@@ -22,11 +23,10 @@ export default function InputField({
               ? "border-b-2 border-lipad-red focus:border-b-2 focus:border-lipad-red"
               : ""
           } w-full placeholder-transparent bg-transparent border-0 peer rounded-t-md focus:ring-0 focus:border-b-2 focus:border-lipad-green ring-0`}
-          required
         />
         <label
           htmlFor={variable}
-          className="absolute transition-all -top-4 left-3 text-lipad-grey peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-lipad-green"
+          className="absolute text-gray-400 transition-all top-1 left-3 peer-placeholder-shown:top-8 peer-focus:top-1 peer-focus:text-lipad-green "
         >
           {label}
         </label>
