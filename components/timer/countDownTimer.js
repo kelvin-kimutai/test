@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function CountDownTimer() {
-  const countDownTime = useSelector((state) => state.payment.expiry);
+  const countDownTime = new Date(useSelector((state) => state.payment.expiry));
 
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");

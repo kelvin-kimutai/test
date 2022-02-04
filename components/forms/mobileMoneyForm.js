@@ -1,22 +1,25 @@
-import SolidButton from "../../components/buttons/solidButton";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import InputField from "../../components/input/inputField";
-import CheckBox from "../../components/input/checkBox";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as Yup from "yup";
+import SolidButton from "../../components/buttons/solidButton";
+import CheckBox from "../../components/input/checkBox";
+import InputField from "../../components/input/inputField";
+import { updateMobileNumber } from "../../store/paymentSlice";
 
 export default function MobileMoneyForm() {
+  const dispatch = useDispatch();
   const mobileRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const router = useRouter();
   const amount = useSelector((state) => state.payment.amount);
+  const mobileNumber = useSelector((state) => state.payment.mobileNumber);
 
   const formik = useFormik({
     initialValues: {
-      mobileNumber: "",
-      amount: amount,
+      mobileNumber,
+      amount,
       saveNumber: false,
     },
     validationSchema: Yup.object({
@@ -27,6 +30,7 @@ export default function MobileMoneyForm() {
       saveNumber: Yup.bool(),
     }),
     onSubmit: (values) => {
+      dispatch(updateMobileNumber({ mobileNumber: values.mobileNumber }));
       router.push("/authorize-payment");
     },
   });
