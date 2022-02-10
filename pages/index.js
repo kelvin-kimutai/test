@@ -16,7 +16,7 @@ export default function Page() {
           <div className="relative w-5 h-5">
             <Image src={iconSrc} alt="" layout="fill" />
           </div>
-          <span className="font-bold">{title}</span>
+          <span className="font-medium">{title}</span>
         </div>
         <div className="flex items-center space-x-3">
           {paymentIcons.map((paymentIcon, i) => (
@@ -40,7 +40,7 @@ export default function Page() {
   );
   return (
     <>
-      <h2 className="text-lg font-bold text-center sm:text-2xl">
+      <h2 className="text-lg font-medium text-center sm:text-2xl">
         How would you like to pay?
       </h2>
       <PaymentOptionTile

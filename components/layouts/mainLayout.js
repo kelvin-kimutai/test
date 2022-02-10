@@ -19,7 +19,7 @@ export default function MainLayout({ children }) {
                   <Image src={merchant.logoUrl} alt="" layout="fill" />
                 </div>
               </div>
-              <span className="text-sm font-semibold text-white sm:text-base">
+              <span className="text-sm font-medium text-white sm:text-base">
                 {merchant.name}
               </span>
             </div>

@@ -18,14 +18,14 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-red">
+          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-red">
             Payment Failed
           </h2>
           <p>
             Sorry, something went wrong. We are unable to process your payment
             request at the moment. Please try again later.
           </p>
-          <p className="text-xl font-bold">Transaction code: 123AE2</p>
+          <p className="text-xl font-medium">Transaction code: 123AE2</p>
         </div>
         <div className="mt-8">
           <Link href="/" passHref>

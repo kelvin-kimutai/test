@@ -13,7 +13,7 @@ export default function AuthorizePayment() {
     <>
       <div className="p-8 mt-8 sm:text-lg">
         <div className="flex flex-col items-center gap-2">
-          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
+          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-green">
             Authorise payment
           </h2>
           <p className="text-center">

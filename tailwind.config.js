@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        body: ["Nunito Sans"],
+        now: ["Now", "sans-serif"],
       },
       colors: {
         "lipad-blue": "#263470",

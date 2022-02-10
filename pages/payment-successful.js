@@ -18,15 +18,14 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
+          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-green">
             Payment Successful
           </h2>
           <p>
             Your payment of KES 12,496.00 to{" "}
-            <span className="font-black">Jumia</span> was successfully
-            completed.
+            <span className="font-bold">Jumia</span> was successfully completed.
           </p>
-          <p className="text-xl font-bold">Transaction code: 123AE2</p>
+          <p className="text-xl font-medium">Transaction code: 123AE2</p>
         </div>
         <div className="mt-8">
           <Link href="/" passHref>

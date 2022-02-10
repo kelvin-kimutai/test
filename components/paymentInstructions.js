@@ -12,7 +12,7 @@ export default function PaymentInstructions({ instructions }) {
   });
   return (
     <div className="p-2 space-y-4 text-sm sm:text-base">
-      <h2 className="font-bold">Payment Instructions</h2>
+      <h2 className="font-medium">Payment Instructions</h2>
       <ol className="ml-10 list-decimal">
         {instructions.map((instruction, i) => (
           <li key={i} className="">

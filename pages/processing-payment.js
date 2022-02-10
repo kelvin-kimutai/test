@@ -18,7 +18,7 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-2xl font-bold sm:text-3xl text-lipad-orange">
+          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-orange">
             Processing payment
           </h2>
           <p className="px-12 text-center">

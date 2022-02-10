@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <div className="p-8 mt-8 sm:text-lg">
       <div className="flex flex-col items-center text-center">
-        <h2 className="text-2xl font-bold sm:text-3xl text-lipad-green">
+        <h2 className="text-2xl font-medium sm:text-3xl text-lipad-green">
           Ooops!
         </h2>
         <p>We could not find your payment.</p>

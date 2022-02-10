@@ -15,7 +15,7 @@ export default function Page() {
           <HiOutlineChevronLeft className="absolute inset-y-0 left-0 w-5 h-5 text-black cursor-pointer" />
         </div>
       </Link>
-      <h2 className="text-lg font-bold text-center sm:text-2xl">{title}</h2>
+      <h2 className="text-lg font-medium text-center sm:text-2xl">{title}</h2>
     </div>
   );
 

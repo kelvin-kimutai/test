@@ -15,7 +15,7 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                   <div className="relative w-5 h-5">
                     <Image src={iconSrc} alt="" layout="fill" />
                   </div>
-                  <span className="font-bold">{title}</span>
+                  <span className="font-medium">{title}</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   {options.map((option) => (
@@ -58,7 +58,7 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                       {options.map((option) => (
                         <div key={option.name}>
                           <Link href={`/payments/${option.id}`} passHref>
-                            <div className="grid text-xs font-semibold transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
+                            <div className="grid text-xs font-medium transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
                               <div className="w-full h-full p-2 ">
                                 <div className="relative w-full h-full">
                                   <Image

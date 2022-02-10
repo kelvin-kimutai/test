@@ -2,7 +2,7 @@ import { Field } from "formik";
 
 export default function CheckBox({ formik, variable, label }) {
   return (
-    <label className="inline-flex items-center font-semibold">
+    <label className="inline-flex items-center font-medium">
       <input
         id={variable}
         name={variable}
