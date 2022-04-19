@@ -8,6 +8,8 @@ import PaymentOptionTile from "../components/tiles/paymentOptionTile";
 import { paymentOptions } from "../data/paymentOptions";
 import store from "../store/store";
 
+// Changed branch names
+
 export default function Page() {
   const card = (iconSrc, title, paymentIcons) => (
     <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
