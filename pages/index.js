@@ -7,16 +7,8 @@ import MainLayout from "../components/layouts/mainLayout";
 import PaymentOptionTile from "../components/tiles/paymentOptionTile";
 import { paymentOptions } from "../data/paymentOptions";
 import store from "../store/store";
-import { promisify } from "util";
-import bodyParser from "body-parser";
 
-const getBody = promisify(bodyParser.urlencoded());
-
-// Changed branch names
-
-export default function Page(props) {
-  console.log(props.client_code);
-
+export default function Page() {
   const card = (iconSrc, title, paymentIcons) => (
     <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
       <div className="flex items-center justify-between w-full">
@@ -49,7 +41,7 @@ export default function Page(props) {
   return (
     <>
       <h2 className="text-lg font-medium text-center sm:text-2xl">
-        How would you like to {props.client_code}?
+        How would you like to pay?
       </h2>
       <PaymentOptionTile
         options={paymentOptions.filter((option) => option.type == "mobile")}
@@ -81,15 +73,3 @@ Page.getLayout = function getLayout(page) {
     </Provider>
   );
 };
-
-export async function getServerSideProps({ req, res }) {
-  if (req.method === "POST") {
-    await getBody(req, res);
-  }
-
-  return {
-    props: {
-      client_code: req.body?.client_code || "No client code",
-    },
-  };
-}
