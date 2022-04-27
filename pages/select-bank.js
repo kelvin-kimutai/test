@@ -4,17 +4,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { paymentOptions } from "../data/paymentOptions";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { Provider } from "react-redux";
-import store from "../store/store";
+import { RecoilRoot } from "recoil";
+import { useRouter } from "next/router";
 
 export default function Page() {
+  const router = useRouter();
+
+  const back = () => router.back();
+
   const title = (title) => (
     <div className="relative">
-      <Link href="/" passHref>
-        <div>
-          <HiOutlineChevronLeft className="absolute inset-y-0 left-0 w-5 h-5 text-black cursor-pointer" />
-        </div>
-      </Link>
+      <HiOutlineChevronLeft
+        onClick={() => back()}
+        className="absolute inset-y-0 left-0 w-5 h-5 text-black cursor-pointer"
+      />
       <h2 className="text-lg font-medium text-center sm:text-2xl">{title}</h2>
     </div>
   );
@@ -48,10 +51,10 @@ export default function Page() {
 
 Page.getLayout = function getLayout(page) {
   return (
-    <Provider store={store}>
+    <RecoilRoot>
       <MainLayout>
         <HeaderLayout>{page}</HeaderLayout>
       </MainLayout>
-    </Provider>
+    </RecoilRoot>
   );
 };

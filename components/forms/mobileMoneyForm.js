@@ -1,25 +1,26 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
+import numeral from "numeral";
+import { useRecoilState, useRecoilValue } from "recoil";
 import * as Yup from "yup";
 import SolidButton from "../../components/buttons/solidButton";
 import CheckBox from "../../components/input/checkBox";
 import InputField from "../../components/input/inputField";
-import { updateMobileNumber } from "../../store/paymentSlice";
+import checkoutState from "../../recoil/checkoutAtom";
+import payloadState from "../../recoil/payloadAtom";
 
 export default function MobileMoneyForm() {
-  const dispatch = useDispatch();
+  const router = useRouter();
+  const payload = useRecoilValue(payloadState);
+  const [checkout, setCheckout] = useRecoilState(checkoutState);
+
   const mobileRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  const router = useRouter();
-  const amount = useSelector((state) => state.payment.amount);
-  const mobileNumber = useSelector((state) => state.payment.mobileNumber);
-
   const formik = useFormik({
     initialValues: {
-      mobileNumber,
-      amount,
+      mobileNumber: payload.msisdn,
+      amount: payload.request_amount,
       saveNumber: false,
     },
     validationSchema: Yup.object({
@@ -30,7 +31,11 @@ export default function MobileMoneyForm() {
       saveNumber: Yup.bool(),
     }),
     onSubmit: (values) => {
-      dispatch(updateMobileNumber({ mobileNumber: values.mobileNumber }));
+      setCheckout((checkout) => ({
+        ...checkout,
+        msisdn: values.mobileNumber,
+        request_amount: values.amount,
+      }));
       router.push("/authorize-payment");
     },
   });
@@ -56,7 +61,9 @@ export default function MobileMoneyForm() {
           label="Save my information for faster checkout"
         />
         <button type="submit" className="w-full">
-          <SolidButton label="Pay KES 12,496.00" />
+          <SolidButton
+            label={`Pay KES ${numeral(formik.values.amount).format("0,0.00")}`}
+          />
         </button>
       </form>
     </>

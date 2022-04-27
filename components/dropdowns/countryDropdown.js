@@ -1,16 +1,29 @@
-import { Fragment, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Listbox, Transition } from "@headlessui/react";
-import { HiCheck, HiOutlineChevronDown } from "react-icons/hi";
 import Image from "next/image";
+import { Fragment, useEffect, useState } from "react";
+import { HiCheck, HiOutlineChevronDown } from "react-icons/hi";
+import { useRecoilState, useRecoilValue } from "recoil";
+import checkoutState from "../../recoil/checkoutAtom";
+import payloadState from "../../recoil/payloadAtom";
 
-const countries = [
-  { name: "Kenya", imageSrc: "/images/flags/kenya-flag-icon-32.png" },
-  { name: "Uganda", imageSrc: "/images/flags/uganda-flag-icon-32.png" },
-  { name: "Tanzania", imageSrc: "/images/flags/tanzania-flag-icon-32.png" },
-];
+export default function CountryDropdown({ countries }) {
+  const [selected, setSelected] = useState(countries[0] ?? {});
+  const [checkout, setCheckout] = useRecoilState(checkoutState);
 
-export default function CountryDropdown() {
-  const [selected, setSelected] = useState(countries[0]);
+  useEffect(() => {
+    setCheckout((checkout) => ({
+      ...checkout,
+      client_data: {
+        ...checkout.client_data,
+        client_countries: [
+          {
+            client_country_id: selected.client_country_id,
+          },
+        ],
+      },
+    }));
+  }, [selected]);
 
   return (
     <div className="w-32 text-xs sm:text-sm">
@@ -18,13 +31,15 @@ export default function CountryDropdown() {
         <div className="relative mt-1">
           <Listbox.Button className="relative flex items-center w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500">
             <div className="relative w-4 h-3">
-              <Image
-                src={selected.imageSrc}
-                alt={`Flag of ${selected.name}`}
-                layout="fill"
-              />
+              {selected.country.country_image_url && (
+                <Image
+                  src={selected.country.country_image_url}
+                  alt={`Flag of ${selected.country.country_name}`}
+                  layout="fill"
+                />
+              )}
             </div>
-            <span className="ml-2">{selected.name}</span>
+            <span className="ml-2">{selected.country.country_name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiOutlineChevronDown className="w-5 h-5 text-black" />
             </span>
@@ -52,7 +67,7 @@ export default function CountryDropdown() {
                           selected ? "font-medium" : "font-normal"
                         } block truncate`}
                       >
-                        {country.name}
+                        {country.country.country_name}
                       </span>
                       {selected ? (
                         <span
@@ -67,8 +82,8 @@ export default function CountryDropdown() {
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                           <div className="relative w-4 h-3">
                             <Image
-                              src={country.imageSrc}
-                              alt={`Flag of ${country.name}`}
+                              src={country.country.country_image_url}
+                              alt={`Flag of ${country.country.country_name}`}
                               layout="fill"
                             />
                           </div>

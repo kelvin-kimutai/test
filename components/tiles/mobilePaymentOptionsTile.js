@@ -2,8 +2,26 @@ import Image from "next/image";
 import { Disclosure, Transition } from "@headlessui/react";
 import { HiChevronUp } from "react-icons/hi";
 import Link from "next/link";
+import { useRecoilState } from "recoil";
+import checkoutState from "../../recoil/checkoutAtom";
 
-export default function PaymentOptionTile({ options, title, iconSrc }) {
+export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
+  const [checkout, setCheckout] = useRecoilState(checkoutState);
+
+  const setPaymentMethodId = (paymentMethodId) => {
+    setCheckout((checkout) => ({
+      ...checkout,
+      client_data: {
+        ...checkout.client_data,
+        client_payment_methods: [
+          {
+            client_payment_method_id: paymentMethodId,
+          },
+        ],
+      },
+    }));
+  };
+
   return (
     <div className="w-full text-sm rounded-2xl bg-gray-50 sm:text-base">
       <Disclosure defaultOpen={true}>
@@ -20,12 +38,12 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                 <div className="flex items-center space-x-3">
                   {options.map((option) => (
                     <div
-                      key={option.name}
+                      key={option.client_payment_method_id}
                       className={`${open ? "hidden" : "block"}`}
                     >
                       <div className="relative w-10 h-6">
                         <Image
-                          src={option.imageSrc}
+                          src={option.payment_method.payment_method_image_url}
                           alt=""
                           objectFit="contain"
                           layout="fill"
@@ -55,14 +73,33 @@ export default function PaymentOptionTile({ options, title, iconSrc }) {
                       static
                       className="grid grid-cols-4 mt-4 gap-x-4"
                     >
-                      {options.map((option) => (
-                        <div key={option.name}>
-                          <Link href={`/payments/${option.id}`} passHref>
+                      {options?.map((option) => (
+                        <div
+                          key={option.client_payment_method_id}
+                          onClick={() => {
+                            setPaymentMethodId(option.client_payment_method_id);
+                          }}
+                        >
+                          <Link
+                            href={{
+                              pathname: `/payments/${option.payment_method.payment_method_name
+                                .replace(/\s+/g, "-")
+                                .toLowerCase()}`,
+                              query: {
+                                payment_method_name:
+                                  option.payment_method.payment_method_name,
+                              },
+                            }}
+                            passHref
+                          >
                             <div className="grid text-xs font-medium transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
                               <div className="w-full h-full p-2 ">
                                 <div className="relative w-full h-full">
                                   <Image
-                                    src={option.imageSrc}
+                                    src={
+                                      option.payment_method
+                                        .payment_method_image_url
+                                    }
                                     alt=""
                                     objectFit="contain"
                                     layout="fill"

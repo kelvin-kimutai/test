@@ -1,95 +1,109 @@
-import Image from "next/image";
-import Link from "next/link";
-import { HiChevronUp } from "react-icons/hi";
-import { Provider } from "react-redux";
+/* eslint-disable react-hooks/exhaustive-deps */
+import _ from "lodash";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import HeaderLayout from "../components/layouts/headerLayout";
 import MainLayout from "../components/layouts/mainLayout";
-import PaymentOptionTile from "../components/tiles/paymentOptionTile";
-import { paymentOptions } from "../data/paymentOptions";
-import store from "../store/store";
-import { promisify } from "util";
-import bodyParser from "body-parser";
+import MobilePaymentOptionsTile from "../components/tiles/mobilePaymentOptionsTile";
+import checkoutState from "../recoil/checkoutAtom";
+import payloadState from "../recoil/payloadAtom";
 
-const getBody = promisify(bodyParser.urlencoded());
+export default function Page({ data }) {
+  const [payload, setPayload] = useRecoilState(payloadState);
+  const [checkout, setCheckout] = useRecoilState(checkoutState);
 
-// Changed branch names
+  useEffect(() => {
+    setPayload(data);
+  }, []);
 
-export default function Page(props) {
-  console.log(props.client_code);
+  useEffect(() => {
+    setCheckout((checkout) => ({
+      ...checkout,
+      checkout_preprocessor_id: data.checkout_preprocessor_id,
+      client_data: {
+        ...checkout.client_data,
+        client_code: data.client_data.client_code,
+      },
+    }));
+  }, []);
 
-  const card = (iconSrc, title, paymentIcons) => (
-    <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
-      <div className="flex items-center justify-between w-full">
-        <div className="flex items-center space-x-3">
-          <div className="relative w-5 h-5">
-            <Image src={iconSrc} alt="" layout="fill" />
-          </div>
-          <span className="font-medium">{title}</span>
-        </div>
-        <div className="flex items-center space-x-3">
-          {paymentIcons.map((paymentIcon, i) => (
-            <div key={i}>
-              <div className="relative w-10 h-6">
-                <Image
-                  src={paymentIcon}
-                  alt=""
-                  objectFit="contain"
-                  layout="fill"
-                />
-              </div>
-            </div>
-          ))}
-          <HiChevronUp
-            className={`w-5 h-5 text-lipad-grey transform rotate-90`}
-          />
-        </div>
-      </div>
-    </div>
-  );
+  const isPaymentMethodAvailable = (paymentMethod) =>
+    payload.client_data.client_payment_methods.filter(
+      (client_payment_method) =>
+        client_payment_method.payment_method.payment_method_type
+          .payment_method_type_name === paymentMethod
+    ).length > 0
+      ? true
+      : false;
+
+  const filteredPaymentMethods = (paymentMethod) =>
+    payload.client_data.client_payment_methods.filter(
+      (client_payment_method) =>
+        client_payment_method.payment_method.payment_method_type
+          .payment_method_type_name === paymentMethod
+    );
+
+  if (_.isEmpty(payload)) return <div></div>;
+
   return (
-    <>
-      <h2 className="text-lg font-medium text-center sm:text-2xl">
-        How would you like to {props.client_code}?
-      </h2>
-      <PaymentOptionTile
-        options={paymentOptions.filter((option) => option.type == "mobile")}
-        title="Mobile Money"
-        iconSrc="/images/icons/mobile-money.svg"
-      />
-      <Link href="/payments/card" passHref>
-        {card("/images/icons/card.svg", "Card", [
-          "/images/logos/visa.svg",
-          "/images/logos/mastercard.svg",
-        ])}
-      </Link>
-      <Link href="/select-bank" passHref>
-        {card("/images/icons/bank.svg", "Bank", [
-          "/images/logos/ecobank.svg",
-          "/images/logos/dtb.svg",
-        ])}
-      </Link>
-    </>
+    <MainLayout>
+      <HeaderLayout>
+        <div className="space-y-4">
+          <h2 className="text-lg font-medium text-center sm:text-2xl">
+            How would you like to pay?
+          </h2>
+          {isPaymentMethodAvailable("mobile_money") && (
+            <MobilePaymentOptionsTile
+              options={filteredPaymentMethods("mobile_money")}
+              title="Mobile Money"
+              iconSrc="/images/icons/mobile-money.svg"
+            />
+          )}
+          {/* {isPaymentMethodAvailable("card") && (
+            <Link href="/payments/card" passHref>
+              <PaymentOptionsTile
+                title="Card"
+                titleIcon={"/images/icons/card.svg"}
+                paymentIcons={[
+                  "/images/logos/visa.svg",
+                  "/images/logos/mastercard.svg",
+                ]}
+              />
+            </Link>
+          )}
+          {isPaymentMethodAvailable("bank") && (
+            <Link href="/payments/select-bank" passHref>
+              <PaymentOptionsTile
+                title="Bank"
+                titleIcon={"/images/icons/bank.svg"}
+                paymentIcons={[
+                  "/images/logos/ecobank.svg",
+                  "/images/logos/dtb.svg",
+                ]}
+              />
+            </Link>
+          )} */}
+        </div>
+      </HeaderLayout>
+    </MainLayout>
   );
 }
 
-Page.getLayout = function getLayout(page) {
-  return (
-    <Provider store={store}>
-      <MainLayout>
-        <HeaderLayout>{page}</HeaderLayout>
-      </MainLayout>
-    </Provider>
-  );
-};
+export const getServerSideProps = async ({ query }) => {
+  console.log("params:");
+  console.log(query.params);
+  if (!query.params)
+    return {
+      props: {
+        data: {},
+      },
+    };
 
-export async function getServerSideProps({ req, res }) {
-  if (req.method === "POST") {
-    await getBody(req, res);
-  }
-
+  let buffer = Buffer.from(query.params, "base64");
+  let data = JSON.parse(buffer.toString("utf8"));
   return {
     props: {
-      client_code: req.body?.client_code || "No client code",
+      data,
     },
   };
-}
+};

@@ -4,11 +4,9 @@ import * as Yup from "yup";
 import InputField from "../../components/input/inputField";
 import CheckBox from "../../components/input/checkBox";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
 
 export default function CardForm() {
   const router = useRouter();
-  const amount = useSelector((state) => state.payment.amount);
 
   const formik = useFormik({
     initialValues: {

@@ -1,16 +1,36 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
+import { useRecoilValue } from "recoil";
 import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
-import store from "../store/store";
+import checkoutState from "../recoil/checkoutAtom";
+const ENDPOINT = "http://192.168.1.61:3000";
 
 export default function AuthorizePayment() {
   const router = useRouter();
+  const checkout = useRecoilValue(checkoutState);
+
+  const sendPaymentRequest = () => {
+    fetch(`${ENDPOINT}/api/checkout/checkout-processor`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...checkout }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data: ", data);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      });
+  };
 
   return (
-    <>
+    <MainLayout>
       <div className="p-8 mt-8 sm:text-lg">
         <div className="flex flex-col items-center gap-2">
           <h2 className="text-2xl font-medium sm:text-3xl text-lipad-green">
@@ -39,21 +59,15 @@ export default function AuthorizePayment() {
           </div>
           <div
             className="w-full"
-            onClick={() => router.push("/processing-payment")}
+            onClick={() => {
+              sendPaymentRequest();
+              router.push("/processing-payment");
+            }}
           >
             <SolidButton label="Send Prompt" />
           </div>
         </div>
       </div>
-      <div></div>
-    </>
+    </MainLayout>
   );
 }
-
-AuthorizePayment.getLayout = function getLayout(page) {
-  return (
-    <Provider store={store}>
-      <MainLayout>{page}</MainLayout>
-    </Provider>
-  );
-};
