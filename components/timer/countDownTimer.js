@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useRecoilValue } from "recoil";
+import payloadState from "../../recoil/payloadAtom";
 
 export default function CountDownTimer() {
-  const countDownTime = new Date(useSelector((state) => state.payment.expiry));
+  const payload = useRecoilValue(payloadState);
+
+  const countDownTime = new Date(payload.due_date);
 
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
@@ -25,7 +28,6 @@ export default function CountDownTimer() {
       if (distance < 0) {
         clearInterval(interval.current);
       } else {
-        // Using slice to prepend any leading zeroes
         setTimerDays(("0" + days).slice(-2));
         setTimerHours(("0" + hours).slice(-2));
         setTimerMinutes(("0" + minutes).slice(-2));
@@ -38,6 +40,7 @@ export default function CountDownTimer() {
     startTimer();
     return () => {
       clearInterval(temp);
+      // interval.current = null;
     };
   });
 

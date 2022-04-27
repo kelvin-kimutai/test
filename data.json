@@ -1,0 +1,66 @@
+{
+  "msisdn": "+254700000000",
+  "account_number": "oid39",
+  "country_code": "KEN",
+  "currency_code": "KES",
+  "customer_email": "johndoe@mail.com",
+  "customer_first_name": "John",
+  "customer_last_name": "Doe",
+  "due_date": "2022-05-01 12:00:00",
+  "merchant_transaction_id": "txn_id_342",
+  "preferred_payment_option_code": "",
+  "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+  "request_amount": "100",
+  "request_description": "Dummy merchant transaction",
+  "success_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+  "fail_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+  "language_code": "en",
+  "checkout_preprocessor_id": "51",
+  "client_data": {
+    "client_name": "Iris",
+    "client_code": "IRIS",
+    "client_description": "Iris Port Logistics",
+    "client_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fkcb.png?alt=media&token=cfea4c5c-4583-4126-b1de-806bbab25787",
+    "client_countries": [
+      {
+        "client_country_id": "1",
+        "country": {
+          "country_id": "1",
+          "country_name": "Kenya",
+          "phone_code": "254",
+          "country_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fkenya-flag-icon-32.png?alt=media&token=a9c627ae-99c0-4475-bf8d-22df69471093"
+        }
+      }
+    ],
+    "client_payment_methods": [
+      {
+        "client_payment_method_id": "2",
+        "payment_method": {
+          "payment_method_id": "2",
+          "payment_method_name": "Airtel Money",
+          "payment_method_description": "Airtel money channel",
+          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
+          "payment_method_type": {
+            "payment_method_type_id": "1",
+            "payment_method_type_name": "mobile_money",
+            "payment_method_type_description": "Payments through mobile money"
+          }
+        }
+      },
+      {
+        "client_payment_method_id": "1",
+        "payment_method": {
+          "payment_method_id": "1",
+          "payment_method_name": "M-PESA",
+          "payment_method_description": "Safaricom payment channel",
+          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
+          "payment_method_type": {
+            "payment_method_type_id": "1",
+            "payment_method_type_name": "mobile_money",
+            "payment_method_type_description": "Payments through mobile money"
+          }
+        }
+      }
+    ]
+  }
+}
