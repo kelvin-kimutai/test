@@ -90,7 +90,6 @@ export default function Page({ data }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-  console.log("params:");
   console.log(query.params);
   if (!query.params)
     return {

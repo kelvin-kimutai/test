@@ -1,8 +1,6 @@
 {
+  "checkout_preprocessor_id": "76",
   "msisdn": "+254700000000",
-  "account_number": "oid39",
-  "country_code": "KEN",
-  "currency_code": "KES",
   "customer_email": "johndoe@mail.com",
   "customer_first_name": "John",
   "customer_last_name": "Doe",
@@ -15,7 +13,6 @@
   "success_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
   "fail_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
   "language_code": "en",
-  "checkout_preprocessor_id": "51",
   "client_data": {
     "client_name": "Iris",
     "client_code": "IRIS",

@@ -23,38 +23,30 @@ export default function Page() {
   );
 
   return (
-    <div>
-      {title("Select your Bank")}
-      <div className="grid grid-cols-3 gap-4 px-4 mt-8">
-        {paymentOptions
-          .filter((option) => option.type == "bank")
-          .map((option) => (
-            <div key={option.name}>
-              <Link href={`/payments/${option.id}`} passHref>
-                <div className="grid h-16 px-3 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={option.imageSrc}
-                      alt=""
-                      objectFit="contain"
-                      layout="fill"
-                    />
+    <MainLayout>
+      <HeaderLayout>
+        {title("Select your Bank")}
+        <div className="grid grid-cols-3 gap-4 px-4 mt-8">
+          {paymentOptions
+            .filter((option) => option.type == "bank")
+            .map((option) => (
+              <div key={option.name}>
+                <Link href={`/payments/${option.id}`} passHref>
+                  <div className="grid h-16 px-3 text-xs font-semibold transition duration-200 border-2 rounded-md cursor-pointer hover:border-lipad-green place-items-center">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={option.imageSrc}
+                        alt=""
+                        objectFit="contain"
+                        layout="fill"
+                      />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
-      </div>
-    </div>
+                </Link>
+              </div>
+            ))}
+        </div>
+      </HeaderLayout>
+    </MainLayout>
   );
 }
-
-Page.getLayout = function getLayout(page) {
-  return (
-    <RecoilRoot>
-      <MainLayout>
-        <HeaderLayout>{page}</HeaderLayout>
-      </MainLayout>
-    </RecoilRoot>
-  );
-};

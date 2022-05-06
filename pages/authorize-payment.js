@@ -5,14 +5,14 @@ import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
-const ENDPOINT = "http://192.168.1.61:3000";
 
 export default function AuthorizePayment() {
   const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
 
   const sendPaymentRequest = () => {
-    fetch(`${ENDPOINT}/api/checkout/checkout-processor`, {
+    console.log(checkout);
+    fetch(`${process.env.CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/processor`, {
       method: "POST",
       headers: {
         Accept: "application/json",
