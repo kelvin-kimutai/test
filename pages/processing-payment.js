@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import socketIOClient from "socket.io-client";
@@ -9,6 +10,7 @@ import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
 
 export default function Page() {
+  const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
 
   useEffect(() => {
@@ -26,7 +28,8 @@ export default function Page() {
     });
     // Listen for "checkout-processor" event and logging the payload.
     socket.on("checkout-processor", (data) => {
-      console.log("checkout-processor-message: ", data);
+      if (data.payment_status === "Failed") router.push("/payment-failed");
+      else router.push("/payment-successful");
     });
     // Cleanup function for disconnecting socket on unmount.
     return () => {
