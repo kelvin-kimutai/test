@@ -12,9 +12,10 @@ export default function Page() {
   const checkout = useRecoilValue(checkoutState);
 
   useEffect(() => {
-    const socket = socketIOClient(`${process.env.CHECKOUT_SOCKET_ENDPOINT}`);
+    const socket = socketIOClient(`https://uat.chekout-api.lipad.io`);
     socket.on("connect", (data) => {
       socket.emit("checkout", JSON.stringify({ ...checkout }));
+      console.log("connected");
     });
     socket.on("checkout-processor", (data) => {
       console.log("checkout-processor-message: ", data);
