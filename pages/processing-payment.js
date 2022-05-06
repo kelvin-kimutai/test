@@ -13,13 +13,22 @@ export default function Page() {
 
   useEffect(() => {
     const socket = socketIOClient(`https://uat.chekout-api.lipad.io`);
+    // On establishing scoket connection, a "checkout-processor" event is emitted with
+    // a payload of the checkout_preprocessor_id object.
     socket.on("connect", (data) => {
-      socket.emit("checkout", JSON.stringify({ ...checkout }));
-      console.log("connected");
+      socket.emit(
+        "checkout-processor",
+        JSON.stringify({
+          checkout_preprocessor_id: checkout.checkout_preprocessor_id,
+        })
+      );
+      console.log("Connected to socket.");
     });
+    // Listen for "checkout-processor" event and logging the payload.
     socket.on("checkout-processor", (data) => {
       console.log("checkout-processor-message: ", data);
     });
+    // Cleanup function for disconnecting socket on unmount.
     return () => {
       socket.disconnect();
       console.log("disconnect");
