@@ -2,12 +2,10 @@ import Image from "next/image";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import Link from "next/link";
-import { Provider } from "react-redux";
-import store from "../store/store";
 
 export default function Page() {
   return (
-    <>
+    <MainLayout>
       <div className="p-8 mt-8 sm:text-lg">
         <div className="flex flex-col items-center gap-4 text-center">
           <div className="relative w-56 h-56">
@@ -34,14 +32,6 @@ export default function Page() {
         </div>
       </div>
       <div></div>
-    </>
+    </MainLayout>
   );
 }
-
-Page.getLayout = function getLayout(page) {
-  return (
-    <Provider store={store}>
-      <MainLayout>{page}</MainLayout>
-    </Provider>
-  );
-};

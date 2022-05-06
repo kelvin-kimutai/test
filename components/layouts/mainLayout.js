@@ -8,6 +8,8 @@ import CountryDropdown from "../dropdowns/countryDropdown";
 export default function MainLayout({ children }) {
   const payload = useRecoilValue(payloadState);
 
+  if (_.isEmpty(payload)) return <div></div>;
+
   return (
     <main className="grid place-content-center font-body">
       <section className="w-full sm:w-[32rem] relative min-h-screen p-4 sm:py-16 sm:px-8">

@@ -7,19 +7,17 @@ import socketIOClient from "socket.io-client";
 import OutlineButton from "../components/buttons/outlineButton";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
-const ENDPOINT = "http://192.168.1.61:3000";
 
 export default function Page() {
   const checkout = useRecoilValue(checkoutState);
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
+    const socket = socketIOClient(`${process.env.CHECKOUT_SOCKET_ENDPOINT}`);
     socket.on("connect", (data) => {
-      console.log("connect: ", data);
-      socket.emit("message", checkout.checkout_preprocessor_id);
+      socket.emit("checkout", JSON.stringify({ ...checkout }));
     });
-    socket.on("message", (data) => {
-      console.log("message: ", data);
+    socket.on("checkout-processor", (data) => {
+      console.log("checkout-processor-message: ", data);
     });
     return () => {
       socket.disconnect();
