@@ -23,7 +23,7 @@ export default function Page() {
       socket.emit(
         "checkout-processor",
         JSON.stringify({
-          checkout_preprocessor_id: checkout.checkout_preprocessor_id,
+          checkout_reference_id: checkout.checkout_reference_id,
         })
       );
       console.log("Connected to socket.");

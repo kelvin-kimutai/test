@@ -20,7 +20,7 @@ export default function Page({ data }) {
     if (_.isEmpty(payload)) return;
     setCheckout((checkout) => ({
       ...checkout,
-      checkout_preprocessor_id: data.checkout_preprocessor_id,
+      checkout_reference_id: data.checkout_reference_id,
       client_data: {
         ...checkout.client_data,
         client_code: data.client_data.client_code,

@@ -11,15 +11,17 @@ export default function AuthorizePayment() {
   const checkout = useRecoilValue(checkoutState);
 
   const sendPaymentRequest = () => {
-    console.log(checkout);
-    fetch(process.env.NEXT_PUBLIC_CHECKOUT_SOCKET_ENDPOINT, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...checkout }),
-    })
+    fetch(
+      `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...checkout }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("data: ", data);
