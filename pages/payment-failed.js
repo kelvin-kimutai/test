@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
-import Link from "next/link";
 
 export default function Page() {
+  const router = useRouter();
+  const { redirect_url } = router.query;
+  console.log(redirect_url);
   return (
     <MainLayout>
       <div className="p-8 mt-8 sm:text-lg">
@@ -26,8 +30,10 @@ export default function Page() {
           <p className="text-xl font-medium">Transaction code: 123AE2</p>
         </div>
         <div className="mt-8">
-          <Link href="/" passHref>
-            <SolidButton label="Okay" />
+          <Link href={redirect_url} passHref>
+            <div>
+              <SolidButton label="Okay" />
+            </div>
           </Link>
         </div>
       </div>
