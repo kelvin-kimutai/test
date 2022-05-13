@@ -17,6 +17,7 @@ export default function Page({ data }) {
   }, []);
 
   useEffect(() => {
+    if (_.isEmpty(payload)) return;
     setCheckout((checkout) => ({
       ...checkout,
       checkout_preprocessor_id: data.checkout_preprocessor_id,

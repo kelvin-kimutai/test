@@ -14,7 +14,9 @@ export default function Page() {
   const checkout = useRecoilValue(checkoutState);
 
   useEffect(() => {
-    const socket = socketIOClient(`https://uat.chekout-api.lipad.io`);
+    const socket = socketIOClient(
+      process.env.NEXT_PUBLIC_CHECKOUT_SOCKET_ENDPOINT
+    );
     // On establishing scoket connection, a "checkout-processor" event is emitted with
     // a payload of the checkout_preprocessor_id object.
     socket.on("connect", (data) => {

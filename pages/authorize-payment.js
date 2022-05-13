@@ -12,7 +12,7 @@ export default function AuthorizePayment() {
 
   const sendPaymentRequest = () => {
     console.log(checkout);
-    fetch(`https://uat.chekout-api.lipad.io/processor`, {
+    fetch(process.env.NEXT_PUBLIC_CHECKOUT_SOCKET_ENDPOINT, {
       method: "POST",
       headers: {
         Accept: "application/json",
