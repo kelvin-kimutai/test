@@ -30,17 +30,7 @@ export default function Page() {
     });
     // Listen for "checkout-processor" event and logging the payload.
     socket.on("checkout-processor", (data) => {
-      console.log(data);
-      if (data.payment_status === 0)
-        router.push({
-          pathname: "/payment-failed",
-          query: { redirect_url: data.url },
-        });
-      else
-        router.push({
-          pathname: "/payment-successful",
-          query: { redirect_url: data.url },
-        });
+      processRedirect(data);
     });
     // Cleanup function for disconnecting socket on unmount.
     return () => {
@@ -48,6 +38,42 @@ export default function Page() {
       console.log("disconnect");
     };
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetch(
+        `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}/status`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          processRedirect(data);
+        })
+        .catch((error) => {
+          console.log("error: ", error);
+        });
+    }, 30000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const processRedirect = (data) => {
+    if (data.payment_status === 1)
+      router.push({
+        pathname: "/payment-successful",
+        query: { redirect_url: data.url },
+      });
+    else
+      router.push({
+        pathname: "/payment-failed",
+        query: { redirect_url: data.url },
+      });
+  };
 
   return (
     <MainLayout>
