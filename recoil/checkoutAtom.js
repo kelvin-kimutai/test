@@ -3,7 +3,7 @@ import { atom } from "recoil";
 const checkoutState = atom({
   key: "checkoutState",
   default: {
-    checkout_preprocessor_id: null,
+    checkout_reference_id: null,
     msisdn: null,
     request_amount: null,
     client_data: {

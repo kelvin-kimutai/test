@@ -17,7 +17,6 @@ export default function Page({ data }) {
   }, []);
 
   useEffect(() => {
-    if (_.isEmpty(payload)) return;
     setCheckout((checkout) => ({
       ...checkout,
       checkout_reference_id: data.checkout_reference_id,
@@ -44,7 +43,7 @@ export default function Page({ data }) {
           .payment_method_type_name === paymentMethod
     );
 
-  if (_.isEmpty(payload)) return <div></div>;
+  if (_.isEmpty(payload)) return <div>No params</div>;
 
   return (
     <MainLayout>
