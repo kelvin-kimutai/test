@@ -5,6 +5,7 @@ import payloadState from "../../recoil/payloadAtom";
 export default function CountDownTimer() {
   const payload = useRecoilValue(payloadState);
 
+  console.log(payload.due_date);
   const countDownTime = new Date(payload.due_date);
 
   const [timerDays, setTimerDays] = useState("00");
