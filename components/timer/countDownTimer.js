@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
+import moment from "moment";
 
 export default function CountDownTimer() {
   const payload = useRecoilValue(payloadState);
 
-  console.log(payload.due_date);
-  const countDownTime = new Date(payload.due_date);
+  const countDownTime = new Date(payload.due_date + "Z");
 
   const [timerDays, setTimerDays] = useState("00");
   const [timerHours, setTimerHours] = useState("00");
