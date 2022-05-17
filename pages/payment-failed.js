@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
+import payloadState from "../recoil/payloadAtom";
 
 export default function Page() {
+  const payload = useRecoilValue(payloadState);
+
   const router = useRouter();
   const { redirect_url } = router.query;
-  console.log(redirect_url);
   return (
     <MainLayout>
       <div className="p-8 mt-8 sm:text-lg">
@@ -27,7 +30,9 @@ export default function Page() {
             Sorry, something went wrong. We are unable to process your payment
             request at the moment. Please try again later.
           </p>
-          <p className="text-xl font-medium">Transaction code: 123AE2</p>
+          <p className="text-xl font-medium">
+            Transaction code: {payload.merchant_transaction_id}
+          </p>
         </div>
         <div className="mt-8">
           <Link href={redirect_url} passHref>
