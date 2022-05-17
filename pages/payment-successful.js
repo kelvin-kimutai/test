@@ -28,13 +28,15 @@ export default function Page() {
             Payment Successful
           </h2>
           <p>
-            Your payment of KES {numeral(payload.request_amount).format("0,0")}{" "}
+            Your payment of KES {numeral(payload?.request_amount).format("0,0")}{" "}
             to{" "}
-            <span className="font-bold">{payload.client_data.client_name}</span>{" "}
+            <span className="font-bold">
+              {payload?.client_data.client_name}
+            </span>{" "}
             was successfully completed.
           </p>
           <p className="text-xl font-medium">
-            Transaction code: {payload.merchant_transaction_id}
+            Transaction code: {payload?.merchant_transaction_id}
           </p>
         </div>
         <div className="mt-8">

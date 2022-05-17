@@ -31,7 +31,7 @@ export default function Page() {
             request at the moment. Please try again later.
           </p>
           <p className="text-xl font-medium">
-            Transaction code: {payload.merchant_transaction_id}
+            Transaction code: {payload?.merchant_transaction_id}
           </p>
         </div>
         <div className="mt-8">

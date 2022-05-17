@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
-import moment from "moment";
 
 export default function CountDownTimer() {
   const payload = useRecoilValue(payloadState);
