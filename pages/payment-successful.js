@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import numeral from "numeral";
+import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
