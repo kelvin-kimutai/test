@@ -16,7 +16,7 @@ export default function Page() {
       });
     }, 5000);
     return () => clearTimeout(timer);
-  }, [payload?.fail_redirect_url]);
+  }, []);
 
   return (
     <MainLayout>
