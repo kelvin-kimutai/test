@@ -12,7 +12,6 @@ export default function Page({ data }) {
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
   useEffect(() => {
-    console.log(data);
     setPayload(data);
   }, [data, setPayload]);
 
