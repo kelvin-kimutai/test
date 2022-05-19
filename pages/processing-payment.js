@@ -66,18 +66,16 @@ export default function Page() {
     if (data.payment_status === 1)
       router.push({
         pathname: "/payment-successful",
-        query: { redirect_url: data.url },
       });
     else
       router.push({
         pathname: "/payment-failed",
-        query: { redirect_url: data.url },
       });
   };
 
   return (
     <MainLayout>
-      <div className="p-8 mt-8 sm:text-lg">
+      <div className="p-8 mt-8">
         <div className="flex flex-col items-center">
           <div className="relative w-56 h-56 m-6">
             <Image
@@ -87,7 +85,7 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-orange">
+          <h2 className="text-xl sm:text-2xl font-medium text-lipad-orange">
             Processing payment
           </h2>
           <p className="px-12 text-center">

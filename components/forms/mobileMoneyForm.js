@@ -19,7 +19,9 @@ export default function MobileMoneyForm() {
 
   const formik = useFormik({
     initialValues: {
-      mobileNumber: payload.msisdn,
+      mobileNumber: payload.msisdn
+        ? payload.msisdn
+        : localStorage.getItem("mobileNumber") ?? "",
       amount: payload.request_amount,
       saveNumber: false,
     },
@@ -36,6 +38,9 @@ export default function MobileMoneyForm() {
         msisdn: values.mobileNumber,
         request_amount: values.amount,
       }));
+      if (values.saveNumber)
+        localStorage.setItem("mobileNumber", values.mobileNumber);
+
       router.push("/authorize-payment");
     },
   });
