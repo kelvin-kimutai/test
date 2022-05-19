@@ -5,9 +5,11 @@ import { useRecoilValue } from "recoil";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import payloadState from "../recoil/payloadAtom";
+import { useRouter } from "next/router";
 
 export default function Page() {
   const payload = useRecoilValue(payloadState);
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,6 +18,7 @@ export default function Page() {
       });
     }, 5000);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
