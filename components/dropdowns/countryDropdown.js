@@ -3,9 +3,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { HiCheck, HiOutlineChevronDown } from "react-icons/hi";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import checkoutState from "../../recoil/checkoutAtom";
-import payloadState from "../../recoil/payloadAtom";
 
 export default function CountryDropdown({ countries }) {
   const [selected, setSelected] = useState(countries[0] ?? {});
@@ -26,7 +25,7 @@ export default function CountryDropdown({ countries }) {
   }, [selected]);
 
   return (
-    <div className="w-32 text-xs sm:text-sm">
+    <div className="w-32">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <Listbox.Button className="relative flex items-center w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500">
@@ -64,7 +63,7 @@ export default function CountryDropdown({ countries }) {
                     <>
                       <span
                         className={`${
-                          selected ? "font-medium" : "font-normal"
+                          selected ? "font-medium" : ""
                         } block truncate`}
                       >
                         {country.country.country_name}

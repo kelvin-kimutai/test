@@ -23,7 +23,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
   };
 
   return (
-    <div className="w-full text-sm rounded-2xl bg-gray-50 sm:text-base">
+    <div className="w-full rounded-2xl bg-gray-50">
       <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>

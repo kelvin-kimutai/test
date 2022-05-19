@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
@@ -13,8 +12,9 @@ export default function Page({ data }) {
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
   useEffect(() => {
+    console.log(data);
     setPayload(data);
-  }, []);
+  }, [data, setPayload]);
 
   useEffect(() => {
     setCheckout((checkout) => ({
@@ -25,10 +25,10 @@ export default function Page({ data }) {
         client_code: data.client_data.client_code,
       },
     }));
-  }, []);
+  }, [data.checkout_reference_id, data.client_data.client_code, setCheckout]);
 
   const isPaymentMethodAvailable = (paymentMethod) =>
-    payload.client_data.client_payment_methods.filter(
+    payload?.client_data.client_payment_methods.filter(
       (client_payment_method) =>
         client_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
@@ -37,19 +37,19 @@ export default function Page({ data }) {
       : false;
 
   const filteredPaymentMethods = (paymentMethod) =>
-    payload.client_data.client_payment_methods.filter(
+    payload?.client_data.client_payment_methods.filter(
       (client_payment_method) =>
         client_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
     );
 
-  if (_.isEmpty(payload)) return <div>No params</div>;
+  if (_.isEmpty(data)) return <div></div>;
 
   return (
     <MainLayout>
       <HeaderLayout>
         <div className="space-y-4">
-          <h2 className="text-lg font-medium text-center sm:text-2xl">
+          <h2 className="text-lg sm:text-xl font-medium text-center">
             How would you like to pay?
           </h2>
           {isPaymentMethodAvailable("mobile_money") && (
@@ -90,7 +90,6 @@ export default function Page({ data }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-  console.log(query.params);
   if (!query.params)
     return {
       props: {

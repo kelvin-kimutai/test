@@ -11,6 +11,7 @@ export default function AuthorizePayment() {
   const checkout = useRecoilValue(checkoutState);
 
   const sendPaymentRequest = () => {
+    console.log(checkout);
     fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
       {
@@ -33,14 +34,15 @@ export default function AuthorizePayment() {
 
   return (
     <MainLayout>
-      <div className="p-8 mt-8 sm:text-lg">
+      <div className="p-8 mt-8">
         <div className="flex flex-col items-center gap-2">
-          <h2 className="text-2xl font-medium sm:text-3xl text-lipad-green">
+          <h2 className="text-xl sm:text-2xl font-medium text-lipad-green">
             Authorise payment
           </h2>
           <p className="text-center">
             Please ensure you have your phone with you and sufficient balance in
-            your account. We&apos;ll send a prompt to +254xxxxxx444. Enter your
+            your account. We&apos;ll send a prompt to{" "}
+            <span className="font-medium">{checkout.msisdn}</span>. Enter your
             PIN to authorize payment.
           </p>
           <div className="relative w-56 h-56 m-6">
