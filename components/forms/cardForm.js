@@ -18,16 +18,14 @@ export default function CardForm() {
       fullName: "",
       number: "",
       cvc: "",
-      expiryMonth: "",
-      expiryYear: "",
+      expiryDate: "",
       amount: payload.request_amount,
     },
     validationSchema: Yup.object({
       fullName: Yup.string().required("Required"),
       number: Yup.string().required("Required"),
       cvc: Yup.string().required("Required"),
-      expiryMonth: Yup.string().required("Required"),
-      expiryYear: Yup.string().required("Required"),
+      expiryDate: Yup.string().required("Required"),
       amount: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
@@ -37,8 +35,7 @@ export default function CardForm() {
         request_amount: values.amount,
         card_details: {
           card_number: values.number,
-          card_expiry_month: values.expiryMonth,
-          card_expiry_year: values.expiryYear,
+          card_expiry_date: values.expiryDate,
           card_cvc: values.cvc,
         },
       }));
@@ -71,22 +68,13 @@ export default function CardForm() {
         <div className="col-span-2">
           <InputField
             formik={formik}
-            variable="expiryMonth"
+            variable="expiryDate"
             type="text"
-            label="Expiry Month"
+            label="Expiry Date"
             autoComplete="cc-exp"
           />
         </div>
         <div className="col-span-2">
-          <InputField
-            formik={formik}
-            variable="expiryYear"
-            type="text"
-            label="Expiry Year"
-            autoComplete="cc-exp"
-          />
-        </div>
-        <div className="col-span-4">
           <InputField
             formik={formik}
             variable="cvc"
