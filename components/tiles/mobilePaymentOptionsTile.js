@@ -8,14 +8,18 @@ import checkoutState from "../../recoil/checkoutAtom";
 export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
-  const setPaymentMethodId = (paymentMethodId) => {
+  const setPaymentMethod = (option) => {
     setCheckout((checkout) => ({
       ...checkout,
       client_data: {
         ...checkout.client_data,
         client_payment_methods: [
           {
-            client_payment_method_id: paymentMethodId,
+            client_payment_method_id: option.client_payment_method_id,
+            payment_method: {
+              payment_method_id: option.payment_method.payment_method_id,
+              payment_method_name: option.payment_method.payment_method_name,
+            },
           },
         ],
       },
@@ -77,7 +81,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                         <div
                           key={option.client_payment_method_id}
                           onClick={() => {
-                            setPaymentMethodId(option.client_payment_method_id);
+                            setPaymentMethod(option);
                           }}
                         >
                           <Link

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { RecoilRoot } from "recoil";
 import CardForm from "../../components/forms/cardForm";
 import MobileMoneyForm from "../../components/forms/mobileMoneyForm";
 import HeaderLayout from "../../components/layouts/headerLayout";
@@ -30,13 +29,12 @@ export default function Page() {
             <MobileMoneyForm />
           </>
         )}
-        {payment_method_id == "visa" ||
-          (payment_method_id == "mastercard" && (
-            <>
-              {title("Enter your Card details")}
-              <CardForm />
-            </>
-          ))}
+        {payment_method_id == "card" && (
+          <>
+            {title("Enter your Card details")}
+            <CardForm />
+          </>
+        )}
       </HeaderLayout>
     </MainLayout>
   );

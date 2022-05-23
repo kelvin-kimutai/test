@@ -6,6 +6,8 @@ import MainLayout from "../components/layouts/mainLayout";
 import MobilePaymentOptionsTile from "../components/tiles/mobilePaymentOptionsTile";
 import checkoutState from "../recoil/checkoutAtom";
 import payloadState from "../recoil/payloadAtom";
+import Link from "next/link";
+import PaymentOptionsTile from "../components/tiles/paymentOptionsTile";
 
 export default function Page({ data }) {
   const [payload, setPayload] = useRecoilState(payloadState);
@@ -58,18 +60,18 @@ export default function Page({ data }) {
               iconSrc="/images/icons/mobile-money.svg"
             />
           )}
-          {/* {isPaymentMethodAvailable("card") && (
-            <Link href="/payments/card" passHref>
-              <PaymentOptionsTile
-                title="Card"
-                titleIcon={"/images/icons/card.svg"}
-                paymentIcons={[
-                  "/images/logos/visa.svg",
-                  "/images/logos/mastercard.svg",
-                ]}
-              />
-            </Link>
+          {isPaymentMethodAvailable("card") && (
+            <PaymentOptionsTile
+              options={filteredPaymentMethods("card")}
+              title="Card"
+              titleIcon={"/images/icons/card.svg"}
+              paymentIcons={[
+                "/images/logos/visa.svg",
+                "/images/logos/mastercard.svg",
+              ]}
+            />
           )}
+          {/* 
           {isPaymentMethodAvailable("bank") && (
             <Link href="/payments/select-bank" passHref>
               <PaymentOptionsTile

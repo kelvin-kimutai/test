@@ -2,53 +2,70 @@ import Image from "next/image";
 import { HiChevronUp } from "react-icons/hi";
 import { useRecoilState } from "recoil";
 import checkoutState from "../../recoil/checkoutAtom";
+import Link from "next/link";
 
-export default function PaymentOptionsTile({ title, titleIcon, paymentIcons }) {
+export default function PaymentOptionsTile({
+  options,
+  title,
+  titleIcon,
+  paymentIcons,
+}) {
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
-  const setPaymentMethodId = (paymentMethodId) => {
+  const setPaymentMethod = (option) => {
     setCheckout((checkout) => ({
       ...checkout,
       client_data: {
         ...checkout.client_data,
-        client_payment_methods: {
-          client_payment_method_id: paymentMethodId,
-        },
+        client_payment_methods: [
+          {
+            client_payment_method_id: option.client_payment_method_id,
+            payment_method: {
+              payment_method_id: option.payment_method.payment_method_id,
+              payment_method_name: option.payment_method.payment_method_name,
+            },
+          },
+        ],
       },
     }));
   };
   return (
-    <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
-      <div className="flex items-center justify-between w-full">
-        <div className="flex items-center space-x-3">
-          <div className="relative w-5 h-5">
-            <Image src={iconSrc} alt="" layout="fill" />
-          </div>
-          <span className="font-medium">{title}</span>
-        </div>
-        <div className="flex items-center space-x-3">
-          {paymentIcons.map((paymentIcon, i) => (
-            <div
-              key={i}
-              onClick={() => {
-                setPaymentMethodId(option.client_payment_method_id);
-              }}
-            >
-              <div className="relative w-10 h-6">
-                <Image
-                  src={paymentIcon}
-                  alt=""
-                  objectFit="contain"
-                  layout="fill"
-                />
+    <div onClick={() => setPaymentMethod(options[0])}>
+      <Link
+        href={{
+          pathname: `/payments/card`,
+          query: {
+            payment_method_name: "card",
+          },
+        }}
+        passHref
+      >
+        <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center space-x-3">
+              <div className="relative w-5 h-5">
+                <Image src={titleIcon} alt="" layout="fill" />
               </div>
+              <span className="font-medium">{title}</span>
             </div>
-          ))}
-          <HiChevronUp
-            className={`w-5 h-5 text-lipad-grey transform rotate-90`}
-          />
+            <div className="flex items-center space-x-3">
+              {paymentIcons.map((paymentIcon, i) => (
+                <div key={i} className="relative w-10 h-6">
+                  <Image
+                    src={paymentIcon}
+                    alt=""
+                    objectFit="contain"
+                    layout="fill"
+                  />
+                </div>
+              ))}
+              <HiChevronUp
+                className={`w-5 h-5 text-lipad-grey transform rotate-90`}
+              />
+            </div>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
