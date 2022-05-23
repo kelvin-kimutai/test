@@ -11,6 +11,7 @@ export default function AuthorizePayment() {
   const checkout = useRecoilValue(checkoutState);
 
   const sendPaymentRequest = () => {
+    console.log(checkout);
     fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
       {

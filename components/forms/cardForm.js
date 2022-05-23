@@ -7,6 +7,7 @@ import numeral from "numeral";
 import { useRecoilState, useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
 import checkoutState from "../../recoil/checkoutAtom";
+import valid from "card-validator";
 
 export default function CardForm() {
   const router = useRouter();
@@ -18,24 +19,52 @@ export default function CardForm() {
       fullName: "",
       number: "",
       cvc: "",
-      expiryDate: "",
+      expiryMonth: "",
+      expiryYear: "",
       amount: payload.request_amount,
     },
     validationSchema: Yup.object({
       fullName: Yup.string().required("Required"),
-      number: Yup.string().required("Required"),
-      cvc: Yup.string().required("Required"),
-      expiryDate: Yup.string().required("Required"),
+      number: Yup.string()
+        .test(
+          "test-number",
+          "Credit card number is invalid",
+          (value) => valid.number(value).isValid
+        )
+        .required("Required"),
+      cvc: Yup.string()
+        .test(
+          "test-number",
+          "CVC is invalid",
+          (value) => valid.cvv(value).isValid
+        )
+        .required("Required"),
+      expiryMonth: Yup.string()
+        .test("len", "Month is invalid", (value) => value?.length === 2)
+        .test(
+          "test-number",
+          "Month is invalid",
+          (value) => valid.expirationMonth(value).isValid
+        )
+        .required("Required"),
+      expiryYear: Yup.string()
+        .test("len", "Year is invalid", (value) => value?.length === 4)
+        .test(
+          "test-number",
+          "Year is invalid",
+          (value) => valid.expirationYear(value).isValid
+        )
+        .required("Required"),
       amount: Yup.string().required("Required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       setCheckout((checkout) => ({
         ...checkout,
         request_amount: values.amount,
         card_details: {
           card_number: values.number,
-          card_expiry_date: values.expiryDate,
+          card_expiry_month: values.expiryMonth,
+          card_expiry_year: values.expiryYear,
           card_cvc: values.cvc,
         },
       }));
@@ -46,8 +75,8 @@ export default function CardForm() {
 
   return (
     <form onSubmit={formik.handleSubmit} className="">
-      <div className="grid grid-cols-4 mt-6 gap-y-6 gap-x-4">
-        <div className="col-span-4">
+      <div className="grid grid-cols-2 mt-6 gap-y-6 gap-x-4">
+        <div className="col-span-2">
           <InputField
             formik={formik}
             variable="fullName"
@@ -56,7 +85,7 @@ export default function CardForm() {
             autoComplete="cc-name"
           />
         </div>
-        <div className="col-span-4">
+        <div className="col-span-2">
           <InputField
             formik={formik}
             variable="number"
@@ -65,13 +94,22 @@ export default function CardForm() {
             autoComplete="cc-number"
           />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1">
           <InputField
             formik={formik}
-            variable="expiryDate"
+            variable="expiryMonth"
             type="text"
-            label="Expiry Date"
-            autoComplete="cc-exp"
+            label="Expiry Month"
+            autoComplete="cc-exp-month"
+          />
+        </div>
+        <div className="col-span-1">
+          <InputField
+            formik={formik}
+            variable="expiryYear"
+            type="text"
+            label="Expiry Year"
+            autoComplete="cc-exp-year"
           />
         </div>
         <div className="col-span-2">
