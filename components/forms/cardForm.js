@@ -62,13 +62,26 @@ export default function CardForm() {
         ...checkout,
         request_amount: values.amount,
         card_details: {
-          card_name: values.fullName,
-          card_number: values.number,
-          card_expiry_month: values.expiryMonth,
-          card_expiry_year: values.expiryYear,
-          card_cvc: values.cvc,
+          name_on_card: values.fullName,
+          number: values.number,
+          expiry_month: values.expiryMonth,
+          expiry_year: values.expiryYear,
+          cvv: values.cvc,
         },
       }));
+      fetch(
+        `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...checkout }),
+        }
+      )
+        .then((res) => {})
+        .catch((error) => {});
       router.push("/processing-payment");
     },
   });
