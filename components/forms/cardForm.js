@@ -48,7 +48,7 @@ export default function CardForm() {
         )
         .required("Required"),
       expiryYear: Yup.string()
-        .test("len", "Year is invalid", (value) => value?.length === 4)
+        .test("len", "Year is invalid", (value) => value?.length === 2)
         .test(
           "test-number",
           "Year is invalid",
@@ -62,14 +62,14 @@ export default function CardForm() {
         ...checkout,
         request_amount: values.amount,
         card_details: {
+          card_name: values.fullName,
           card_number: values.number,
           card_expiry_month: values.expiryMonth,
           card_expiry_year: values.expiryYear,
           card_cvc: values.cvc,
         },
       }));
-      console.log("checkout");
-      router.push("/authorize-payment");
+      router.push("/processing-payment");
     },
   });
 

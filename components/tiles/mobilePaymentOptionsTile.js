@@ -90,6 +90,8 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                                 .replace(/\s+/g, "-")
                                 .toLowerCase()}`,
                               query: {
+                                payment_method_id:
+                                  option.payment_method.payment_method_id,
                                 payment_method_name:
                                   option.payment_method.payment_method_name,
                               },

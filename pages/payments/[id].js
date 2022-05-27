@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <MainLayout>
       <HeaderLayout>
-        {payment_method_id === "m-pesa" && (
+        {payment_method_id == "mpesa" && (
           <>
             {title(`Pay with ${payment_method_name}`)}
             <MobileMoneyForm />

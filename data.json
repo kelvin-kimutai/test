@@ -1,10 +1,10 @@
 {
-  "checkout_reference_id": "a793db72-c881-49fd-a06f-5094a54bcab3",
+  "checkout_reference_id": "d5b4d67f-3ec3-4f77-ae4b-b6aa50566dd9",
   "msisdn": "254700000000",
   "customer_email": "johndoe@mail.com",
   "customer_first_name": "John",
   "customer_last_name": "Doe",
-  "due_date": "2022-05-23 08:49:04",
+  "due_date": "2022-05-27 14:39:50",
   "merchant_transaction_id": "txn_id_342",
   "preferred_payment_option_code": "1",
   "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
@@ -43,7 +43,7 @@
         "client_payment_method_id": "6",
         "payment_method": {
           "payment_method_id": "3",
-          "payment_method_name": "Card",
+          "payment_method_name": "CARD",
           "payment_method_description": "Payments made via VISA, Mastercard etc",
           "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fvisa.svg?alt=media&token=d1dbbe3f-9977-43fb-8286-e80eb05aa4b6",
           "payment_method_type": {
@@ -57,7 +57,7 @@
         "client_payment_method_id": "1",
         "payment_method": {
           "payment_method_id": "1",
-          "payment_method_name": "M-PESA",
+          "payment_method_name": "MPESA",
           "payment_method_description": "Safaricom payment channel",
           "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
           "payment_method_type": {

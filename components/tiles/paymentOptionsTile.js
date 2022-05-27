@@ -35,7 +35,8 @@ export default function PaymentOptionsTile({
         href={{
           pathname: `/payments/card`,
           query: {
-            payment_method_name: "card",
+            payment_method_id: options[0].payment_method.payment_method_id,
+            payment_method_name: options[0].payment_method.payment_method_name,
           },
         }}
         passHref
