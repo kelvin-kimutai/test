@@ -77,7 +77,17 @@ export default function CardForm() {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ...checkout }),
+          body: JSON.stringify({
+            ...checkout,
+            request_amount: values.amount,
+            card_details: {
+              name_on_card: values.fullName,
+              number: values.number,
+              expiry_month: values.expiryMonth,
+              expiry_year: values.expiryYear,
+              cvv: values.cvc,
+            },
+          }),
         }
       )
         .then((res) => {})

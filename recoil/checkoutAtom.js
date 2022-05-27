@@ -6,11 +6,11 @@ const checkoutState = atom({
     checkout_reference_id: null,
     msisdn: null,
     card_details: {
-      card_name: null,
-      card_number: null,
-      card_expiry_month: null,
-      card_expiry_year: null,
-      card_cvv: null,
+      name_on_card: null,
+      number: null,
+      expiry_month: null,
+      expiry_year: null,
+      cvv: null,
     },
     request_amount: null,
     client_data: {
