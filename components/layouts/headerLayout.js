@@ -7,7 +7,7 @@ export default function HeaderLayout({ children }) {
   const payload = useRecoilValue(payloadState);
 
   return (
-    <>
+    <div>
       <div className="text-white bg-lipad-green">
         <section className="pt-6 space-y-4 pb-14 sm:pt-12 sm:pb-24">
           <CountDownTimer />
@@ -26,9 +26,7 @@ export default function HeaderLayout({ children }) {
           </div>
         </section>
       </div>
-      <div className="p-4 px-4 -mt-8 space-y-4 bg-white sm:p-8 rounded-t-2xl">
-        {children}
-      </div>
-    </>
+      <div className="p-4 -mt-8 bg-white sm:p-8 rounded-t-2xl">{children}</div>
+    </div>
   );
 }

@@ -61,7 +61,7 @@ export default function CardForm() {
       setCheckout((checkout) => ({
         ...checkout,
         request_amount: values.amount,
-        card_details: {
+        card: {
           name_on_card: values.fullName,
           number: values.number,
           expiry_month: values.expiryMonth,
@@ -80,7 +80,7 @@ export default function CardForm() {
           body: JSON.stringify({
             ...checkout,
             request_amount: values.amount,
-            card_details: {
+            card: {
               name_on_card: values.fullName,
               number: values.number,
               expiry_month: values.expiryMonth,

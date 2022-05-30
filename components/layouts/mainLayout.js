@@ -12,9 +12,9 @@ export default function MainLayout({ children }) {
   if (_.isEmpty(payload)) return <div></div>;
 
   return (
-    <main className="grid place-content-center">
-      <section className="w-full sm:w-[32rem] relative min-h-screen p-4 sm:py-16 sm:px-8">
-        <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-8 bg-lipad-grey">
+    <main className="grid place-content-center min-h-screen">
+      <section className="w-full sm:w-[36rem] relative p-8 sm:p-16">
+        <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-0 bg-lipad-grey">
           <Link href={payload.fail_redirect_url} passHref>
             <div>
               <CgClose className="text-xl text-white cursor-pointer" />
@@ -44,7 +44,7 @@ export default function MainLayout({ children }) {
               />
             </div>
           </section>
-          <div className="grow">{children}</div>
+          <div>{children}</div>
           <div className="w-full pb-6">
             <div className="relative h-10">
               <Image
