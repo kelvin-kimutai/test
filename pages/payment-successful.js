@@ -7,9 +7,11 @@ import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import payloadState from "../recoil/payloadAtom";
 import { useRouter } from "next/router";
+import checkoutState from "../recoil/checkoutAtom";
 
 export default function Page() {
   const payload = useRecoilValue(payloadState);
+  const checkout = useRecoilValue(checkoutState);
   const router = useRouter();
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function Page() {
           </h2>
           <p>
             Your payment of KES{" "}
-            {numeral(payload?.request_amount).format("0,0.00")} to{" "}
+            {numeral(checkout.request_amount).format("0,0.00")} to{" "}
             <span className="font-medium">
               {payload?.client_data.client_name}
             </span>{" "}

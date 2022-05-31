@@ -29,6 +29,7 @@ export default function PaymentOptionsTile({
       },
     }));
   };
+
   return (
     <div onClick={() => setPaymentMethod(options[0])}>
       <Link
