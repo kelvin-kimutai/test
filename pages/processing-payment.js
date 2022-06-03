@@ -14,6 +14,7 @@ export default function Page() {
   const checkout = useRecoilValue(checkoutState);
 
   useEffect(() => {
+    console;
     const socket = socketIOClient(
       process.env.NEXT_PUBLIC_CHECKOUT_SOCKET_ENDPOINT
     );
