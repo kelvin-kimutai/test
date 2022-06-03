@@ -9,6 +9,7 @@ export default function Page() {
   const router = useRouter();
   const payment_method_id = router.query.id;
   const payment_method_name = router.query.payment_method_name;
+  const payment_method_type = router.query.payment_method_type;
 
   const title = (title) => (
     <div className="relative">
@@ -23,13 +24,13 @@ export default function Page() {
   return (
     <MainLayout>
       <HeaderLayout>
-        {payment_method_id == "mpesa" && (
+        {payment_method_type == "mobile_money" && (
           <>
             {title(`Pay with ${payment_method_name}`)}
             <MobileMoneyForm />
           </>
         )}
-        {payment_method_id == "card" && (
+        {payment_method_type == "card" && (
           <>
             {title("Enter your Card details")}
             <CardForm />

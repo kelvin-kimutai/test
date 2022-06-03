@@ -94,6 +94,9 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                                   option.payment_method.payment_method_id,
                                 payment_method_name:
                                   option.payment_method.payment_method_name,
+                                payment_method_type:
+                                  option.payment_method.payment_method_type
+                                    .payment_method_type_name,
                               },
                             }}
                             passHref

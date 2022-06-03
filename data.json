@@ -1,10 +1,10 @@
 {
-  "checkout_reference_id": "d5b4d67f-3ec3-4f77-ae4b-b6aa50566dd9",
+  "checkout_reference_id": "393b7382-22df-4d3d-ae72-691fd25b4cd2",
   "msisdn": "254700000000",
   "customer_email": "johndoe@mail.com",
   "customer_first_name": "John",
   "customer_last_name": "Doe",
-  "due_date": "2022-05-27 14:39:50",
+  "due_date": "2022-06-03 09:36:56",
   "merchant_transaction_id": "txn_id_342",
   "preferred_payment_option_code": "1",
   "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
@@ -39,6 +39,20 @@
       }
     ],
     "client_payment_methods": [
+      {
+        "client_payment_method_id": "7",
+        "payment_method": {
+          "payment_method_id": "2",
+          "payment_method_name": "AIRTELMONEY",
+          "payment_method_description": "Airtel money channel",
+          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
+          "payment_method_type": {
+            "payment_method_type_id": "1",
+            "payment_method_type_name": "mobile_money",
+            "payment_method_type_description": "Payments through mobile money"
+          }
+        }
+      },
       {
         "client_payment_method_id": "6",
         "payment_method": {

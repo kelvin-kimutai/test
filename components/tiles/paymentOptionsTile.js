@@ -38,6 +38,9 @@ export default function PaymentOptionsTile({
           query: {
             payment_method_id: options[0].payment_method.payment_method_id,
             payment_method_name: options[0].payment_method.payment_method_name,
+            payment_method_type:
+              options[0].payment_method.payment_method_type
+                .payment_method_type_name,
           },
         }}
         passHref
