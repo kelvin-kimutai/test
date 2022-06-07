@@ -36,7 +36,7 @@ function Toast() {
       </div>
       <div className="text-lipad-blue space-y-1 w-72 py-4">
         <p className="font-semibold">Payment request sent</p>
-        <p>Your payment request has beeen sent and is now being processed.</p>
+        <p>Your payment request has been sent and is now being processed.</p>
       </div>
       <div className="p-4">
         <HiX

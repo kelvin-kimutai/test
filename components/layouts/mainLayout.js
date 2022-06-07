@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
 import CountryDropdown from "../dropdowns/countryDropdown";
 import Toast from "../notifications/toast";
+import { HiChevronLeft } from "react-icons/hi";
 
 export default function MainLayout({ children }) {
   const payload = useRecoilValue(payloadState);
@@ -17,11 +18,12 @@ export default function MainLayout({ children }) {
       <div className="absolute top-4 right-0 overflow-hidden">
         <Toast />
       </div>
-      <section className="w-full sm:w-[36rem] relative p-8 sm:p-16">
-        <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-0 bg-lipad-grey">
+      <section className="w-full sm:w-[36rem] p-8 sm:p-16 space-y-2">
+        <div className="cursor-pointer">
           <Link href={payload.fail_redirect_url} passHref>
-            <div>
-              <CgClose className="text-xl text-white cursor-pointer" />
+            <div className="flex items-center gap-2">
+              <HiChevronLeft className="w-8 h-8" />
+              <div className="text-lg font-medium">Back to Merchant</div>
             </div>
           </Link>
         </div>
