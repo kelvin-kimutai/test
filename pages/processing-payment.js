@@ -12,6 +12,14 @@ import checkoutState from "../recoil/checkoutAtom";
 export default function Page() {
   const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
+  const [ui, setUiState] = useRecoilState(uiState);
+
+  const showToast = () => {
+    setUiState((prevState) => ({
+      ...prevState,
+      toast: true,
+    }));
+  };
 
   useEffect(() => {
     const socket = socketIOClient(
@@ -27,6 +35,7 @@ export default function Page() {
         })
       );
       console.log("Connected to socket.");
+      showToast();
     });
     // Listen for "checkout-processor" event and logging the payload.
     socket.on("checkout-processor", (data) => {

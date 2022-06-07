@@ -5,6 +5,7 @@ import { CgClose } from "react-icons/cg";
 import { useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
 import CountryDropdown from "../dropdowns/countryDropdown";
+import Toast from "../notifications/toast";
 
 export default function MainLayout({ children }) {
   const payload = useRecoilValue(payloadState);
@@ -13,6 +14,9 @@ export default function MainLayout({ children }) {
 
   return (
     <main className="grid place-content-center min-h-screen">
+      <div className="absolute top-4 right-0 overflow-hidden">
+        <Toast />
+      </div>
       <section className="w-full sm:w-[36rem] relative p-8 sm:p-16">
         <div className="absolute hidden p-2 rounded-full sm:block top-16 -right-0 bg-lipad-grey">
           <Link href={payload.fail_redirect_url} passHref>

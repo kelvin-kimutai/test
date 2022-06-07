@@ -14,6 +14,7 @@
     "body-parser": "^1.20.0",
     "card-validator": "^8.1.1",
     "formik": "^2.2.9",
+    "gsap": "npm:@gsap/simply@^3.10.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "next": "12.0.8",

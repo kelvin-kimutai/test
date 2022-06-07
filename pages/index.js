@@ -7,6 +7,7 @@ import MobilePaymentOptionsTile from "../components/tiles/mobilePaymentOptionsTi
 import PaymentOptionsTile from "../components/tiles/paymentOptionsTile";
 import checkoutState from "../recoil/checkoutAtom";
 import payloadState from "../recoil/payloadAtom";
+import uiState from "../recoil/uiAtom";
 
 export default function Page({ data }) {
   const [payload, setPayload] = useRecoilState(payloadState);
@@ -66,7 +67,10 @@ export default function Page({ data }) {
     <MainLayout>
       <HeaderLayout>
         <div className="space-y-4 min-h-[22rem]">
-          <h2 className="text-lg sm:text-xl font-medium text-center">
+          <h2
+            className="text-lg sm:text-xl font-medium text-center"
+            onClick={() => showToast()}
+          >
             How would you like to pay?
           </h2>
           {isPaymentMethodAvailable("mobile_money") && (
