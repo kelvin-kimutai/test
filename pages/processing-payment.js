@@ -3,11 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import socketIOClient from "socket.io-client";
 import OutlineButton from "../components/buttons/outlineButton";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
+import uiState from "../recoil/uiAtom";
 
 export default function Page() {
   const router = useRouter();
