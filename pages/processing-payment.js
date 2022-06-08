@@ -75,7 +75,7 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonDisabled(false);
-    }, 5000);
+    }, 30000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -107,19 +107,14 @@ export default function Page() {
         pathname: "/payment-successful",
       });
     else {
-      if (retries > 2) {
-        router.push({
-          pathname: "/payment-failed",
-          query: {
-            payment_description: data
-              ? data.payment_description
-              : "Something went wrong. Please try again.",
-          },
-        });
-        return;
-      } else {
-        setRetries((prevState) => prevState + 1);
-      }
+      router.push({
+        pathname: "/payment-failed",
+        query: {
+          payment_description: data
+            ? data.payment_description
+            : "Something went wrong. Please try again.",
+        },
+      });
     }
   };
 
