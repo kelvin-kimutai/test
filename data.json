@@ -4,7 +4,7 @@
   "customer_email": "johndoe@mail.com",
   "customer_first_name": "John",
   "customer_last_name": "Doe",
-  "due_date": "2022-06-10 14:00:00",
+  "due_date": "2022-06-27 14:28:30",
   "merchant_transaction_id": "txn_id_342",
   "preferred_payment_option_code": "1",
   "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",

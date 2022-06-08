@@ -8,11 +8,16 @@ import uiState from "../../recoil/uiAtom";
 function Toast() {
   const [ui, setUiState] = useRecoilState(uiState);
   useEffect(() => {
-    if (ui.toast == true) showToast();
+    if (ui.toast === true) {
+      showToast();
+      setUiState((prevState) => ({
+        ...prevState,
+        toast: false,
+      }));
+    }
   }, [ui.toast]);
 
   const showToast = () => {
-    console.log("showToast");
     gsap.to(".toast", {
       x: "0%",
     });
@@ -23,10 +28,6 @@ function Toast() {
     gsap.to(".toast", {
       x: "110%",
     });
-    setUiState((prevState) => ({
-      ...prevState,
-      toast: false,
-    }));
   };
 
   return (

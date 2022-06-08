@@ -14,11 +14,11 @@ export default function MainLayout({ children }) {
   if (_.isEmpty(payload)) return <div></div>;
 
   return (
-    <main className="grid place-content-center min-h-screen">
-      <div className="absolute top-4 right-0 overflow-hidden">
+    <main className="grid place-content-center min-h-screen p-8 sm:p-16 ">
+      <div className="absolute top-4 right-0 overflow-hidden z-50">
         <Toast />
       </div>
-      <section className="w-full sm:w-[36rem] p-8 sm:p-16 space-y-2">
+      <section className="w-full sm:w-[28rem] space-y-2">
         <div className="cursor-pointer">
           <Link href={payload.fail_redirect_url} passHref>
             <div className="flex items-center gap-2">
@@ -50,15 +50,13 @@ export default function MainLayout({ children }) {
               />
             </div>
           </section>
-          <div>{children}</div>
-          <div className="w-full pb-6">
-            <div className="relative h-10">
-              <Image
-                src={"/images/logos/lipad-logo-blue-powered-by.svg"}
-                alt=""
-                layout="fill"
-              />
-            </div>
+          <div className="min-h-[16rem]">{children}</div>
+          <div className="relative h-10">
+            <Image
+              src={"/images/logos/lipad-logo-blue-powered-by.svg"}
+              alt=""
+              layout="fill"
+            />
           </div>
         </div>
       </section>

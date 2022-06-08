@@ -27,11 +27,11 @@ export default function Page({ data }) {
         },
       }));
     }
-  }, [data, setCheckout, setPayload]);
+  }, []);
 
   const isPaymentMethodAvailable = (paymentMethod) => {
-    if (_.isEmpty(data)) return false;
-    return data.client_data.client_payment_methods.filter(
+    if (_.isEmpty(payload)) return false;
+    return payload.client_data.client_payment_methods.filter(
       (client_payment_method) =>
         client_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
@@ -41,15 +41,15 @@ export default function Page({ data }) {
   };
 
   const filteredPaymentMethods = (paymentMethod) => {
-    if (_.isEmpty(data)) return [];
-    return data.client_data.client_payment_methods.filter(
+    if (_.isEmpty(payload)) return [];
+    return payload.client_data.client_payment_methods.filter(
       (client_payment_method) =>
         client_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
     );
   };
 
-  if (_.isEmpty(data))
+  if (_.isEmpty(data) && _.isEmpty(payload))
     return (
       <div className="grid place-content-center h-screen">
         Something went wrong
@@ -66,7 +66,7 @@ export default function Page({ data }) {
   return (
     <MainLayout>
       <HeaderLayout>
-        <div className="space-y-4 min-h-[22rem]">
+        <div className="space-y-4">
           <h2
             className="text-lg sm:text-xl font-medium text-center"
             onClick={() => showToast()}
