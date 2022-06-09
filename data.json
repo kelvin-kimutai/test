@@ -1,27 +1,27 @@
 {
-  "checkout_reference_id": "02c29c99-0546-4492-bb53-b5a8f8330e4e",
-  "msisdn": "254700000000",
-  "customer_email": "johndoe@mail.com",
-  "customer_first_name": "John",
-  "customer_last_name": "Doe",
-  "due_date": "2022-06-27 14:28:30",
-  "merchant_transaction_id": "txn_id_342",
-  "preferred_payment_option_code": "1",
-  "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
-  "request_amount": "2500",
-  "request_description": "Dummy merchant transaction",
-  "success_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
-  "fail_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
-  "account_number": "oid39",
-  "language_code": "en",
-  "payer_msisdn": null,
-  "charge_amount": null,
-  "acknowledgement_code": null,
-  "acknowledgement_description": null,
-  "result_code": null,
-  "result_description": null,
-  "result_processed": 0,
-  "payment_transaction_reference": null,
+  "checkout_reference_id": "LPD3BYG7S5",
+  "merchant_site_data": {
+    "msisdn": "254700000000",
+    "account_number": "oid39",
+    "country_code": "KEN",
+    "currency_code": "KES",
+    "client_code": "IRIS",
+    "customer_email": "johndoe@mail.com",
+    "customer_first_name": "John",
+    "customer_last_name": "Doe",
+    "merchant_transaction_id": "txn_id_342",
+    "preferred_payment_option_code": "1",
+    "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+    "request_amount": "2000",
+    "request_description": "Dummy merchant transaction",
+    "success_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
+    "fail_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
+    "invoice_number": "1",
+    "language_code": "en",
+    "service_code": "IRISGEN",
+    "signature": "KruuxFffkkrq8qsBdEufDFLMwXZYVkjG0UFsOEdbgnOzzF8wmDiMPzyEUslDhyZ2Vat9anrnqdUroHEeKqqcpFp348qwccah218kVtkalludyRllAgeTNf9tPhLG1ObIyTc04smZ1HxxIFTt59YuIALdAVOuU5tpIreiFWR3m2ts5FpDcIu86VfGw7kgajW7YHWI05YNygLMMikxESPwj3C1sMuoMOzG82sj2JSKYN9rd0/IMeXp8z7a0xBb9W3fyJSZFw091aRB2hOGzp4nS8cW4DQcENbshYlVLGRmIXVKr9sYVZsKQnA5q+2jT9yrsWqEcBGDXY0+9KoLO3pdcA==",
+    "due_date": "2022-06-09 15:42:04"
+  },
   "client_data": {
     "client_name": "Iris",
     "client_code": "IRIS",
@@ -39,6 +39,20 @@
       }
     ],
     "client_payment_methods": [
+      {
+        "client_payment_method_id": "7",
+        "payment_method": {
+          "payment_method_id": "2",
+          "payment_method_name": "AIRTELMONEY",
+          "payment_method_description": "Airtel money channel",
+          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
+          "payment_method_type": {
+            "payment_method_type_id": "1",
+            "payment_method_type_name": "mobile_money",
+            "payment_method_type_description": "Payments through mobile money"
+          }
+        }
+      },
       {
         "client_payment_method_id": "6",
         "payment_method": {

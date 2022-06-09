@@ -19,10 +19,10 @@ export default function MobileMoneyForm() {
 
   const formik = useFormik({
     initialValues: {
-      mobileNumber: payload.msisdn
-        ? payload.msisdn
+      mobileNumber: payload.merchant_site_data.msisdn
+        ? payload.merchant_site_data.msisdn
         : localStorage.getItem("mobileNumber") ?? "",
-      amount: payload.request_amount,
+      amount: payload.merchant_site_data.request_amount,
       saveNumber: false,
     },
     validationSchema: Yup.object({
