@@ -18,7 +18,7 @@ export default function Page() {
         `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}`,
         {
           method: "POST",
-          body: JSON.stringify(payload.merchant_site_data),
+          body: JSON.stringify(payload?.merchant_site_data),
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -53,7 +53,7 @@ export default function Page() {
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
-          <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
+          <Link href={payload?.merchant_site_data.fail_redirect_url} passHref>
             <div className="w-full">
               <OutlineButton label="Go Back" />
             </div>
