@@ -49,7 +49,7 @@ export default function Page() {
           <p>{router.query.statusDescription}</p>
           <p className="font-medium">
             Transaction code:{" "}
-            {payload.merchant_site_data.merchant_transaction_id}
+            {payload?.merchant_site_data.merchant_transaction_id}
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
