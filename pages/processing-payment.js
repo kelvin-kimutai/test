@@ -79,9 +79,9 @@ export default function Page() {
     return () => clearTimeout(timer);
   }, []);
 
-  const checkPayment = () => {
+  const checkPayment = async () => {
     setButtonDisabled(true);
-    fetch(
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}/status`,
       {
         method: "GET",
@@ -90,19 +90,18 @@ export default function Page() {
           "Content-Type": "application/json",
         },
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        processRedirect(data);
-      })
-      .catch((error) => {
-        processRedirect();
-      })
-      .finally(() => setButtonDisabled(false));
+    );
+    if (response.ok) {
+      const data = await response.json();
+      processRedirect(data);
+    } else {
+      processRedirect();
+    }
+    setButtonDisabled(false);
   };
 
   const processRedirect = (data) => {
-    if (data?.payment_status === 1)
+    if (data?.statusCode === 1)
       router.push({
         pathname: "/payment-successful",
       });
@@ -110,9 +109,9 @@ export default function Page() {
       router.push({
         pathname: "/payment-failed",
         query: {
-          payment_description: data
-            ? data.payment_description
-            : "Something went wrong. Please try again.",
+          statusDescription:
+            data?.statusDescription ??
+            "Something went wrong. Please try again.",
         },
       });
     }
@@ -122,14 +121,6 @@ export default function Page() {
     <MainLayout>
       <div className="p-8 mt-8">
         <div className="flex flex-col items-center">
-          {/* <div className="relative w-56 h-56 m-6">
-            <Image
-              src="/images/illustrations/person-reading-newspaper.png"
-              alt=""
-              objectFit="contain"
-              layout="fill"
-            />
-          </div> */}
           <div className="h-96 w-96 scale-150">
             <Spinner pause={!buttonDisabled} />
           </div>

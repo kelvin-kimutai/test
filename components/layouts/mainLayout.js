@@ -20,7 +20,7 @@ export default function MainLayout({ children }) {
       </div>
       <section className="w-full sm:w-[28rem] space-y-2">
         <div className="cursor-pointer">
-          <Link href={payload.fail_redirect_url} passHref>
+          <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
             <div className="flex items-center gap-2">
               <HiChevronLeft className="w-8 h-8" />
               <div className="text-lg font-medium">Back to Merchant</div>

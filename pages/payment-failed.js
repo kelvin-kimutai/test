@@ -12,15 +12,24 @@ export default function Page() {
   const payload = useRecoilValue(payloadState);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     router.push({
-  //       pathname: payload?.fail_redirect_url,
-  //     });
-  //   }, 30000);
-  //   return () => clearTimeout(timer);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  const retryPayment = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}`,
+        {
+          method: "POST",
+          body: JSON.stringify(payload.merchant_site_data),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (response.ok) {
+        const decodedResponse = await response.json();
+        router.push(`/?params=${decodedResponse.payload}`);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 
   return (
     <MainLayout>
@@ -37,22 +46,26 @@ export default function Page() {
           <h2 className="text-xl sm:text-2xl font-medium text-lipad-red">
             Payment Failed
           </h2>
-          <p>{router.query.payment_description}</p>
+          <p>{router.query.statusDescription}</p>
           <p className="font-medium">
-            Transaction code: {payload?.merchant_transaction_id}
+            Transaction code:{" "}
+            {payload.merchant_site_data.merchant_transaction_id}
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
-          <Link href={payload?.fail_redirect_url} passHref>
+          <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
             <div className="w-full">
               <OutlineButton label="Go Back" />
             </div>
           </Link>
-          <Link href="/" passHref>
-            <button className=" w-full py-3 font-medium tracking-wider text-center text-white border-2 rounded-md relative bg-lipad-blue border-lipad-blue">
-              Retry
-            </button>
-          </Link>
+          <button
+            className=" w-full py-3 font-medium tracking-wider text-center text-white border-2 rounded-md relative bg-lipad-blue border-lipad-blue"
+            onClick={() => {
+              retryPayment();
+            }}
+          >
+            Retry
+          </button>
         </div>
       </div>
     </MainLayout>
