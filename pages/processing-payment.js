@@ -101,6 +101,7 @@ export default function Page() {
   };
 
   const processRedirect = (data) => {
+    console.log(data);
     if (data?.statusCode === 1)
       router.push({
         pathname: "/payment-successful",

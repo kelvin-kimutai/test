@@ -5,10 +5,12 @@ import OutlineButton from "../components/buttons/outlineButton";
 import SolidButton from "../components/buttons/solidButton";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
+import payloadState from "../recoil/payloadAtom";
 
 export default function AuthorizePayment() {
   const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
+  const payload = useRecoilValue(payloadState);
 
   const sendPaymentRequest = () => {
     fetch(
@@ -42,7 +44,15 @@ export default function AuthorizePayment() {
             Please ensure you have your phone with you and sufficient balance in
             your account. We&apos;ll send a prompt to{" "}
             <span className="font-medium">{checkout.msisdn}</span>. Enter your
-            PIN to authorize payment.
+            PIN to authorize your payment of{" "}
+            <span className="font-medium">
+              {payload.merchant_site_data.currency_code}{" "}
+              {checkout.request_amount}
+            </span>{" "}
+            to account number{" "}
+            <span className="font-medium">
+              {payload.merchant_site_data.account_number}.
+            </span>
           </p>
           <div className="relative w-56 h-56 m-6">
             <Image

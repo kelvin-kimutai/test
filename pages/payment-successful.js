@@ -17,7 +17,7 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push({
-        pathname: payload?.fail_redirect_url,
+        pathname: payload?.merchant_site_data.fail_redirect_url,
       });
     }, 5000);
     return () => clearTimeout(timer);
@@ -48,11 +48,15 @@ export default function Page() {
             was successfully completed.
           </p>
           <p className="font-medium">
-            Transaction code: {payload?.merchant_transaction_id}
+            Transaction code:{" "}
+            {payload?.merchant_site_data.merchant_transaction_id}
           </p>
         </div>
         <div className="mt-8">
-          <Link href={payload?.success_redirect_url} passHref>
+          <Link
+            href={payload?.merchant_site_data.success_redirect_url}
+            passHref
+          >
             <div>
               <SolidButton label="Okay" />
             </div>
