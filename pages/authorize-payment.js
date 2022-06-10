@@ -46,12 +46,12 @@ export default function AuthorizePayment() {
             <span className="font-medium">{checkout.msisdn}</span>. Enter your
             PIN to authorize your payment of{" "}
             <span className="font-medium">
-              {payload.merchant_site_data.currency_code}{" "}
+              {payload?.merchant_site_data.currency_code}{" "}
               {checkout.request_amount}
             </span>{" "}
             to account number{" "}
             <span className="font-medium">
-              {payload.merchant_site_data.account_number}.
+              {payload?.merchant_site_data.account_number}.
             </span>
           </p>
           <div className="relative w-56 h-56 m-6">
