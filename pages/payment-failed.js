@@ -43,9 +43,7 @@ export default function Page() {
               layout="fill"
             />
           </div>
-          <h2 className="text-xl sm:text-2xl font-medium text-lipad-red">
-            Payment Failed
-          </h2>
+          <h2 className="text-xl font-medium text-lipad-red">Payment Failed</h2>
           <p>router.query.statusDescription</p>
           <p>{router.query.statusDescription}</p>
           <p className="font-medium">
