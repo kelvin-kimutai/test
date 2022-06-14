@@ -8,11 +8,11 @@ export default function HeaderLayout({ children }) {
 
   return (
     <div>
-      <div className="text-white bg-lipad-green">
-        <section className="pt-6 space-y-4 pb-14 sm:pt-12 sm:pb-24">
+      <div className="text-white bg-lipad-green text-sm sm:text-base">
+        <section className="pt-6 space-y-4 pb-14 sm:pb-20">
           <CountDownTimer />
-          <p className="px-16  text-center ">
-            Make a Payment to {payload.client_data.client_name} for Purchase of
+          <p className="px-16 text-center ">
+            Make a payment to {payload.client_data.client_name} for purchase of
             goods
           </p>
           <div className="w-8 h-0.5 mx-auto bg-white"></div>
@@ -32,7 +32,7 @@ export default function HeaderLayout({ children }) {
           </div>
         </section>
       </div>
-      <div className="p-4 -mt-8 bg-white sm:p-8 rounded-t-2xl">{children}</div>
+      <div className="p-4 -mt-8 bg-white sm:p-8 rounded-t-xl ">{children}</div>
     </div>
   );
 }

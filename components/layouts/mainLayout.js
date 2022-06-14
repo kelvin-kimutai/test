@@ -14,20 +14,20 @@ export default function MainLayout({ children }) {
   if (_.isEmpty(payload)) return <div></div>;
 
   return (
-    <main className="grid place-content-center min-h-screen p-8 sm:p-16 ">
+    <main className="grid place-content-center min-h-screen p-8 sm:p-16 relative scrollbar-hide">
       <div className="absolute top-4 right-0 overflow-hidden z-50">
         <Toast />
       </div>
-      <section className="w-full sm:w-[28rem] space-y-2">
+      <section className="w-full sm:w-[26rem] space-y-2 mb-8">
         <div className="cursor-pointer">
           <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
-            <div className="flex items-center gap-2">
-              <HiChevronLeft className="w-8 h-8" />
-              <div className="text-lg font-medium">Back to Merchant</div>
+            <div className="flex items-center">
+              <HiChevronLeft className="h-8 w-auto" />
+              <div className="font-medium mt-1">Back to Merchant</div>
             </div>
           </Link>
         </div>
-        <div className="flex flex-col h-full shadow-2xl rounded-xl">
+        <div className="flex flex-col shadow-2xl rounded-xl">
           <section className="flex items-center h-16 px-6 py-2 align-middle border-b border-white rounded-t-lg bg-lipad-green sm:rounded-t-xl">
             <div className="flex items-center w-full h-full space-x-2">
               <div className="h-full p-1 bg-white rounded-md aspect-square">
@@ -40,7 +40,7 @@ export default function MainLayout({ children }) {
                   />
                 </div>
               </div>
-              <span className="font-medium text-white">
+              <span className="font-medium text-white text-sm sm:text-base">
                 {payload.client_data.client_name}
               </span>
             </div>
@@ -50,8 +50,8 @@ export default function MainLayout({ children }) {
               />
             </div>
           </section>
-          <div className="min-h-[16rem]">{children}</div>
-          <div className="relative h-10">
+          <div>{children}</div>
+          <div className="relative h-10 m-4">
             <Image
               src={"/images/logos/lipad-logo-blue-powered-by.svg"}
               alt=""

@@ -1,41 +1,38 @@
-export default function InputField({
-  formik,
-  variable,
-  type,
-  label,
-  autoComplete,
-  placeholder,
-}) {
+import { useField } from "formik";
+import { BsExclamationCircleFill } from "react-icons/bs";
+
+export default function InputField({ label, ...props }) {
+  const [field, meta] = useField(props);
   return (
     <div>
-      <div className="relative pt-6 bg-lipad-grey bg-opacity-5">
+      <label
+        htmlFor={label}
+        className="block text-sm font-medium text-gray-700"
+      >
+        {label}
+      </label>
+      <div className="mt-1 relative rounded-md shadow-sm">
         <input
-          id={variable}
-          name={variable}
-          type={type}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values[variable]}
-          placeholder={label}
-          autoComplete={autoComplete}
+          {...field}
+          {...props}
           className={`${
-            formik.touched[variable] && formik.errors[variable]
-              ? "border-b-2 border-lipad-red focus:border-b-2 focus:border-lipad-red"
-              : ""
-          } w-full placeholder-transparent bg-transparent border-0 peer rounded-t-md focus:ring-0 focus:border-b-2 focus:border-lipad-green ring-0`}
+            meta.touched && meta.error
+              ? `border-red-300 text-red-900  focus:ring-red-500 focus:border-red-500`
+              : `border-gray-300 focus:ring-lipad-green focus:border-lipad-green`
+          } block w-full pr-10 focus:outline-none rounded-md placeholder-gray-300 text-sm sm:text-base`}
         />
-        <label
-          htmlFor={variable}
-          className="absolute text-gray-400 transition-all top-1 left-3 peer-placeholder-shown:top-8 peer-focus:top-1 peer-focus:text-lipad-green "
-        >
-          {label}
-        </label>
+        {meta.touched && meta.error && (
+          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <BsExclamationCircleFill
+              className="h-5 w-5 text-red-500"
+              aria-hidden="true"
+            />
+          </div>
+        )}
       </div>
-      {formik.touched[variable] && formik.errors[variable] ? (
-        <div className="text-lipad-red mt-1 ml-3.5">
-          {formik.errors[variable]}
-        </div>
-      ) : null}
+      <p className="mt-1 text-sm text-red-600">
+        {meta.touched && meta.error && <span>{meta.error}</span>}
+      </p>
     </div>
   );
 }

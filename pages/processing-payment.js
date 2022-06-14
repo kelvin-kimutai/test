@@ -46,6 +46,7 @@ export default function Page() {
   }, [buttonDisabled]);
 
   useEffect(() => {
+    showToast();
     const socket = socketIOClient(
       process.env.NEXT_PUBLIC_CHECKOUT_SOCKET_ENDPOINT
     );
@@ -120,12 +121,12 @@ export default function Page() {
 
   return (
     <MainLayout>
-      <div className="p-8 mt-8">
+      <div className="p-8 text-sm sm:text-base">
         <div className="flex flex-col items-center">
-          <div className="h-96 w-96 scale-150">
+          <div className="h-48 w-48 my-12">
             <Spinner pause={!buttonDisabled} />
           </div>
-          <h2 className="text-xl sm:text-2xl font-medium text-lipad-orange">
+          <h2 className="text-lg font-medium text-lipad-orange">
             Processing payment
           </h2>
           <span className="px-12 text-center">

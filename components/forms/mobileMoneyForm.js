@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { Formik } from "formik";
 import { useRouter } from "next/router";
 import numeral from "numeral";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -9,68 +9,74 @@ import InputField from "../../components/input/inputField";
 import checkoutState from "../../recoil/checkoutAtom";
 import payloadState from "../../recoil/payloadAtom";
 
+const mobileRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 export default function MobileMoneyForm() {
   const router = useRouter();
   const payload = useRecoilValue(payloadState);
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
-  const mobileRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-  const formik = useFormik({
-    initialValues: {
-      mobileNumber: payload.merchant_site_data.msisdn
-        ? payload.merchant_site_data.msisdn
-        : localStorage.getItem("mobileNumber") ?? "",
-      amount: payload.merchant_site_data.request_amount,
-      saveNumber: false,
-    },
-    validationSchema: Yup.object({
-      mobileNumber: Yup.string()
-        .matches(mobileRegExp, "Mobile number is not valid")
-        .required("Required"),
-      amount: Yup.string().required("Required"),
-      saveNumber: Yup.bool(),
-    }),
-    onSubmit: (values) => {
-      setCheckout((checkout) => ({
-        ...checkout,
-        msisdn: values.mobileNumber,
-        request_amount: values.amount,
-      }));
-      if (values.saveNumber)
-        localStorage.setItem("mobileNumber", values.mobileNumber);
-
-      router.push("/authorize-payment");
-    },
+  const initialValues = {
+    mobileNumber: payload.merchant_site_data.msisdn
+      ? payload.merchant_site_data.msisdn
+      : localStorage.getItem("mobileNumber") ?? "",
+    amount: payload.merchant_site_data.request_amount,
+    saveNumber: false,
+  };
+  const validationSchema = Yup.object({
+    mobileNumber: Yup.string()
+      .matches(mobileRegExp, "Mobile number is not valid")
+      .required("Required"),
+    amount: Yup.string().required("Required"),
+    saveNumber: Yup.bool(),
   });
+  const onSubmit = (values) => {
+    setCheckout((checkout) => ({
+      ...checkout,
+      msisdn: values.mobileNumber,
+      request_amount: values.amount,
+    }));
+    if (values.saveNumber)
+      localStorage.setItem("mobileNumber", values.mobileNumber);
+
+    router.push("/authorize-payment");
+  };
 
   return (
-    <>
-      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-6 mt-4">
-        <InputField
-          formik={formik}
-          variable="mobileNumber"
-          type="tel"
-          label="Mobile number"
-        />
-        <InputField
-          formik={formik}
-          variable="amount"
-          type="number"
-          label="Amount"
-        />
-        <CheckBox
-          formik={formik}
-          variable="saveNumber"
-          label="Save my information for faster checkout"
-        />
-        <button type="submit" className="w-full">
-          <SolidButton
-            label={`Pay KES ${numeral(formik.values.amount).format("0,0.00")}`}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {(props) => (
+        <form
+          onSubmit={props.handleSubmit}
+          className="flex flex-col gap-2 mt-4 text-sm sm:text-base"
+        >
+          <InputField
+            name="mobileNumber"
+            type="tel"
+            label="Mobile number"
+            placeholder="254 712 345678"
           />
-        </button>
-      </form>
-    </>
+          <InputField
+            name="amount"
+            type="number"
+            label="Amount"
+            placeholder="100"
+          />
+          <CheckBox
+            name="saveNumber"
+            label="Save my information for faster checkout"
+          />
+          <button type="submit" className="w-full mt-4">
+            <SolidButton
+              label={`Pay KES ${numeral(props.values.amount).format("0,0.00")}`}
+            />
+          </button>
+        </form>
+      )}
+    </Formik>
   );
 }

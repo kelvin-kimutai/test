@@ -33,7 +33,7 @@ export default function Page() {
 
   return (
     <MainLayout>
-      <div className="p-8 mt-8">
+      <div className="p-8 text-sm sm:text-base">
         <div className="flex flex-col items-center gap-4 text-center">
           <div className="relative w-56 h-56">
             <Image
@@ -46,6 +46,7 @@ export default function Page() {
           <h2 className="text-xl sm:text-2xl font-medium text-lipad-red">
             Payment Failed
           </h2>
+          <p>router.query.statusDescription</p>
           <p>{router.query.statusDescription}</p>
           <p className="font-medium">
             Transaction code:{" "}

@@ -45,13 +45,13 @@ export default function PaymentOptionsTile({
         }}
         passHref
       >
-        <div className="flex flex-col w-full p-4 text-sm rounded-lg shadow-md cursor-pointer bg bg-gray-50 sm:text-base">
+        <div className="flex flex-col w-full p-4 rounded-lg shadow-md cursor-pointer bg bg-gray-50">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center space-x-3">
               <div className="relative w-5 h-5">
                 <Image src={titleIcon} alt="" layout="fill" />
               </div>
-              <span className="font-medium">{title}</span>
+              <span className="font-medium text-sm sm:text-base">{title}</span>
             </div>
             <div className="flex items-center space-x-3">
               {paymentIcons.map((paymentIcon, i) => (

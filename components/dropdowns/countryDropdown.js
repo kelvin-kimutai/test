@@ -34,7 +34,9 @@ export default function CountryDropdown({ countries }) {
                 />
               )}
             </div>
-            <span className="ml-2">{selected.country.country_name}</span>
+            <span className="ml-2 text-sm sm:text-base">
+              {selected.country.country_name}
+            </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <HiOutlineChevronDown className="w-5 h-5 text-black" />
             </span>
@@ -60,7 +62,7 @@ export default function CountryDropdown({ countries }) {
                       <span
                         className={`${
                           selected ? "font-medium" : ""
-                        } block truncate`}
+                        } block truncate text-sm sm:text-base`}
                       >
                         {country.country.country_name}
                       </span>

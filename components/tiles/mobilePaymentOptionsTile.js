@@ -31,15 +31,17 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
       <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex flex-col w-full p-2 rounded-lg shadow-md sm:p-4">
+            <Disclosure.Button className="flex flex-col w-full p-4 rounded-lg shadow-md">
               <div className="flex items-center justify-between w-full">
-                <div className="flex items-center space-x-3">
+                <div className="flex gap-2">
                   <div className="relative w-5 h-5">
                     <Image src={iconSrc} alt="" layout="fill" />
                   </div>
-                  <span className="font-medium">{title}</span>
+                  <span className="font-medium text-sm sm:text-base">
+                    {title}
+                  </span>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="items-center gap-4 hidden sm:flex">
                   {options.map((option) => (
                     <div
                       key={option.client_payment_method_id}
@@ -75,7 +77,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                   {open && (
                     <Disclosure.Panel
                       static
-                      className="grid grid-cols-4 mt-4 gap-x-4"
+                      className="grid grid-cols-4 mt-4 gap-x-2"
                     >
                       {options?.map((option) => (
                         <div
@@ -101,7 +103,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                             }}
                             passHref
                           >
-                            <div className="grid text-xs font-medium transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
+                            <div className="grid transition duration-200 border-2 rounded-md h-14 sm:h-16 hover:border-lipad-green place-items-center">
                               <div className="w-full h-full p-2 ">
                                 <div className="relative w-full h-full">
                                   <Image

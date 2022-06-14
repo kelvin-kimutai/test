@@ -1,18 +1,17 @@
-import { Field } from "formik";
+import { useField } from "formik";
 
-export default function CheckBox({ formik, variable, label }) {
+export default function CheckBox({ label, ...props }) {
+  const [field, meta] = useField(props);
+
   return (
     <label className="inline-flex items-center">
       <input
-        id={variable}
-        name={variable}
+        {...field}
+        {...props}
         type="checkbox"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values[variable]}
-        className="w-4 h-4 mr-2 border-2 rounded form-checkbox text-lipad-green focus:ring-transparent border-lipad-green"
+        className="w-4 h-4 mr-2 border-2 rounded form-checkbox text-lipad-green focus:ring-transparent border-lipad-green "
       />
-      {label}
+      <p className="text-sm sm:text-base">{label}</p>
     </label>
   );
 }

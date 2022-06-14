@@ -35,9 +35,9 @@ export default function AuthorizePayment() {
 
   return (
     <MainLayout>
-      <div className="p-8 mt-8">
-        <div className="flex flex-col items-center gap-2">
-          <h2 className="text-xl sm:text-2xl font-medium text-lipad-green">
+      <div className="p-8 text-sm sm:text-base">
+        <div className="flex flex-col items-center gap-1">
+          <h2 className="text-xl font-medium text-lipad-green">
             Authorise payment
           </h2>
           <p className="text-center">
@@ -54,7 +54,7 @@ export default function AuthorizePayment() {
               {payload?.merchant_site_data.account_number}.
             </span>
           </p>
-          <div className="relative w-56 h-56 m-6">
+          <div className="relative w-48 h-48 m-4">
             <Image
               src="/images/illustrations/hand-holding-phone.svg"
               alt=""
@@ -66,7 +66,7 @@ export default function AuthorizePayment() {
             Click <strong>Send Prompt</strong> when ready.{" "}
           </p>
         </div>
-        <div className="flex w-full mt-12 gap-x-2">
+        <div className="flex w-full mt-8 gap-x-2">
           <div className="w-full" onClick={() => router.back()}>
             <OutlineButton label="Back" />
           </div>

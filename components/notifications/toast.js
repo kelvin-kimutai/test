@@ -31,7 +31,7 @@ function Toast() {
   };
 
   return (
-    <div className="toast flex  gap-4 shadow-xl border-gray-100 border bg-slate-50 translate-x-[110%] m-8">
+    <div className="toast sm:flex  hidden gap-4 shadow-xl border-gray-100 border bg-slate-50 translate-x-[110%] m-8">
       <div className="bg-[#DDF7E0] p-4 grid place-content-center">
         <HiCheckCircle className="text-lipad-green w-8 h-8" />
       </div>

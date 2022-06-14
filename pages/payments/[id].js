@@ -7,7 +7,6 @@ import MainLayout from "../../components/layouts/mainLayout";
 
 export default function Page() {
   const router = useRouter();
-  const payment_method_id = router.query.id;
   const payment_method_name = router.query.payment_method_name;
   const payment_method_type = router.query.payment_method_type;
 
@@ -17,7 +16,7 @@ export default function Page() {
         onClick={() => router.back()}
         className="absolute inset-y-0 left-0 w-5 h-full text-black cursor-pointer"
       />
-      <h2 className="text-lg sm:text-xl font-medium text-center">{title}</h2>
+      <h2 className="text-lg font-medium text-center">{title}</h2>
     </div>
   );
 

@@ -48,22 +48,22 @@ export default function CountDownTimer() {
     <div className="flex items-start justify-center space-x-2">
       <div className="flex flex-col items-center ">
         <p className="text-lg font-medium">{timerDays}</p>
-        <p className="text-sm">DAYS</p>
+        <p className="text-xs">DAYS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
         <p className="text-lg font-medium">{timerHours}</p>
-        <p className="text-sm">HRS</p>
+        <p className="text-xs">HRS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
         <p className="text-lg font-medium">{timerMinutes}</p>
-        <p className="text-sm">MINS</p>
+        <p className="text-xs">MINS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
         <p className="text-lg font-medium">{timerSeconds}</p>
-        <p className="text-sm">SECS</p>
+        <p className="text-xs">SECS</p>
       </div>
     </div>
   );

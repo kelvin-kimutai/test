@@ -67,9 +67,9 @@ export default function Page({ data }) {
   return (
     <MainLayout>
       <HeaderLayout>
-        <div className="space-y-4">
+        <div className="space-y-2">
           <h2
-            className="text-lg sm:text-xl font-medium text-center"
+            className="text-lg font-medium text-center"
             onClick={() => showToast()}
           >
             How would you like to pay?
