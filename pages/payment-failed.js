@@ -44,7 +44,6 @@ export default function Page() {
             />
           </div>
           <h2 className="text-xl font-medium text-lipad-red">Payment Failed</h2>
-          <p>router.query.statusDescription</p>
           <p>{router.query.statusDescription}</p>
           <p className="font-medium">
             Transaction code:{" "}
