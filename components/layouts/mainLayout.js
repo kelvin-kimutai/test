@@ -23,7 +23,9 @@ export default function MainLayout({ children }) {
           <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
             <div className="flex items-center">
               <HiChevronLeft className="h-8 w-auto" />
-              <div className="font-medium mt-1">Back to Merchant</div>
+              <div className="font-medium mt-1">
+                Back to {payload.client_data.client_name}
+              </div>
             </div>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 {
-  "checkout_reference_id": "LPD3BYG7S5",
+  "checkout_reference_id": "LPD6QN0F1B",
   "merchant_site_data": {
     "msisdn": "254700000000",
     "account_number": "oid39",
@@ -12,15 +12,15 @@
     "merchant_transaction_id": "txn_id_342",
     "preferred_payment_option_code": "1",
     "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
-    "request_amount": "2000",
+    "request_amount": "200",
     "request_description": "Dummy merchant transaction",
     "success_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
     "fail_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
     "invoice_number": "1",
     "language_code": "en",
-    "service_code": "IRISGEN",
+    "service_code": "GEN",
     "signature": "KruuxFffkkrq8qsBdEufDFLMwXZYVkjG0UFsOEdbgnOzzF8wmDiMPzyEUslDhyZ2Vat9anrnqdUroHEeKqqcpFp348qwccah218kVtkalludyRllAgeTNf9tPhLG1ObIyTc04smZ1HxxIFTt59YuIALdAVOuU5tpIreiFWR3m2ts5FpDcIu86VfGw7kgajW7YHWI05YNygLMMikxESPwj3C1sMuoMOzG82sj2JSKYN9rd0/IMeXp8z7a0xBb9W3fyJSZFw091aRB2hOGzp4nS8cW4DQcENbshYlVLGRmIXVKr9sYVZsKQnA5q+2jT9yrsWqEcBGDXY0+9KoLO3pdcA==",
-    "due_date": "2022-06-09 15:42:04"
+    "due_date": "2022-06-23 09:40:43"
   },
   "client_data": {
     "client_name": "Iris",

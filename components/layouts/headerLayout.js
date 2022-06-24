@@ -11,7 +11,7 @@ export default function HeaderLayout({ children }) {
       <div className="text-white bg-lipad-green text-sm sm:text-base">
         <section className="pt-6 space-y-4 pb-14 sm:pb-20">
           <CountDownTimer />
-          <p className="px-16 text-center ">
+          <p className="px-16 text-center text-sm">
             Make a payment to {payload.client_data.client_name} for purchase of
             goods
           </p>

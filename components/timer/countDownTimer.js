@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
 
 export default function CountDownTimer() {
+  const router = useRouter();
+
   const payload = useRecoilValue(payloadState);
 
   const countDownTime = new Date(payload.merchant_site_data.due_date + "Z");
@@ -27,6 +30,7 @@ export default function CountDownTimer() {
 
       if (distance < 0) {
         clearInterval(interval.current);
+        router.replace("/session-expired");
       } else {
         setTimerDays(("0" + days).slice(-2));
         setTimerHours(("0" + hours).slice(-2));
@@ -40,7 +44,6 @@ export default function CountDownTimer() {
     startTimer();
     return () => {
       clearInterval(temp);
-      // interval.current = null;
     };
   });
 

@@ -1,24 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import HeaderLayout from "../components/layouts/headerLayout";
 import MainLayout from "../components/layouts/mainLayout";
 import MobilePaymentOptionsTile from "../components/tiles/mobilePaymentOptionsTile";
 import PaymentOptionsTile from "../components/tiles/paymentOptionsTile";
 import checkoutState from "../recoil/checkoutAtom";
 import payloadState from "../recoil/payloadAtom";
-import uiState from "../recoil/uiAtom";
 
 export default function Page({ data }) {
+  const router = useRouter();
   const [payload, setPayload] = useRecoilState(payloadState);
-  const [checkout, setCheckout] = useRecoilState(checkoutState);
+  const setCheckout = useSetRecoilState(checkoutState);
 
   useEffect(() => {
     if (!_.isEmpty(data)) {
-      // Set application wide state with data from the query parameters
       setPayload(data);
-      // Start to populate the checkout object
       setCheckout((checkout) => ({
         ...checkout,
         checkout_reference_id: data.checkout_reference_id,
@@ -27,6 +26,14 @@ export default function Page({ data }) {
           client_code: data.client_data.client_code,
         },
       }));
+      if (
+        new Date(data.merchant_site_data.due_date + "Z") -
+          new Date().getTime() <
+        0
+      ) {
+        router.replace("/session-expired");
+        return;
+      }
     }
   }, []);
 
@@ -57,21 +64,18 @@ export default function Page({ data }) {
       </div>
     );
 
-  if (new Date(data.due_date + "Z") - new Date().getTime() < 0)
-    return (
-      <div className="grid place-content-center h-screen">
-        Session has expired
-      </div>
-    );
+  if (
+    new Date(data.merchant_site_data.due_date + "Z") - new Date().getTime() <
+    0
+  ) {
+    return <div></div>;
+  }
 
   return (
     <MainLayout>
       <HeaderLayout>
         <div className="space-y-2">
-          <h2
-            className="text-lg font-medium text-center"
-            onClick={() => showToast()}
-          >
+          <h2 className="text-lg font-medium text-center">
             How would you like to pay?
           </h2>
           {isPaymentMethodAvailable("mobile_money") && (
