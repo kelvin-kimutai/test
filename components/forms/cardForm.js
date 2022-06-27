@@ -28,7 +28,7 @@ export default function CardForm() {
     number: "",
     cvc: "",
     expiry: "",
-    amount: payload.request_amount,
+    amount: payload.merchant_site_data.request_amount,
   };
 
   const validationSchema = Yup.object({
@@ -115,7 +115,7 @@ export default function CardForm() {
           onSubmit={onSubmit}
         >
           {(props) => (
-            <form onSubmit={props.handleSubmit} className="">
+            <form onSubmit={props.handleSubmit}>
               <div className="grid grid-cols-2 mt-6 gap-y-4 gap-x-4">
                 <div className="col-span-2">
                   <InputField

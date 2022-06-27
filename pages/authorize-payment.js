@@ -77,7 +77,7 @@ export default function AuthorizePayment() {
               router.push("/processing-payment");
             }}
           >
-            <SolidButton label="Send Prompt" />
+            <SolidButton label="Pay Now" />
           </div>
         </div>
       </div>
