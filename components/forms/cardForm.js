@@ -13,6 +13,7 @@ import valid from "card-validator";
 import { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import CardNumberInputField from "../input/cardNumberInputField";
+import CardDateInputField from "../input/cardDateInputField";
 
 export default function CardForm() {
   const router = useRouter();
@@ -115,7 +116,7 @@ export default function CardForm() {
         >
           {(props) => (
             <form onSubmit={props.handleSubmit} className="">
-              <div className="grid grid-cols-2 mt-6 gap-y-6 gap-x-4">
+              <div className="grid grid-cols-2 mt-6 gap-y-4 gap-x-4">
                 <div className="col-span-2">
                   <InputField
                     name="fullName"
@@ -133,7 +134,7 @@ export default function CardForm() {
                   />
                 </div>
                 <div className="col-span-1">
-                  <InputField
+                  <CardDateInputField
                     name="expiry"
                     type="text"
                     label="Expiry (MM/YY)"
@@ -150,11 +151,7 @@ export default function CardForm() {
                 </div>
               </div>
               <button type="submit" className="w-full mt-8">
-                <SolidButton
-                  label={`Pay KES ${numeral(props.values.amount).format(
-                    "0,0.00"
-                  )}`}
-                />
+                <SolidButton label="Confirm Details" />
               </button>
             </form>
           )}

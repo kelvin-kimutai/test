@@ -53,17 +53,19 @@ export default function Page() {
         <div className="flex w-full mt-12 gap-x-2">
           <Link href={payload?.merchant_site_data.fail_redirect_url} passHref>
             <div className="w-full">
-              <OutlineButton label="Go Back" />
+              <OutlineButton
+                label="Go Back"
+                onClick={() => {
+                  retryPayment();
+                }}
+              />
             </div>
           </Link>
-          <button
-            className=" w-full py-3 font-medium tracking-wider text-center text-white border-2 rounded-md relative bg-lipad-blue border-lipad-blue"
-            onClick={() => {
-              retryPayment();
-            }}
-          >
-            Retry
-          </button>
+          <Link href={payload?.merchant_site_data.fail_redirect_url} passHref>
+            <button className=" w-full py-3 font-medium tracking-wider text-center text-white border-2 rounded-md relative bg-lipad-blue border-lipad-blue">
+              Retry
+            </button>
+          </Link>
         </div>
       </div>
     </MainLayout>

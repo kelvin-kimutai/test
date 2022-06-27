@@ -64,13 +64,6 @@ export default function Page({ data }) {
       </div>
     );
 
-  if (
-    new Date(data.merchant_site_data.due_date + "Z") - new Date().getTime() <
-    0
-  ) {
-    return <div></div>;
-  }
-
   return (
     <MainLayout>
       <HeaderLayout>

@@ -18,21 +18,21 @@ export default function MainLayout({ children }) {
       <div className="absolute top-4 right-0 overflow-hidden z-50">
         <Toast />
       </div>
-      <section className="w-full sm:w-[26rem] space-y-2 mb-8">
+      <section className="w-full sm:w-[25rem] space-y-1">
         <div className="cursor-pointer">
           <Link href={payload.merchant_site_data.fail_redirect_url} passHref>
             <div className="flex items-center">
-              <HiChevronLeft className="h-8 w-auto" />
-              <div className="font-medium mt-1">
+              <HiChevronLeft className="h-6 w-auto" />
+              <div className="font-medium">
                 Back to {payload.client_data.client_name}
               </div>
             </div>
           </Link>
         </div>
         <div className="flex flex-col shadow-2xl rounded-xl">
-          <section className="flex items-center h-16 px-6 py-2 align-middle border-b border-white rounded-t-lg bg-lipad-green sm:rounded-t-xl">
+          <section className="flex items-center px-6 py-2 align-middle border-b border-white rounded-t-lg bg-lipad-green sm:rounded-t-xl">
             <div className="flex items-center w-full h-full space-x-2">
-              <div className="h-full p-1 bg-white rounded-md aspect-square">
+              <div className="h-8 p-0.5 bg-white rounded-md aspect-square">
                 <div className="relative h-full">
                   <Image
                     src={payload.client_data.client_image_url}
@@ -53,7 +53,7 @@ export default function MainLayout({ children }) {
             </div>
           </section>
           <div>{children}</div>
-          <div className="relative h-10 m-4">
+          <div className="relative h-9 m-3">
             <Image
               src={"/images/logos/lipad-logo-blue-powered-by.svg"}
               alt=""

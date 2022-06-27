@@ -1,6 +1,5 @@
 import { Formik } from "formik";
 import { useRouter } from "next/router";
-import numeral from "numeral";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as Yup from "yup";
 import SolidButton from "../../components/buttons/solidButton";
@@ -71,9 +70,7 @@ export default function MobileMoneyForm() {
             label="Save my information for faster checkout"
           />
           <button type="submit" className="w-full mt-4">
-            <SolidButton
-              label={`Pay KES ${numeral(props.values.amount).format("0,0.00")}`}
-            />
+            <SolidButton label="Confirm Details" />
           </button>
         </form>
       )}

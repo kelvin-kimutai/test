@@ -9,26 +9,24 @@ export default function HeaderLayout({ children }) {
   return (
     <div>
       <div className="text-white bg-lipad-green text-sm sm:text-base">
-        <section className="pt-6 space-y-4 pb-14 sm:pb-20">
+        <section className="pt-[9px] pb-14">
           <CountDownTimer />
-          <p className="px-16 text-center text-sm">
+          <div className="w-8 h-0.5 mx-auto bg-white mt-[15px]"></div>
+          <p className="px-16 text-center text-sm mt-[10px]">
             Make a payment to {payload.client_data.client_name} for purchase of
             goods
           </p>
-          <div className="w-8 h-0.5 mx-auto bg-white"></div>
-          <div className="gap-y-2">
-            <p className="text-xl font-medium text-center">
-              KES{" "}
-              {numeral(payload.merchant_site_data.request_amount).format(
-                "0,0.00"
-              )}
-            </p>
-            <div className="flex justify-center ">
-              <span>Order ID:</span>
-              <span className="ml-1">
-                {payload.merchant_site_data.merchant_transaction_id}
-              </span>
-            </div>
+          <p className="text-xl font-medium text-center mt-[15px]">
+            KES{" "}
+            {numeral(payload.merchant_site_data.request_amount).format(
+              "0,0.00"
+            )}
+          </p>
+          <div className="flex justify-center mt-[5px]">
+            <span>Order ID:</span>
+            <span className="ml-1">
+              {payload.merchant_site_data.merchant_transaction_id}
+            </span>
           </div>
         </section>
       </div>

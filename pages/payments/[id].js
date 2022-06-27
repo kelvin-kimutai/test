@@ -16,7 +16,7 @@ export default function Page() {
         onClick={() => router.back()}
         className="absolute inset-y-0 left-0 w-5 h-full text-black cursor-pointer"
       />
-      <h2 className="text-lg font-medium text-center">{title}</h2>
+      <h2 className="font-medium text-center">{title}</h2>
     </div>
   );
 
@@ -31,7 +31,7 @@ export default function Page() {
         )}
         {payment_method_type == "card" && (
           <>
-            {title("Enter your Card details")}
+            {title("Enter Card details")}
             <CardForm />
           </>
         )}

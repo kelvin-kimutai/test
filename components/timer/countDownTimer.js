@@ -29,8 +29,8 @@ export default function CountDownTimer() {
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       if (distance < 0) {
-        clearInterval(interval.current);
-        router.replace("/session-expired");
+        // router.replace("/session-expired");
+        // clearInterval(interval.current);
       } else {
         setTimerDays(("0" + days).slice(-2));
         setTimerHours(("0" + hours).slice(-2));
@@ -50,23 +50,23 @@ export default function CountDownTimer() {
   return (
     <div className="flex items-start justify-center space-x-2">
       <div className="flex flex-col items-center ">
-        <p className="text-lg font-medium">{timerDays}</p>
-        <p className="text-xs">DAYS</p>
+        <p>{timerDays}</p>
+        <p className="text-[10px]">DAYS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
-        <p className="text-lg font-medium">{timerHours}</p>
-        <p className="text-xs">HRS</p>
+        <p>{timerHours}</p>
+        <p className="text-[10px]">HRS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
-        <p className="text-lg font-medium">{timerMinutes}</p>
-        <p className="text-xs">MINS</p>
+        <p>{timerMinutes}</p>
+        <p className="text-[10px]">MINS</p>
       </div>
       <span>:</span>
       <div className="flex flex-col items-center ">
-        <p className="text-lg font-medium">{timerSeconds}</p>
-        <p className="text-xs">SECS</p>
+        <p>{timerSeconds}</p>
+        <p className="text-[10px]">SECS</p>
       </div>
     </div>
   );
