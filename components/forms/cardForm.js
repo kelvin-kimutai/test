@@ -106,7 +106,7 @@ export default function CardForm() {
 
   const openWindow = () => {
     window.open(
-      `http://localhost:3000/card-auth`,
+      `https://uat.checkout.lipad.io/card-auth`,
       "Title",
       "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
         100 +
