@@ -71,6 +71,8 @@ export default function CardForm() {
         cvv: values.cvc,
       },
     }));
+
+    openWindow();
     /*
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
@@ -102,20 +104,19 @@ export default function CardForm() {
     */
   };
 
+  const openWindow = () => {
+    window.open(
+      `http://localhost:3000/card-auth`,
+      "Title",
+      "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
+        100 +
+        ",left=" +
+        100
+    );
+  };
+
   return (
-    <div
-      onClick={() => {
-        window.sessionStorage.setItem("htmlString", htmlString);
-        window.open(
-          `http://localhost:3000/card-auth`,
-          "Title",
-          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
-            100 +
-            ",left=" +
-            100
-        );
-      }}
-    >
+    <div>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
