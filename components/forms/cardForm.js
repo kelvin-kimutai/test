@@ -1,27 +1,22 @@
-import SolidButton from "../../components/buttons/solidButton";
 import { Formik } from "formik";
+import SolidButton from "../../components/buttons/solidButton";
 
-import { useFormik } from "formik";
+import valid from "card-validator";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import * as Yup from "yup";
 import InputField from "../../components/input/inputField";
-import { useRouter } from "next/router";
-import numeral from "numeral";
-import { useRecoilState, useRecoilValue } from "recoil";
-import payloadState from "../../recoil/payloadAtom";
 import checkoutState from "../../recoil/checkoutAtom";
-import valid from "card-validator";
-import { useEffect, useState } from "react";
-import parse from "html-react-parser";
-import CardNumberInputField from "../input/cardNumberInputField";
+import payloadState from "../../recoil/payloadAtom";
 import CardDateInputField from "../input/cardDateInputField";
+import CardNumberInputField from "../input/cardNumberInputField";
+import { htmlString } from "../../data/constants";
 
 export default function CardForm() {
   const router = useRouter();
   const payload = useRecoilValue(payloadState);
   const [checkout, setCheckout] = useRecoilState(checkoutState);
-
-  const [page, setPage] = useState("form");
-  const [threeDS, setThreeDS] = useState(``);
 
   const initialValues = {
     fullName: "",
@@ -76,6 +71,7 @@ export default function CardForm() {
         cvv: values.cvc,
       },
     }));
+    /*
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
       {
@@ -103,61 +99,70 @@ export default function CardForm() {
       setThreeDS(decodedResponse.authentication_redirect);
       setPage("threeDS");
     }
-    // router.push("/processing-payment");
+    */
   };
 
   return (
-    <div>
-      {page === "form" && (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {(props) => (
-            <form onSubmit={props.handleSubmit}>
-              <div className="grid grid-cols-2 mt-6 gap-y-4 gap-x-4">
-                <div className="col-span-2">
-                  <InputField
-                    name="fullName"
-                    type="text"
-                    label="Full Name"
-                    autoComplete="cc-name"
-                  />
-                </div>
-                <div className="col-span-2">
-                  <CardNumberInputField
-                    name="number"
-                    type="text"
-                    label="Card Number"
-                    autoComplete="cc-number"
-                  />
-                </div>
-                <div className="col-span-1">
-                  <CardDateInputField
-                    name="expiry"
-                    type="text"
-                    label="Expiry (MM/YY)"
-                    autoComplete="cc-exp"
-                  />
-                </div>
-                <div className="col-span-1">
-                  <InputField
-                    name="cvc"
-                    type="text"
-                    label="CVC"
-                    autoComplete="csc"
-                  />
-                </div>
+    <div
+      onClick={() => {
+        window.sessionStorage.setItem("htmlString", htmlString);
+        window.open(
+          `http://localhost:3000/card-auth`,
+          "Title",
+          "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
+            100 +
+            ",left=" +
+            100
+        );
+      }}
+    >
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {(props) => (
+          <form onSubmit={props.handleSubmit}>
+            <div className="grid grid-cols-2 mt-6 gap-y-4 gap-x-4">
+              <div className="col-span-2">
+                <InputField
+                  name="fullName"
+                  type="text"
+                  label="Full Name"
+                  autoComplete="cc-name"
+                />
               </div>
-              <button type="submit" className="w-full mt-8">
-                <SolidButton label="Confirm Details" />
-              </button>
-            </form>
-          )}
-        </Formik>
-      )}
-      {page === "3ds" && <div>{parse(threeDS)}</div>}
+              <div className="col-span-2">
+                <CardNumberInputField
+                  name="number"
+                  type="text"
+                  label="Card Number"
+                  autoComplete="cc-number"
+                />
+              </div>
+              <div className="col-span-1">
+                <CardDateInputField
+                  name="expiry"
+                  type="text"
+                  label="Expiry (MM/YY)"
+                  autoComplete="cc-exp"
+                />
+              </div>
+              <div className="col-span-1">
+                <InputField
+                  name="cvc"
+                  type="text"
+                  label="CVC"
+                  autoComplete="csc"
+                />
+              </div>
+            </div>
+            <button type="submit" className="w-full mt-8">
+              <SolidButton label="Confirm Details" />
+            </button>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 }
