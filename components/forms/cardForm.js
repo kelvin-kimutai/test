@@ -72,7 +72,14 @@ export default function CardForm() {
       },
     }));
 
-    openWindow();
+    window.open(
+      `https://uat.checkout.lipad.io/card-auth`,
+      "Title",
+      "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
+        100 +
+        ",left=" +
+        100
+    );
     /*
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
@@ -102,17 +109,6 @@ export default function CardForm() {
       setPage("threeDS");
     }
     */
-  };
-
-  const openWindow = () => {
-    window.open(
-      `https://uat.checkout.lipad.io/card-auth`,
-      "Title",
-      "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
-        100 +
-        ",left=" +
-        100
-    );
   };
 
   return (
