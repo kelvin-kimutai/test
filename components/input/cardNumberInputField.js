@@ -1,11 +1,15 @@
 import creditCardType from "credit-card-type";
-import { useField } from "formik";
+import { useField, useFormikContext } from "formik";
 import { useEffect, useState } from "react";
 import { BsExclamationCircleFill } from "react-icons/bs";
 
 export default function CardNumberInputField({ label, ...props }) {
   const [field, meta] = useField(props);
+  const formikProps = useFormikContext();
   const [selectedCard, setSelectedCard] = useState("Generic");
+  const [canAddSpace, setCanAddSpace] = useState(false);
+  const indexes = [3, 8, 13];
+
   const cardLogos = [
     { name: "Visa", logo: visaCard },
     { name: "Mastercard", logo: masterCard },
@@ -18,9 +22,14 @@ export default function CardNumberInputField({ label, ...props }) {
     if (field.value.length < 4) {
       setSelectedCard("Generic");
     } else if (field.value.length === 4 || field.value.length === 16) {
-      setSelectedCard(creditCardType(field.value)[0].niceType);
+      setSelectedCard(creditCardType(field.value)[0]?.niceType ?? "Generic");
     }
-  }, [field.value]);
+  }, [field.value, formikProps]);
+
+  // useEffect(() => {
+  //   if (indexes.includes(field.value.length))
+  //     formikProps.setFieldValue("number", field.value + " ");
+  // }, [field.value, formikProps, indexes]);
 
   return (
     <div className="flex items-start gap-2">

@@ -38,6 +38,7 @@ export default function CardAuthModal({ open, setOpen }) {
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-8">
                 <iframe
+                  id="cardAuth"
                   srcDoc={htmlString}
                   frameBorder="0"
                   className="w-screen h-96 sm:w-[28rem] sm:h-[26rem]"
