@@ -80,7 +80,8 @@ export default function CardForm() {
         ",left=" +
         100
     );
-    /*
+
+    return;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
       {
@@ -108,7 +109,6 @@ export default function CardForm() {
       setThreeDS(decodedResponse.authentication_redirect);
       setPage("threeDS");
     }
-    */
   };
 
   return (

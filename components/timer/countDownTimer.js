@@ -27,9 +27,9 @@ export default function CountDownTimer() {
       );
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       if (distance < 0) {
         clearInterval(interval.current);
+        router.replace("/session-expired");
       } else {
         setTimerDays(("0" + days).slice(-2));
         setTimerHours(("0" + hours).slice(-2));

@@ -26,14 +26,6 @@ export default function Page({ data }) {
           client_code: data.client_data.client_code,
         },
       }));
-      if (
-        new Date(data.merchant_site_data.due_date + "Z") -
-          new Date().getTime() <
-        0
-      ) {
-        router.replace("/session-expired");
-        return;
-      }
     }
   }, []);
 

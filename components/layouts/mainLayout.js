@@ -57,6 +57,7 @@ export default function MainLayout({ children }) {
             <Image
               src={"/images/logos/lipad-logo-blue-powered-by.svg"}
               alt=""
+              priority="true"
               layout="fill"
             />
           </div>
