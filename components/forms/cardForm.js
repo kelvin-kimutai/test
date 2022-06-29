@@ -2,21 +2,21 @@ import { Formik } from "formik";
 import SolidButton from "../../components/buttons/solidButton";
 
 import valid from "card-validator";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import * as Yup from "yup";
 import InputField from "../../components/input/inputField";
 import checkoutState from "../../recoil/checkoutAtom";
 import payloadState from "../../recoil/payloadAtom";
+import CardAuthModal from "../cardAuthModal";
 import CardDateInputField from "../input/cardDateInputField";
 import CardNumberInputField from "../input/cardNumberInputField";
 import { htmlString } from "../../data/constants";
 
 export default function CardForm() {
-  const router = useRouter();
   const payload = useRecoilValue(payloadState);
   const [checkout, setCheckout] = useRecoilState(checkoutState);
+  const [openModal, setOpenModal] = useState(false);
 
   const initialValues = {
     fullName: "",
@@ -72,14 +72,7 @@ export default function CardForm() {
       },
     }));
 
-    window.open(
-      `https://uat.checkout.lipad.io/card-auth`,
-      "Title",
-      "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=500,height=500,top=" +
-        100 +
-        ",left=" +
-        100
-    );
+    setOpenModal(true);
 
     return;
     const response = await fetch(
@@ -113,6 +106,7 @@ export default function CardForm() {
 
   return (
     <div>
+      <CardAuthModal open={openModal} setOpen={setOpenModal} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
