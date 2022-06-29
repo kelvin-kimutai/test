@@ -17,6 +17,7 @@ export default function CardForm() {
   const payload = useRecoilValue(payloadState);
   const [checkout, setCheckout] = useRecoilState(checkoutState);
   const [openModal, setOpenModal] = useState(false);
+  const [htmlString, setHtmlString] = useState(null);
 
   const initialValues = {
     fullName: "",
@@ -72,9 +73,6 @@ export default function CardForm() {
       },
     }));
 
-    setOpenModal(true);
-
-    return;
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_reference_id}`,
       {
@@ -98,15 +96,20 @@ export default function CardForm() {
     );
     if (response.ok) {
       const decodedResponse = await response.json();
-      console.log(decodedResponse);
-      setThreeDS(decodedResponse.authentication_redirect);
-      setPage("threeDS");
+      const htmlString = decodedResponse.authentication_redirect;
+      console.log(htmlString);
+      setHtmlString(htmlString);
+      setOpenModal(true);
     }
   };
 
   return (
     <div>
-      <CardAuthModal open={openModal} setOpen={setOpenModal} />
+      <CardAuthModal
+        open={openModal}
+        setOpen={setOpenModal}
+        htmlString={htmlString}
+      />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

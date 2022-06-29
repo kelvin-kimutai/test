@@ -1,8 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef } from "react";
-import { htmlString } from "../data/constants";
 
-export default function CardAuthModal({ open, setOpen }) {
+export default function CardAuthModal({ open, setOpen, htmlString }) {
   const cancelButtonRef = useRef(null);
 
   return (
