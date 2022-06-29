@@ -11,7 +11,6 @@ import payloadState from "../../recoil/payloadAtom";
 import CardAuthModal from "../cardAuthModal";
 import CardDateInputField from "../input/cardDateInputField";
 import CardNumberInputField from "../input/cardNumberInputField";
-import { htmlString } from "../../data/constants";
 
 export default function CardForm() {
   const payload = useRecoilValue(payloadState);

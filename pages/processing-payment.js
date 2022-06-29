@@ -76,6 +76,8 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonDisabled(false);
+      socket.disconnect();
+      console.log("disconnect");
     }, 30000);
     return () => clearTimeout(timer);
   }, []);
