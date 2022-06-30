@@ -27,6 +27,7 @@ export default function CountDownTimer() {
       );
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      console.log("Time to expiry: ", distance);
       if (distance < 0) {
         console.log(distance);
         clearInterval(interval.current);
