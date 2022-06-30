@@ -20,7 +20,7 @@ export default function MainLayout({ children }) {
   const [countDown] = useCountdown(countDownTime);
 
   useEffect(() => {
-    if (countDown < 0) router.push("/session-expired");
+    // if (countDown < 0) router.push("/session-expired");
   }, [countDown, router]);
 
   if (_.isEmpty(payload)) return <div></div>;
