@@ -2,19 +2,22 @@ import _ from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { HiChevronLeft } from "react-icons/hi";
 import { useRecoilValue } from "recoil";
-import { useCountdown } from "../../hooks/useCountdown";
 import payloadState from "../../recoil/payloadAtom";
 import CountryDropdown from "../dropdowns/countryDropdown";
 import Toast from "../notifications/toast";
+import { HiChevronLeft } from "react-icons/hi";
+import { useEffect } from "react";
+import { useCountdown } from "../../hooks/useCountdown";
 
 export default function MainLayout({ children }) {
   const router = useRouter();
   const payload = useRecoilValue(payloadState);
 
-  const [countDown] = useCountdown();
+  const countDownTime = new Date(
+    payload ? payload.merchant_site_data.due_date + "Z" : ""
+  );
+  const [countDown] = useCountdown(countDownTime);
 
   useEffect(() => {
     if (countDown < 0) router.push("/session-expired");

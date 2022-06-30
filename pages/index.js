@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import _ from "lodash";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import HeaderLayout from "../components/layouts/headerLayout";
@@ -11,7 +10,6 @@ import checkoutState from "../recoil/checkoutAtom";
 import payloadState from "../recoil/payloadAtom";
 
 export default function Page({ data }) {
-  const router = useRouter();
   const [payload, setPayload] = useRecoilState(payloadState);
   const setCheckout = useSetRecoilState(checkoutState);
 
@@ -101,15 +99,12 @@ export default function Page({ data }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-  // Check if query parameters exist. If not, return an empty data object
   if (!query.params)
     return {
       props: {
         data: {},
       },
     };
-  // Attempt to decode base64 encypted paramaters.
-  // If decoding fails, return an empty data object
   try {
     let buffer = Buffer.from(query.params, "base64");
     let data = JSON.parse(buffer.toString("utf8"));

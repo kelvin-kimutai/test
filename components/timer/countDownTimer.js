@@ -5,8 +5,7 @@ import payloadState from "../../recoil/payloadAtom";
 export default function CountDownTimer() {
   const payload = useRecoilValue(payloadState);
   const countDownTime = new Date(payload.merchant_site_data.due_date + "Z");
-  const [days, hours, minutes, seconds, countDown] =
-    useCountdown(countDownTime);
+  const [days, hours, minutes, seconds] = useCountdown(countDownTime);
 
   return (
     <div className="flex items-start justify-center space-x-2">
