@@ -1,15 +1,24 @@
 import _ from "lodash";
 import Image from "next/image";
 import Link from "next/link";
-import { CgClose } from "react-icons/cg";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { HiChevronLeft } from "react-icons/hi";
 import { useRecoilValue } from "recoil";
+import { useCountdown } from "../../hooks/useCountdown";
 import payloadState from "../../recoil/payloadAtom";
 import CountryDropdown from "../dropdowns/countryDropdown";
 import Toast from "../notifications/toast";
-import { HiChevronLeft } from "react-icons/hi";
 
 export default function MainLayout({ children }) {
+  const router = useRouter();
   const payload = useRecoilValue(payloadState);
+
+  const [countDown] = useCountdown();
+
+  useEffect(() => {
+    if (countDown < 0) router.push("/session-expired");
+  }, [countDown, router]);
 
   if (_.isEmpty(payload)) return <div></div>;
 
