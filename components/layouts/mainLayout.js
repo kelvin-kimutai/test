@@ -15,12 +15,14 @@ export default function MainLayout({ children }) {
   const payload = useRecoilValue(payloadState);
 
   const countDownTime = new Date(
-    payload ? payload.merchant_site_data.due_date + "Z" : ""
+    payload
+      ? payload.merchant_site_data.due_date + "Z"
+      : new Date().toISOString()
   );
   const [countDown] = useCountdown(countDownTime);
 
   useEffect(() => {
-    // if (countDown < 0) router.push("/session-expired");
+    if (countDown < -3) router.push("/session-expired");
   }, [countDown, router]);
 
   if (_.isEmpty(payload)) return <div></div>;
