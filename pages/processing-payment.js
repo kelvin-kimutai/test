@@ -55,12 +55,9 @@ export default function Page() {
     // On establishing scoket connection, a "checkout-processor" event is emitted with
     // a payload of the checkout_preprocessor_id object.
     socket.on("connect", (data) => {
-      socket.emit(
-        "checkout-processor",
-        JSON.stringify({
-          checkout_reference_id: checkout.checkout_reference_id,
-        })
-      );
+      socket.emit("checkout-processor", {
+        checkout_reference_id: checkout.checkout_reference_id,
+      });
       console.log("Connected to socket.");
       showToast();
     });
