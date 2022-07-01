@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef } from "react";
+import { IoMdClose } from "react-icons/io";
 
 export default function CardAuthModal({ open, setOpen, htmlString }) {
   const cancelButtonRef = useRef(null);
@@ -10,7 +11,7 @@ export default function CardAuthModal({ open, setOpen, htmlString }) {
         as="div"
         className="relative z-50"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={() => {}}
       >
         <Transition.Child
           as={Fragment}
@@ -35,7 +36,13 @@ export default function CardAuthModal({ open, setOpen, htmlString }) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all p-8">
+              <Dialog.Panel className="relative transform rounded-lg bg-white text-left shadow-xl transition-all p-8 overflow-visible">
+                <button
+                  className="absolute -top-6 -right-6 h-12 w-12 bg-slate-200 rounded-full hover:shadow transition-all duration-300"
+                  onClick={() => setOpen(false)}
+                >
+                  <IoMdClose className="w-full h-full p-3" />
+                </button>
                 <iframe
                   id="cardAuth"
                   srcDoc={htmlString}

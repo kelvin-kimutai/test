@@ -11,12 +11,14 @@ import payloadState from "../../recoil/payloadAtom";
 import CardAuthModal from "../cardAuthModal";
 import CardDateInputField from "../input/cardDateInputField";
 import CardNumberInputField from "../input/cardNumberInputField";
+import uiState from "../../recoil/uiAtom";
+import { useRouter } from "next/router";
 
 export default function CardForm() {
   const payload = useRecoilValue(payloadState);
   const [checkout, setCheckout] = useRecoilState(checkoutState);
-  const [openModal, setOpenModal] = useState(false);
-  const [htmlString, setHtmlString] = useState(null);
+  const [ui, setUi] = useRecoilState(uiState);
+  const router = useRouter();
 
   const initialValues = {
     fullName: "",
@@ -96,19 +98,16 @@ export default function CardForm() {
     if (response.ok) {
       const decodedResponse = await response.json();
       const htmlString = decodedResponse.authentication_redirect;
-      console.log(htmlString);
-      setHtmlString(htmlString);
-      setOpenModal(true);
+      setUi((ui) => ({
+        ...ui,
+        htmlString,
+      }));
+      router.push("/processing-payment");
     }
   };
 
   return (
     <div>
-      <CardAuthModal
-        open={openModal}
-        setOpen={setOpenModal}
-        htmlString={htmlString}
-      />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

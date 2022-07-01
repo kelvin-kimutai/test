@@ -6,16 +6,18 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import socketIOClient from "socket.io-client";
 import Spinner from "../components/animations/spinner";
 import OutlineButton from "../components/buttons/outlineButton";
+import CardAuthModal from "../components/cardAuthModal";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
 import uiState from "../recoil/uiAtom";
 
 export default function Page() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [retries, setRetries] = useState(0);
   const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
   const [ui, setUiState] = useRecoilState(uiState);
+
+  const [openModal, setOpenModal] = useState(true);
 
   const showToast = () => {
     setUiState((prevState) => ({
@@ -76,10 +78,14 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setButtonDisabled(false);
-      socket.disconnect();
-      console.log("disconnect");
     }, 30000);
-    return () => clearTimeout(timer);
+    return () => {
+      setUiState((ui) => ({
+        ...ui,
+        htmlString: "",
+      }));
+      clearTimeout(timer);
+    };
   }, []);
 
   const checkPayment = async () => {
@@ -123,6 +129,13 @@ export default function Page() {
 
   return (
     <MainLayout>
+      {ui.htmlString !== "" && (
+        <CardAuthModal
+          open={openModal}
+          setOpen={setOpenModal}
+          htmlString={ui.htmlString}
+        />
+      )}
       <div className="p-8 text-sm sm:text-base">
         <div className="flex flex-col items-center">
           <div className="h-48 w-48 my-12">
