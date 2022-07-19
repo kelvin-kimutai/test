@@ -34,7 +34,7 @@
           "country_id": "1",
           "country_name": "Kenya",
           "phone_code": "254",
-          "country_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fkenya-flag-icon-32.png?alt=media&token=a9c627ae-99c0-4475-bf8d-22df69471093"
+          "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fkenya-flag-icon-32.png?alt=media&token=a9c627ae-99c0-4475-bf8d-22df69471093"
         }
       }
     ],
@@ -45,7 +45,7 @@
           "payment_method_id": "2",
           "payment_method_name": "AIRTELMONEY",
           "payment_method_description": "Airtel money channel",
-          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
+          "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
           "payment_method_type": {
             "payment_method_type_id": "1",
             "payment_method_type_name": "mobile_money",
@@ -59,7 +59,7 @@
           "payment_method_id": "3",
           "payment_method_name": "CARD",
           "payment_method_description": "Payments made via VISA, Mastercard etc",
-          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fvisa.svg?alt=media&token=d1dbbe3f-9977-43fb-8286-e80eb05aa4b6",
+          "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fvisa.svg?alt=media&token=d1dbbe3f-9977-43fb-8286-e80eb05aa4b6",
           "payment_method_type": {
             "payment_method_type_id": "3",
             "payment_method_type_name": "card",
@@ -73,7 +73,7 @@
           "payment_method_id": "1",
           "payment_method_name": "MPESA",
           "payment_method_description": "Safaricom payment channel",
-          "payment_method_image_url": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
+          "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
           "payment_method_type": {
             "payment_method_type_id": "1",
             "payment_method_type_name": "mobile_money",

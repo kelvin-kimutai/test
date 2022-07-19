@@ -49,7 +49,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                     >
                       <div className="relative w-10 h-6">
                         <Image
-                          src={option.payment_method.payment_method_image_url}
+                          src={option.payment_method.payment_method_icon}
                           alt=""
                           objectFit="contain"
                           layout="fill"
@@ -108,8 +108,7 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                                 <div className="relative w-full h-full">
                                   <Image
                                     src={
-                                      option.payment_method
-                                        .payment_method_image_url
+                                      option.payment_method.payment_method_icon
                                     }
                                     alt=""
                                     objectFit="contain"

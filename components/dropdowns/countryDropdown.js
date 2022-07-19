@@ -26,9 +26,9 @@ export default function CountryDropdown({ countries }) {
         <div className="relative mt-1">
           <Listbox.Button className="relative flex items-center w-full py-1 pl-3 pr-10 text-left bg-white rounded-md shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500">
             <div className="relative w-4 h-3">
-              {selected.country.country_image_url && (
+              {selected.country.flag && (
                 <Image
-                  src={selected.country.country_image_url}
+                  src={selected.country.flag}
                   alt={`Flag of ${selected.country.country_name}`}
                   layout="fill"
                 />
@@ -79,7 +79,7 @@ export default function CountryDropdown({ countries }) {
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                           <div className="relative w-4 h-3">
                             <Image
-                              src={country.country.country_image_url}
+                              src={country.country.flag}
                               alt={`Flag of ${country.country.country_name}`}
                               layout="fill"
                             />
