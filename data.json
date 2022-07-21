@@ -1,8 +1,8 @@
 {
-  "checkout_reference_id": "LPD6QN0F1B",
+  "checkout_reference_id": "LPD3VCQJAO",
   "merchant_site_data": {
-    "msisdn": "254700000000",
-    "account_number": "oid39",
+    "msisdn": "254702930830",
+    "account_number": "Alvin",
     "country_code": "KEN",
     "currency_code": "KES",
     "client_code": "IRIS",
@@ -10,17 +10,17 @@
     "customer_first_name": "John",
     "customer_last_name": "Doe",
     "merchant_transaction_id": "txn_id_342",
-    "preferred_payment_option_code": "1",
-    "callback_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
-    "request_amount": "200",
+    "preferred_payment_option_code": "0",
+    "callback_url": "https://demo.lipad.io/api/payment-notification",
+    "request_amount": "100",
     "request_description": "Dummy merchant transaction",
-    "success_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
-    "fail_redirect_url": "https://lipad-demo-site-wf26i.ondigitalocean.app/",
+    "success_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+    "fail_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
     "invoice_number": "1",
     "language_code": "en",
     "service_code": "GEN",
     "signature": "KruuxFffkkrq8qsBdEufDFLMwXZYVkjG0UFsOEdbgnOzzF8wmDiMPzyEUslDhyZ2Vat9anrnqdUroHEeKqqcpFp348qwccah218kVtkalludyRllAgeTNf9tPhLG1ObIyTc04smZ1HxxIFTt59YuIALdAVOuU5tpIreiFWR3m2ts5FpDcIu86VfGw7kgajW7YHWI05YNygLMMikxESPwj3C1sMuoMOzG82sj2JSKYN9rd0/IMeXp8z7a0xBb9W3fyJSZFw091aRB2hOGzp4nS8cW4DQcENbshYlVLGRmIXVKr9sYVZsKQnA5q+2jT9yrsWqEcBGDXY0+9KoLO3pdcA==",
-    "due_date": "2022-06-23 09:40:43"
+    "due_date": "2022-07-19 11:04:51"
   },
   "client_data": {
     "client_name": "Iris",
@@ -36,43 +36,33 @@
           "phone_code": "254",
           "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fkenya-flag-icon-32.png?alt=media&token=a9c627ae-99c0-4475-bf8d-22df69471093"
         }
+      },
+      {
+        "client_country_id": "2",
+        "country": {
+          "country_id": "2",
+          "country_name": "Tanzania",
+          "phone_code": "255",
+          "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Ftanzania-flag-icon-32.png?alt=media&token=0c6cb06d-b441-4eb6-9a79-4f6122f67244"
+        }
+      },
+      {
+        "client_country_id": "3",
+        "country": {
+          "country_id": "3",
+          "country_name": "Uganda",
+          "phone_code": "256",
+          "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fuganda-flag-icon-32.png?alt=media&token=9639557b-c54c-4175-90a3-46f1f5783492"
+        }
       }
     ],
     "client_payment_methods": [
-      {
-        "client_payment_method_id": "7",
-        "payment_method": {
-          "payment_method_id": "2",
-          "payment_method_name": "AIRTELMONEY",
-          "payment_method_description": "Airtel money channel",
-          "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
-          "payment_method_type": {
-            "payment_method_type_id": "1",
-            "payment_method_type_name": "mobile_money",
-            "payment_method_type_description": "Payments through mobile money"
-          }
-        }
-      },
-      {
-        "client_payment_method_id": "6",
-        "payment_method": {
-          "payment_method_id": "3",
-          "payment_method_name": "CARD",
-          "payment_method_description": "Payments made via VISA, Mastercard etc",
-          "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fvisa.svg?alt=media&token=d1dbbe3f-9977-43fb-8286-e80eb05aa4b6",
-          "payment_method_type": {
-            "payment_method_type_id": "3",
-            "payment_method_type_name": "card",
-            "payment_method_type_description": "Payments through card"
-          }
-        }
-      },
       {
         "client_payment_method_id": "1",
         "payment_method": {
           "payment_method_id": "1",
           "payment_method_name": "MPESA",
-          "payment_method_description": "Safaricom payment channel",
+          "payment_method_description": "Transactions via Safaricom Mpesa gateway",
           "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
           "payment_method_type": {
             "payment_method_type_id": "1",

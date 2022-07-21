@@ -4,7 +4,7 @@ import payloadState from "../../recoil/payloadAtom";
 
 export default function CountDownTimer() {
   const payload = useRecoilValue(payloadState);
-  const countDownTime = new Date(payload.merchant_site_data.due_date + "Z");
+  const countDownTime = new Date(payload.merchant_site_data.due_date);
   const [days, hours, minutes, seconds] = useCountdown(countDownTime);
 
   return (
