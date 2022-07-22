@@ -13,13 +13,16 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
       ...checkout,
       client_data: {
         ...checkout.client_data,
-        client_payment_methods: [
+        client_services: [
           {
-            client_payment_method_id: option.client_payment_method_id,
-            payment_method: {
-              payment_method_id: option.payment_method.payment_method_id,
-              payment_method_name: option.payment_method.payment_method_name,
-            },
+            client_service_id:
+              checkout.client_data.client_services[0].client_service_id,
+            client_service_payment_methods: [
+              {
+                client_service_payment_method_id:
+                  option.payment_method.payment_method_id,
+              },
+            ],
           },
         ],
       },
@@ -42,11 +45,8 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                   </span>
                 </div>
                 <div className="items-center gap-4 hidden sm:flex">
-                  {options.map((option) => (
-                    <div
-                      key={option.client_payment_method_id}
-                      className={`${open ? "hidden" : "block"}`}
-                    >
+                  {options.map((option, i) => (
+                    <div key={i} className={`${open ? "hidden" : "block"}`}>
                       <div className="relative w-10 h-6">
                         <Image
                           src={option.payment_method.payment_method_icon}
@@ -79,9 +79,9 @@ export default function MobilePaymentOptionsTile({ options, title, iconSrc }) {
                       static
                       className="grid grid-cols-4 mt-4 gap-x-2"
                     >
-                      {options?.map((option) => (
+                      {options?.map((option, i) => (
                         <div
-                          key={option.client_payment_method_id}
+                          key={i}
                           onClick={() => {
                             setPaymentMethod(option);
                           }}

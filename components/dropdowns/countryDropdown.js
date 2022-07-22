@@ -15,7 +15,7 @@ export default function CountryDropdown({ countries }) {
       ...checkout,
       client_data: {
         ...checkout.client_data,
-        client_countries: [selected],
+        client_countries: [{ client_country_id: selected.client_country_id }],
       },
     }));
   }, [selected]);

@@ -6,7 +6,7 @@ const checkoutState = atom({
   key: "checkoutState",
   effects_UNSTABLE: [persistAtom],
   default: {
-    checkout_reference_id: null,
+    checkout_request_id: null,
     msisdn: null,
     card: {
       name_on_card: null,
@@ -23,12 +23,11 @@ const checkoutState = atom({
           client_country_id: null,
         },
       ],
-      client_payment_methods: [
+      client_services: [
         {
-          client_payment_method_id: null,
-          payment_method: {
-            payment_method_id: null,
-            payment_method_name: null,
+          client_service_id: null,
+          client_service_payment_methods: {
+            client_service_payment_method_id: null,
           },
         },
       ],

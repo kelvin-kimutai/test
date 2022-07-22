@@ -18,10 +18,17 @@ export default function Page({ data }) {
       setPayload(data);
       setCheckout((checkout) => ({
         ...checkout,
-        checkout_reference_id: data.checkout_reference_id,
+        checkout_request_id: data.checkout_request_id,
         client_data: {
           ...checkout.client_data,
           client_code: data.client_data.client_code,
+          client_services: [
+            {
+              ...checkout.client_data.client_services[0].payment_method,
+              client_service_id:
+                data.client_data.client_services[0].client_service_id,
+            },
+          ],
         },
       }));
     }
@@ -29,9 +36,9 @@ export default function Page({ data }) {
 
   const isPaymentMethodAvailable = (paymentMethod) => {
     if (_.isEmpty(payload)) return false;
-    return payload.client_data.client_payment_methods.filter(
-      (client_payment_method) =>
-        client_payment_method.payment_method.payment_method_type
+    return payload.client_data.client_services[0].client_service_payment_methods.filter(
+      (client_service_payment_method) =>
+        client_service_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
     ).length > 0
       ? true
@@ -40,9 +47,9 @@ export default function Page({ data }) {
 
   const filteredPaymentMethods = (paymentMethod) => {
     if (_.isEmpty(payload)) return [];
-    return payload.client_data.client_payment_methods.filter(
-      (client_payment_method) =>
-        client_payment_method.payment_method.payment_method_type
+    return payload.client_data.client_services[0].client_service_payment_methods.filter(
+      (client_service_payment_method) =>
+        client_service_payment_method.payment_method.payment_method_type
           .payment_method_type_name === paymentMethod
     );
   };

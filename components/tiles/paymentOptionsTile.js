@@ -17,13 +17,16 @@ export default function PaymentOptionsTile({
       ...checkout,
       client_data: {
         ...checkout.client_data,
-        client_payment_methods: [
+        client_services: [
           {
-            client_payment_method_id: option.client_payment_method_id,
-            payment_method: {
-              payment_method_id: option.payment_method.payment_method_id,
-              payment_method_name: option.payment_method.payment_method_name,
-            },
+            client_service_id:
+              checkout.client_data.client_services[0].client_service_id,
+            client_service_payment_methods: [
+              {
+                client_service_payment_method_id:
+                  option.payment_method.payment_method_id,
+              },
+            ],
           },
         ],
       },
