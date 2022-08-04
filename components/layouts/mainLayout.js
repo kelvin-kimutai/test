@@ -49,7 +49,7 @@ export default function MainLayout({ children }) {
               <div className="h-8 p-0.5 bg-white rounded-md aspect-square">
                 <div className="relative h-full">
                   <Image
-                    src={payload.client_data.client_image_url}
+                    src={payload.client_data.client_logo}
                     alt=""
                     layout="fill"
                     objectFit="contain"
