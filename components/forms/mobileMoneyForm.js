@@ -16,7 +16,7 @@ export default function MobileMoneyForm() {
 
   const initialValues = {
     mobileNumber: payload.merchant_site_data.msisdn
-      ? payload.merchant_site_data.msisdn.replace("+", "")
+      ? payload.merchant_site_data.msisdn
       : localStorage.getItem("mobileNumber") ?? "",
     amount: payload.merchant_site_data.request_amount,
     saveNumber: false,
@@ -29,6 +29,7 @@ export default function MobileMoneyForm() {
     saveNumber: Yup.bool(),
   });
   const onSubmit = (values) => {
+    console.log(values.mobileNumber.replace("+", ""));
     setCheckout((checkout) => ({
       ...checkout,
       msisdn: values.mobileNumber.replace("+", ""),
@@ -55,7 +56,7 @@ export default function MobileMoneyForm() {
             name="mobileNumber"
             type="tel"
             label="Mobile number"
-            placeholder="254 712 345678"
+            placeholder="+254 712 345678"
           />
           <InputField
             name="amount"
