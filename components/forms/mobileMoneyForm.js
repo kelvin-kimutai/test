@@ -16,7 +16,7 @@ export default function MobileMoneyForm() {
 
   const initialValues = {
     mobileNumber: payload.merchant_site_data.msisdn
-      ? payload.merchant_site_data.msisdn
+      ? payload.merchant_site_data.msisdn.replace("+", "")
       : localStorage.getItem("mobileNumber") ?? "",
     amount: payload.merchant_site_data.request_amount,
     saveNumber: false,
