@@ -19,7 +19,6 @@ export default function Page() {
     const timer = setTimeout(() => {
       router.push({
         pathname: payload?.merchant_site_data.success_redirect_url,
-        query: {},
       });
     }, 5000);
     return () => clearTimeout(timer);

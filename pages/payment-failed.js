@@ -51,7 +51,7 @@ export default function Page() {
           </p>
         </div>
         <div className="flex w-full mt-12 gap-x-2">
-          <Link href="/authorize-payment" passHref>
+          <Link href={payload?.merchant_site_data.fail_redirect_url} passHref>
             <div className="w-full">
               <OutlineButton label="Go Back" />
             </div>
