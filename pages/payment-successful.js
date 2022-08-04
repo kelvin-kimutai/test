@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Image from "next/image";
 import Link from "next/link";
 import numeral from "numeral";
@@ -17,11 +18,11 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push({
-        pathname: payload?.merchant_site_data.fail_redirect_url,
+        pathname: payload?.merchant_site_data.success_redirect_url,
+        query: {},
       });
     }, 5000);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -7,9 +7,7 @@ import CheckBox from "../../components/input/checkBox";
 import InputField from "../../components/input/inputField";
 import checkoutState from "../../recoil/checkoutAtom";
 import payloadState from "../../recoil/payloadAtom";
-
-const mobileRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+import "yup-phone";
 
 export default function MobileMoneyForm() {
   const router = useRouter();
@@ -25,7 +23,7 @@ export default function MobileMoneyForm() {
   };
   const validationSchema = Yup.object({
     mobileNumber: Yup.string()
-      .matches(mobileRegExp, "Mobile number is not valid")
+      .phone(undefined, undefined, "Invalid phone number")
       .required("Required"),
     amount: Yup.string().required("Required"),
     saveNumber: Yup.bool(),
@@ -33,7 +31,7 @@ export default function MobileMoneyForm() {
   const onSubmit = (values) => {
     setCheckout((checkout) => ({
       ...checkout,
-      msisdn: values.mobileNumber,
+      msisdn: values.mobileNumber.replace("+", ""),
       request_amount: values.amount,
     }));
     if (values.saveNumber)
