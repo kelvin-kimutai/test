@@ -17,6 +17,8 @@ export default function CountryDropdown({ countries }) {
   const [selected, setSelected] = useState(ui.selectedCountry);
   const setCheckout = useSetRecoilState(checkoutState);
 
+  const getPaymentMethods = () => {};
+
   useEffect(() => {
     setUiState((prevState) => ({
       ...prevState,
