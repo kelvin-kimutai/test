@@ -41,7 +41,7 @@ export default function Page() {
           </h2>
           <p>
             Your payment of KES{" "}
-            {numeral(checkout.request_amount).format("0,0.00")} to{" "}
+            {numeral(checkout?.request_amount).format("0,0.00")} to{" "}
             <span className="font-medium">
               {payload?.client_data.client_name}
             </span>{" "}

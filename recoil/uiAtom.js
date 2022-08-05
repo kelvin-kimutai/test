@@ -7,6 +7,7 @@ const uiState = atom({
   default: {
     toast: false,
     htmlString: "",
+    selectedCountry: {},
   },
   effects_UNSTABLE: [persistAtom],
 });

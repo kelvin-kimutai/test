@@ -38,7 +38,7 @@ export default function MainLayout({ children }) {
             <div className="flex items-center">
               <HiChevronLeft className="h-6 w-auto" />
               <div className="font-medium">
-                Back to {payload.client_data.client_name}
+                Back to {payload?.client_data.client_name}
               </div>
             </div>
           </Link>
@@ -49,7 +49,7 @@ export default function MainLayout({ children }) {
               <div className="h-8 p-0.5 bg-white rounded-md aspect-square">
                 <div className="relative h-full">
                   <Image
-                    src={payload.client_data.client_logo}
+                    src={payload?.client_data.client_logo}
                     alt=""
                     layout="fill"
                     objectFit="contain"
@@ -61,9 +61,7 @@ export default function MainLayout({ children }) {
               </span>
             </div>
             <div className="mb-1">
-              <CountryDropdown
-                countries={payload.client_data.client_countries}
-              />
+              <CountryDropdown countries={payload.client_data.countries} />
             </div>
           </section>
           <div>{children}</div>

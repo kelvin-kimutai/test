@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import { useRouter } from "next/router";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import * as Yup from "yup";
 import SolidButton from "../../components/buttons/solidButton";
 import CheckBox from "../../components/input/checkBox";
@@ -8,32 +8,65 @@ import InputField from "../../components/input/inputField";
 import checkoutState from "../../recoil/checkoutAtom";
 import payloadState from "../../recoil/payloadAtom";
 import "yup-phone";
+import uiState from "../../recoil/uiAtom";
+import { parsePhoneNumber } from "libphonenumber-js";
+import { countryCodes } from "../../lib/countryCodes";
+import MobileInputField from "../input/mobileInputField";
 
 export default function MobileMoneyForm() {
   const router = useRouter();
+  const payment_method_name = router.query.payment_method_name;
+  const ui = useRecoilValue(uiState);
   const payload = useRecoilValue(payloadState);
-  const [checkout, setCheckout] = useRecoilState(checkoutState);
+  const setCheckout = useSetRecoilState(checkoutState);
 
-  const initialValues = {
-    mobileNumber: payload.merchant_site_data.msisdn
+  function convertISO3toISO2(ISO2) {
+    return countryCodes.find((e) => e.ISO3 === ISO2).ISO2;
+  }
+
+  let initialPhoneNumber = (
+    payload.merchant_site_data.msisdn
       ? payload.merchant_site_data.msisdn
-      : localStorage.getItem("mobileNumber") ?? "",
+      : localStorage.getItem("mobileNumber") ?? ""
+  ).replace("+", "");
+
+  if (!initialPhoneNumber.startsWith(ui.selectedCountry.phone_code))
+    initialPhoneNumber = "";
+  else
+    initialPhoneNumber = initialPhoneNumber.replace(
+      ui.selectedCountry.phone_code,
+      ""
+    );
+  const initialValues = {
+    mobileNumber: initialPhoneNumber,
     amount: payload.merchant_site_data.request_amount,
     saveNumber: false,
   };
+
   const validationSchema = Yup.object({
     mobileNumber: Yup.string()
-      .phone(undefined, undefined, "Invalid phone number")
+      .test("phoneNumberValidation", "Invalid phone number", (value) => {
+        try {
+          return parsePhoneNumber(
+            value,
+            convertISO3toISO2(ui.selectedCountry.country_code)
+          ).isValid();
+        } catch (error) {
+          return false;
+        }
+      })
       .required("Required"),
     amount: Yup.string().required("Required"),
     saveNumber: Yup.bool(),
   });
   const onSubmit = (values) => {
-    console.log(values.mobileNumber.replace("+", ""));
-    setCheckout((checkout) => ({
-      ...checkout,
-      msisdn: values.mobileNumber.replace("+", ""),
+    const msisdn = `${ui.selectedCountry.phone_code}${values.mobileNumber}`;
+    setCheckout((prevState) => ({
+      ...prevState,
+      payer_msisdn: msisdn,
       request_amount: values.amount,
+      country_code: ui.selectedCountry.country_code,
+      payment_method_name: payment_method_name,
     }));
     if (values.saveNumber)
       localStorage.setItem("mobileNumber", values.mobileNumber);
@@ -52,11 +85,13 @@ export default function MobileMoneyForm() {
           onSubmit={props.handleSubmit}
           className="flex flex-col gap-2 mt-4 text-sm sm:text-base"
         >
-          <InputField
+          <MobileInputField
             name="mobileNumber"
             type="tel"
             label="Mobile number"
-            placeholder="+254 712 345678"
+            placeholder="712 345678"
+            flag={ui.selectedCountry.flag}
+            phoneCode={ui.selectedCountry.phone_code}
           />
           <InputField
             name="amount"

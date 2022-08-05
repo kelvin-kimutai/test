@@ -1,37 +1,5 @@
 const paymentOptions = [
   {
-    id: "mpesa",
-    name: "M-Pesa",
-    imageSrc: "/images/logos/mpesa.svg",
-    type: "mobile",
-  },
-  {
-    id: "airtel",
-    name: "Airtel",
-    imageSrc: "/images/logos/airtel.svg",
-    type: "mobile",
-    paymentInstructions: [
-      "Go to your Airtel SIM tool kit",
-      "Select Airtel money",
-      "Instruction 3 goes here",
-      "Instruction 4 goes here",
-      "Confirm your payment ",
-      "Click ‘Confirm Payment’ below",
-    ],
-  },
-  {
-    id: "equitel",
-    name: "Equitel",
-    imageSrc: "/images/logos/equitel.svg",
-    type: "mobile",
-  },
-  {
-    id: "card",
-    name: "Card",
-    imageSrc: "",
-    type: "card",
-  },
-  {
     id: "ecobank",
     name: "Ecobank",
     imageSrc: "/images/logos/ecobank.svg",

@@ -44,11 +44,11 @@ export default function AuthorizePayment() {
           <p className="text-center">
             Please ensure you have your phone with you and sufficient balance in
             your account. We&apos;ll send a prompt to{" "}
-            <span className="font-medium">{checkout.msisdn}</span>. Enter your
-            PIN to authorize your payment of{" "}
+            <span className="font-medium">{checkout?.payer_msisdn}</span>. Enter
+            your PIN to authorize your payment of{" "}
             <span className="font-medium">
               {payload?.merchant_site_data.currency_code}{" "}
-              {checkout.request_amount}
+              {checkout?.request_amount}
             </span>{" "}
             to account number{" "}
             <span className="font-medium">

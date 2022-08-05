@@ -1,0 +1,74 @@
+{
+  "checkout_request_id": "448",
+  "merchant_site_data": {
+    "checkout_request_id": "448",
+    "msisdn": "254702930830",
+    "customer_email": "johndoe@mail.com",
+    "customer_first_name": "John",
+    "customer_last_name": "Doe",
+    "due_date": "2022-09-23T13:00:00.000Z",
+    "merchant_transaction_id": "txn_id_342",
+    "preferred_payment_option_code": "0",
+    "callback_url": "https://demo.lipad.io/api/payment-notification",
+    "request_amount": "100",
+    "request_description": "Dummy merchant transaction",
+    "success_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+    "fail_redirect_url": "https://webhook.site/6c933f61-d6da-4f8e-8a44-bf0323eb8ad6",
+    "invoice_number": "1",
+    "account_number": "Alvin",
+    "language_code": "en",
+    "currency_code": "KES",
+    "client_code": "IRIS",
+    "service_code": "GEN",
+    "country_code": "KEN"
+  },
+  "client_data": {
+    "client_name": "Iris",
+    "client_code": "IRIS",
+    "client_description": "Iris Port Logistics",
+    "client_logo": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fkcb.png?alt=media&token=cfea4c5c-4583-4126-b1de-806bbab25787",
+    "payment_methods": [
+      {
+        "payment_method_id": "1",
+        "payment_method_name": "MPESA",
+        "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fmpesa.svg?alt=media&token=0fba225b-ade5-4f5d-a5c1-21e9b2278df6",
+        "payment_method_type": "mobile_money"
+      },
+      {
+        "payment_method_id": "2",
+        "payment_method_name": "AIRTELMONEY",
+        "payment_method_icon": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/logos%2Fairtel.svg?alt=media&token=59cee103-a768-4c7e-857b-921ef34198cb",
+        "payment_method_type": "mobile_money"
+      }
+    ],
+    "services": [
+      { "services_id": "1", "service_name": "General", "service_code": "GEN" }
+    ],
+    "countries": [
+      {
+        "country_id": "1",
+        "country_name": "Kenya",
+        "currency_code": "KES",
+        "phone_code": "254",
+        "country_code": "KEN",
+        "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fkenya-flag-icon-32.png?alt=media&token=a9c627ae-99c0-4475-bf8d-22df69471093"
+      },
+      {
+        "country_id": "2",
+        "country_name": "Tanzania",
+        "currency_code": "TZS",
+        "phone_code": "255",
+        "country_code": "TZA",
+        "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Ftanzania-flag-icon-32.png?alt=media&token=0c6cb06d-b441-4eb6-9a79-4f6122f67244"
+      },
+      {
+        "country_id": "3",
+        "country_name": "Uganda",
+        "currency_code": "UGX",
+        "phone_code": "256",
+        "country_code": "UGA",
+        "flag": "https://firebasestorage.googleapis.com/v0/b/lipad-checkout.appspot.com/o/flags%2Fuganda-flag-icon-32.png?alt=media&token=9639557b-c54c-4175-90a3-46f1f5783492"
+      }
+    ]
+  }
+}

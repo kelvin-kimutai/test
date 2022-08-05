@@ -4,6 +4,8 @@ import CardForm from "../../components/forms/cardForm";
 import MobileMoneyForm from "../../components/forms/mobileMoneyForm";
 import HeaderLayout from "../../components/layouts/headerLayout";
 import MainLayout from "../../components/layouts/mainLayout";
+import PaymentInstructions from "../../components/paymentInstructions";
+import { paymentOptions } from "../../data/paymentOptions";
 
 export default function Page() {
   const router = useRouter();
@@ -35,23 +37,18 @@ export default function Page() {
             <CardForm />
           </>
         )}
+        {payment_method_type == "bank" && (
+          <>
+            {title(`Pay with ${payment_method_name}`)}
+            <PaymentInstructions
+              instructions={
+                paymentOptions.find((e) => e.name === payment_method_name)
+                  .paymentInstructions
+              }
+            />
+          </>
+        )}
       </HeaderLayout>
     </MainLayout>
   );
-
-  // else if (payment_method_id == "visa" || payment_method_id == "mastercard")
-  //   return (
-  //     <>
-  //       {title("Enter your Card details")}
-  //       <CardForm />
-  //     </>
-  //   );
-  // else
-  //   return (
-  //     <>
-  //       <div>Unsupported payment method</div>
-  //       {/* {title(`Pay with ${payment_method_id}`)}
-  //       <PaymentInstructions instructions={paymentOption.paymentInstructions} /> */}
-  //     </>
-  //   );
 }
