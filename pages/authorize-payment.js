@@ -15,7 +15,7 @@ export default function AuthorizePayment() {
   const sendPaymentRequest = () => {
     console.log(checkout);
     fetch(
-      `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_request_id}`,
+      `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${payload.checkout_request_id}`,
       {
         method: "PATCH",
         headers: {
