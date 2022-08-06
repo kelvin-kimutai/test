@@ -9,12 +9,14 @@ import OutlineButton from "../components/buttons/outlineButton";
 import CardAuthModal from "../components/cardAuthModal";
 import MainLayout from "../components/layouts/mainLayout";
 import checkoutState from "../recoil/checkoutAtom";
+import payloadState from "../recoil/payloadAtom";
 import uiState from "../recoil/uiAtom";
 
 export default function Page() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const router = useRouter();
   const checkout = useRecoilValue(checkoutState);
+  const payload = useRecoilValue(payloadState);
   const [ui, setUiState] = useRecoilState(uiState);
 
   const [openModal, setOpenModal] = useState(true);
@@ -56,7 +58,7 @@ export default function Page() {
     // a payload of the checkout_preprocessor_id object.
     socket.on("connect", (data) => {
       socket.emit("checkout-processor", {
-        checkout_request_id: checkout.checkout_request_id,
+        checkout_request_id: payload.checkout_request_id,
       });
       console.log("Connected to socket.");
       showToast();
@@ -88,7 +90,7 @@ export default function Page() {
   const checkPayment = async () => {
     setButtonDisabled(true);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${checkout.checkout_request_id}/status`,
+      `${process.env.NEXT_PUBLIC_CHECKOUT_PAYMENT_REQUEST_ENDPOINT}/${payload.checkout_request_id}/status`,
       {
         method: "GET",
         headers: {

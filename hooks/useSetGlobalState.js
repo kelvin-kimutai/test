@@ -10,7 +10,6 @@ const useSetGlobalState = (data) => {
   const [checkout, setCheckout] = useRecoilState(checkoutState);
 
   useEffect(() => {
-    console.log("useSetGlobalState()");
     localStorage.clear();
     if (data !== null) {
       setPayload(data);
