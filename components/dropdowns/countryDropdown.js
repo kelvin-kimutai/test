@@ -4,24 +4,40 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { HiCheck, HiOutlineChevronDown } from "react-icons/hi";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import checkoutState from "../../recoil/checkoutAtom";
+import { useRecoilState } from "recoil";
 import payloadState from "../../recoil/payloadAtom";
 import uiState from "../../recoil/uiAtom";
+import { getPaymentMethods } from "../../services/paymentMethods";
 
 export default function CountryDropdown({ countries }) {
   const router = useRouter();
   const [ui, setUiState] = useRecoilState(uiState);
-  const payload = useRecoilValue(payloadState);
-
+  const [payload, setPayload] = useRecoilState(payloadState);
   const [selected, setSelected] = useState(ui.selectedCountry);
-  const setCheckout = useSetRecoilState(checkoutState);
 
   const fetchPaymentMethods = async (selected) => {
     try {
-      const paymentMethods = await getPaymentMethods();
+      const paymentMethods = await getPaymentMethods({
+        clientCode: payload.merchant_site_data.client_code,
+        countryCode: selected.country_code,
+        serviceCode: payload.merchant_site_data.service_code,
+      });
+      setPayload((prevState) => ({
+        ...prevState,
+        client_data: {
+          ...prevState.client_data,
+          payment_methods: paymentMethods.payment_methods,
+        },
+      }));
     } catch (error) {
       console.log(error);
+      setPayload((prevState) => ({
+        ...prevState,
+        client_data: {
+          ...prevState.client_data,
+          payment_methods: [],
+        },
+      }));
     }
   };
 
@@ -30,6 +46,7 @@ export default function CountryDropdown({ countries }) {
       ...prevState,
       selectedCountry: selected,
     }));
+    fetchPaymentMethods(selected);
   }, [selected]);
 
   return (

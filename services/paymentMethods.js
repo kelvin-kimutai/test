@@ -1,13 +1,17 @@
 import { prepareParameters } from "../lib/helpers";
 
 export async function getPaymentMethods({
+  clientCode,
   countryCode,
   serviceCode,
-  clientCode,
 }) {
   const response = await fetch(
     `https://uat.chekout-api.lipad.io/checkout-processor/client-countries?${prepareParameters(
-      { countryCode, serviceCode, clientCode }
+      {
+        client_code: clientCode,
+        country_code: countryCode,
+        service_code: serviceCode,
+      }
     )}`,
     { method: "GET", headers: { "Content-Type": "application/json" } }
   );
@@ -17,6 +21,6 @@ export async function getPaymentMethods({
   }
   throw {
     code: response.status,
-    message: decodedResponse.message ?? "Failed to get client types",
+    message: decodedResponse.message ?? "Failed to get payment methods",
   };
 }
