@@ -1,4 +1,3 @@
-import _ from "lodash";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -24,8 +23,6 @@ export default function MainLayout({ children }) {
   useEffect(() => {
     if (countDown < -3) router.push("/session-expired");
   }, [countDown, router]);
-
-  if (_.isEmpty(payload)) return <div></div>;
 
   return (
     <main className="grid place-content-center min-h-screen p-8 sm:p-16 relative scrollbar-hide">
