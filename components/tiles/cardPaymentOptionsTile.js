@@ -1,8 +1,6 @@
 import Image from "next/image";
-import { HiChevronUp } from "react-icons/hi";
-import { useRecoilState } from "recoil";
-import checkoutState from "../../recoil/checkoutAtom";
 import Link from "next/link";
+import { HiChevronUp } from "react-icons/hi";
 
 const paymentIcons = ["/images/logos/visa.svg", "/images/logos/mastercard.svg"];
 

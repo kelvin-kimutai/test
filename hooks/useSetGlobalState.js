@@ -23,6 +23,8 @@ const useSetGlobalState = (data) => {
         ...prevState,
         client_code: data.merchant_site_data.client_code,
         service_code: data.merchant_site_data.service_code,
+        payer_msisdn: data.merchant_site_data.msisdn,
+        request_amount: data.merchant_site_data.request_amount,
       }));
     } else {
       setPayload(null);

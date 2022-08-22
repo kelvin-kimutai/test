@@ -11,6 +11,7 @@ export default function Page() {
   const router = useRouter();
   const payment_method_name = router.query.payment_method_name;
   const payment_method_type = router.query.payment_method_type;
+  console.log(payment_method_name);
 
   const title = (title) => (
     <div className="relative">
@@ -41,10 +42,9 @@ export default function Page() {
           <>
             {title(`Pay with ${payment_method_name}`)}
             <PaymentInstructions
-              instructions={
-                paymentOptions.find((e) => e.name === payment_method_name)
-                  .paymentInstructions
-              }
+              instructions={paymentOptions.find(
+                (e) => e.name === payment_method_name
+              )}
             />
           </>
         )}

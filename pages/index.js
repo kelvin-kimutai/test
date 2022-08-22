@@ -3,10 +3,7 @@ import MainLayout from "../components/layouts/mainLayout";
 import ErrorScreen from "../components/screen/errorScreen";
 import MobilePaymentOptionsTile from "../components/tiles/mobilePaymentOptionsTile";
 import useSetGlobalState from "../hooks/useSetGlobalState";
-import {
-  filteredPaymentMethods,
-  testBankPaymentOptions,
-} from "../lib/paymentMethods";
+import { filteredPaymentMethods } from "../lib/paymentMethods";
 import CardPaymentOptionsTile from "../components/tiles/cardPaymentOptionsTile";
 import BankPaymentOptionsTile from "../components/tiles/bankPaymentOptionsTile";
 
@@ -27,7 +24,7 @@ export default function Page({ data }) {
 
   const bankPaymentOptions = filteredPaymentMethods({
     payload,
-    paymentMethod: "bank",
+    type: "bank",
   });
 
   return (
@@ -44,7 +41,7 @@ export default function Page({ data }) {
             <CardPaymentOptionsTile options={cardPaymentOptions} />
           )}
           {bankPaymentOptions.length > 0 && (
-            <BankPaymentOptionsTile options={testBankPaymentOptions} />
+            <BankPaymentOptionsTile options={bankPaymentOptions} />
           )}
         </div>
       </HeaderLayout>
