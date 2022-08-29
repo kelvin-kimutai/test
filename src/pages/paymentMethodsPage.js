@@ -32,16 +32,16 @@ function PaymentMethodsPage() {
       <div>
         <TopSection />
         <MiddleSection />
-        <div className="space-y-2 p-4 sm:p-6 -mt-8 bg-white rounded-t-xl">
-          <h2 className="text-lg font-medium text-center">
+        <div className="-mt-8 space-y-2 rounded-t-xl bg-white p-4 sm:p-6">
+          <h2 className="text-center text-lg font-medium">
             How would you like to pay?
           </h2>
           {mobilePaymentOptions.length > 0 && (
             <MobilePaymentOptionsTile options={mobilePaymentOptions} />
           )}
-          {cardPaymentOptions.length > 0 && (
+          {/* {cardPaymentOptions.length > 0 && (
             <CardPaymentOptionsTile options={cardPaymentOptions} />
-          )}
+          )} */}
           {bankPaymentOptions.length > 0 && (
             <BankPaymentOptionsTile options={bankPaymentOptions} />
           )}
