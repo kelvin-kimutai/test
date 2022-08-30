@@ -2,22 +2,22 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useSearchParams } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { useCountdown } from "../hooks/useCountdown";
-import AuthorizePaymentPage from "../pages/authorizePaymentPage";
-import ErrorPage from "../pages/errorPage";
-import MobileBankingPage from "../pages/mobileBankingPage";
-import MobileMoneyPage from "../pages/mobileMoneyPage";
-import NotFoundPage from "../pages/notFoundPage";
-import PaymentFailedPage from "../pages/paymentFailedPage";
-import SelectPaymentMethodPage from "../pages/paymentMethodsPage";
-import PaymentSuccessfulPage from "../pages/paymentSuccessful";
-import ProcessingPaymentPage from "../pages/processingPaymentPage";
-import SelectBankPage from "../pages/selectBankPage";
-import SessionExpiredPage from "../pages/sessionExpiredPage";
-import checkoutState from "../recoil/checkoutState";
-import payloadState from "../recoil/payloadState";
-import uiState from "../recoil/uiState";
-import { decodeBase64 } from "../util/helpers";
+import { useCountdown } from "./hooks/useCountdown";
+import AuthorizePaymentPage from "./pages/authorizePaymentPage";
+import ErrorPage from "./pages/errorPage";
+import MobileBankingPage from "./pages/mobileBankingPage";
+import MobileMoneyPage from "./pages/mobileMoneyPage";
+import NotFoundPage from "./pages/notFoundPage";
+import PaymentFailedPage from "./pages/paymentFailedPage";
+import SelectPaymentMethodPage from "./pages/paymentMethodsPage";
+import PaymentSuccessfulPage from "./pages/paymentSuccessful";
+import ProcessingPaymentPage from "./pages/processingPaymentPage";
+import SelectBankPage from "./pages/selectBankPage";
+import SessionExpiredPage from "./pages/sessionExpiredPage";
+import checkoutState from "./recoil/checkoutState";
+import payloadState from "./recoil/payloadState";
+import uiState from "./recoil/uiState";
+import { decodeBase64 } from "./util/helpers";
 
 function App() {
   const navigate = useNavigate();
