@@ -2,6 +2,7 @@
   "name": "lipad-checkout-ui-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://uat.checkout.lipad.io",
   "dependencies": {
     "@chakra-ui/react": "^2.2.9",
     "@emotion/react": "^11.10.0",
