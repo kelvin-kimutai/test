@@ -89,20 +89,19 @@ function App() {
   if (!mounted) return null;
 
   return (
-    <div>Hello</div>
-    // <Routes>
-    //   <Route path="/" element={<SelectPaymentMethodPage />} />
-    //   <Route path="select-bank" element={<SelectBankPage />} />
-    //   <Route path="mobile-money" element={<MobileMoneyPage />} />
-    //   <Route path="mobile-banking" element={<MobileBankingPage />} />
-    //   <Route path="authorize-payment" element={<AuthorizePaymentPage />} />
-    //   <Route path="process-payment" element={<ProcessingPaymentPage />} />
-    //   <Route path="payment-failed" element={<PaymentFailedPage />} />
-    //   <Route path="payment-successful" element={<PaymentSuccessfulPage />} />
-    //   <Route path="session-expired" element={<SessionExpiredPage />} />
-    //   <Route path="error" element={<ErrorPage />} />
-    //   <Route path="*" element={<NotFoundPage />} />
-    // </Routes>
+    <Routes>
+      <Route path="/" element={<SelectPaymentMethodPage />} />
+      <Route path="select-bank" element={<SelectBankPage />} />
+      <Route path="mobile-money" element={<MobileMoneyPage />} />
+      <Route path="mobile-banking" element={<MobileBankingPage />} />
+      <Route path="authorize-payment" element={<AuthorizePaymentPage />} />
+      <Route path="process-payment" element={<ProcessingPaymentPage />} />
+      <Route path="payment-failed" element={<PaymentFailedPage />} />
+      <Route path="payment-successful" element={<PaymentSuccessfulPage />} />
+      <Route path="session-expired" element={<SessionExpiredPage />} />
+      <Route path="error" element={<ErrorPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
