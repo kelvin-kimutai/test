@@ -10,12 +10,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ChakraProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <RecoilRoot>
+        <ChakraProvider>
           <App />
-        </BrowserRouter>
-      </ChakraProvider>
-    </RecoilRoot>
+        </ChakraProvider>
+      </RecoilRoot>
+    </BrowserRouter>
   </React.StrictMode>
 );
